@@ -1,0 +1,113 @@
+* { margin: 0; padding: 0; }
+html, body, #main { height: 100% }
+body, div { font-family: 'lucida grande', helvetica, verdana, arial, sans-serif }
+body { margin: 0; padding: 0;  color: #333 }
+
+#map {
+  	position: absolute;
+  	top:      10px;
+  	left:     10px;
+    width:    570px;
+    height:   550px;
+    border:   1px solid #000000;
+}
+
+#content {
+  	position: absolute;
+  	top:      10px;
+  	left:     590px;
+  	width:    300px;
+  	height:   550px;
+  	background-color: #dddddd;
+  	border:   1px solid #000000;
+}
+
+#curLocation {
+	position:         absolute;
+	top:              570px;
+	left:             10px;
+	color:            #5a5a5a;
+	font-family:      serif,arial,helvetica;
+	font-size:        0.7em;
+	float:            left;
+}
+
+#legend {
+	border: 1px solid #000000;	
+}
+
+#geocoder-info {
+	height:229px;
+	border: 1px solid;
+	font-family: Arial,Helvetica,sans-serif;
+	font-size: 13;
+	overflow: auto;
+	background-color: #eee;
+}
+
+#route-info {
+	height:160px;
+	border: 1px solid;
+	font-family: Arial,Helvetica,sans-serif;
+	font-size: 12;
+	overflow: auto;
+	background-color: #eee;
+}
+
+#route-summary {
+	background-color: #fff;
+	font-family: Arial,Helvetica,sans-serif;
+	font-size: 12;	
+}
+
+#info-error {
+	font-family: Arial,Helvetica,sans-serif;
+	font-size: 13px;
+	color: red;
+}
+
+fieldset {
+	border: 0.5px solid #000000;
+	height: 97%;
+	background-color: #ffffff;
+}
+
+legend {
+  color:white;
+  font-size: 13px;
+  font-family: Arial,Helvetica,sans-serif;
+  text-align:center;
+  background-color: #000088;
+  position:center;
+  padding: 2px 2px;
+  }
+
+label
+{
+//width: 4em;
+float: left;
+text-align: left;
+margin-right: 0.5em;
+margin-left: 0.5em;
+font-size: 13px;
+font-family: Arial,Helvetica,sans-serif;
+}
+
+.info-table {
+    font-size: 12px;
+    font-family: Arial,Helvetica,sans-serif;
+    //background-color: #336699;
+    background-color: #000088;
+    //width: 230px;
+    border: 1px;
+}
+
+.info-table td {
+    width: 165px;
+    background: #ffffff;
+}
+
+.routetab td {
+    font-size: 11px;
+    font-family: Arial,Helvetica,sans-serif;
+}
