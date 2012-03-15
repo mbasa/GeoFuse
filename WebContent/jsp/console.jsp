@@ -36,7 +36,6 @@ textarea {
 		Ext.get('tdata').dom.value = '';
 		Ext.get('turl').dom.value = 'http://';
 		Ext.get('b_in').dom.disabled = null;
-		Ext.get('maptype1').dom.checked = true;
 
 		mapOL = "http://";
 		mapZD = "http://";
@@ -76,7 +75,6 @@ textarea {
 			},
 			success : function(result, request) {
 				Ext.get('turl').dom.value = result.responseText;
-				Ext.get('maptype1').dom.checked = true;
 
 				var url = result.responseText;
 
@@ -133,13 +131,9 @@ textarea {
 	<div class="Body" style="width:700px;">
 	   <p>Map URL</p>
 	</div>
-	<!-- 
-	<font color="darkred"> <input type="radio" id="maptype1"
-		name="maptype" onclick="switchMap('ol');" checked>OpenLayers
-		地図&nbsp;
-	</font>
-	 -->
+
 	<textarea id="turl">http://</textarea>
+
 	<br />
 	<br />
 	<input type="button" value="Display Map" id="b_view" onclick="openWin();">
