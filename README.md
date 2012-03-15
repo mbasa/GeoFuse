@@ -1,7 +1,8 @@
 Prerequisites
 =============
-* GeoServer (with Tomcat)
-* PostgreSQL/PostGIS
+* [Tomcat](http://tomcat.apache.org)
+* [GeoServer](http://www.geoserver.org)
+* [PostGIS](http://www.postgis.org)
 
 To Install
 ==========
