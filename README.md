@@ -1,13 +1,13 @@
 Prerequisites
-=============
+-------------
 * [Tomcat](http://tomcat.apache.org)
 * [GeoServer](http://www.geoserver.org)
 * [PostGIS](http://www.postgis.org)
 
 To Install
-==========
+----------
 * download the war file found here
-* copy the war file to <tomcat dir>/webapps
+* copy the war file to tomcat_dir/webapps
 * start tomcat
 
 Configure PostgreSQL
@@ -19,18 +19,19 @@ Configure PostgreSQL
 Configure GeoServer
 -------------------
 
+
 To View Thematic Maps:
 ----------------------
 * Register polygon layers into the Geoserver Repository
-* View the polygon layers via the url:
+* **View the polygon layers via the url:**
 
    http://<host>:<port>/geothematics/showtheme?layer=<namespace>:<layer name>
 
-example:
+   example:
 
    http://localhost:8080/geothematics/showtheme?layer=topp:states
 
-NOTE: This application will try to get only metric (numeric) fields to
+   NOTE: This application will try to get only metric (numeric) fields to
       display in the Thematic attribute list. For numeric ID fileds 
       (i.e. Prefecture-ID,Country-ID,etc.), add a suffix "-ID" to the 
       fieldname so that it will not show in the attribute list.
@@ -45,3 +46,7 @@ the properties file at:
 
 NOTE: the ColorNames and Colors should have equal number of items, otherwise
       no color choices will appear in the Colors list of the web page.
+
+ License
+ -------
+ Released under GPL.
