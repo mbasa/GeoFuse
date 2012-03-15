@@ -4,7 +4,7 @@ Prerequisites
 * PostgreSQL/PostGIS
 
 To Install
-----------
+==========
 * download the war file found here
 * copy the war file to <tomcat dir>/webapps
 * start tomcat
@@ -16,12 +16,12 @@ Configure PostgreSQL
 * add map layers (polygons/lines/points) which will later be used for thematics 
 
 Configure GeoServer
-===================
+-------------------
 
 To View Thematic Maps:
 ----------------------
-1. Register polygon layers into the Geoserver Repository
-2. View the polygon layers via the url:
+* Register polygon layers into the Geoserver Repository
+* View the polygon layers via the url:
 
    http://<host>:<port>/geothematics/showtheme?layer=<namespace>:<layer name>
 
@@ -37,7 +37,7 @@ NOTE: This application will try to get only metric (numeric) fields to
 To Customize:
 -------------
 
-To change the Google Key, add or delete colors and ranges, etc., edit
+* To change the Google Key, add or delete colors and ranges, etc., edit
 the properties file at:
 
 <tomcat dir>/webapps/geothematics/WEB-INF/classes/properties/thematic.properties
