@@ -26,7 +26,11 @@ div.olLayerDiv {
     bottom: 15px;   
 }
 .olLayerGoogleV3.olLayerGooglePoweredBy {
+	visibility:hidden !important; 
     bottom: 15px !important;
+}
+.olLayerGooglePoweredBy.olLayerGoogleV3.gmnoprint {
+visibility:hidden !important;
 }
 .olControlAttribution {
     font-size: smaller; 
