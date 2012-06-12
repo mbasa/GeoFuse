@@ -38,6 +38,8 @@ public class wmsParamBean {
     String VERSION     = "1.0.0";
     String VIEWPARAMS  = "";
     String WIDTH       = "";
+    String PDF_TITLE   = "";
+    String PDF_NOTE    = "";
     
     public String getBBOX() {
         return BBOX;
@@ -158,6 +160,19 @@ public class wmsParamBean {
     public void setWIDTH(String width) {
         WIDTH = width;
     }
+    public String getPDF_TITLE() {
+        return PDF_TITLE;
+    }
+    public void setPDF_TITLE(String pDF_TITLE) {
+        PDF_TITLE = pDF_TITLE;
+    }
+    public String getPDF_NOTE() {
+        return PDF_NOTE;
+    }
+    public void setPDF_NOTE(String pDF_NOTE) {
+        PDF_NOTE = pDF_NOTE;
+    }
+
     public String getURL_PARAM() {
         StringBuffer sb = new StringBuffer();
         

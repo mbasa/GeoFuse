@@ -30,6 +30,8 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.commons.beanutils.BeanUtils;
 import geotheme.bean.*;
+import geotheme.pdf.*;
+
 
 /**
  * Servlet implementation class wms
@@ -38,6 +40,8 @@ public class wms extends HttpServlet {
     
 	private static final long serialVersionUID = 1L;
     private String geoserverURL = new String();   
+    private String pdfURL       = new String();
+    private String pdfLayers    = new String();
 
     @Override
 	public void init() throws ServletException {
@@ -54,7 +58,9 @@ public class wms extends HttpServlet {
         }
 		
 	    this.geoserverURL = url+"/wms";
-
+	    this.pdfURL       = rb.getString("PDF.OSM.URL");
+	    this.pdfLayers    = rb.getString("PDF.OSM.LAYERS");
+	    
     }
 
     /**
@@ -110,29 +116,46 @@ public class wms extends HttpServlet {
                 wmsBean.setSLD("");
                 wmsBean.setSTYLES("");
             }
-          
-            /**
-             * Generating Map from GeoServer
-             **/
-            URL geoURL = new URL(this.geoserverURL);
-
-            URLConnection geoConn = geoURL.openConnection();
-            geoConn.setDoOutput(true);
-            
-            wr = new OutputStreamWriter(geoConn.getOutputStream(),"UTF-8");
-            wr.write( wmsBean.getURL_PARAM() );
-            wr.flush();
-
-            in  = geoConn.getInputStream();
-            out = res.getOutputStream();
-            
-            res.setContentType(wmsBean.getFORMAT());
-            
-            int b;         
-            while((b = in.read()) != -1 ) {
-                out.write(b);
+                        
+            if( wmsBean.getREQUEST().compareToIgnoreCase("GetPDFGraphic") == 0 ) {
+                /**
+                 * Generate PDF Request
+                 */
+                generatePDF pdf = new generatePDF(this.pdfURL,
+                        this.pdfLayers);
+                
+                ByteArrayOutputStream baos = pdf.createPDFFromImage(
+                        wmsBean, this.geoserverURL);
+                
+                res.addHeader("Content-Type", "application/force-download"); 
+                res.addHeader("Content-Disposition", 
+                        "attachment; filename=\"MapOutput.pdf\"");
+                
+                res.getOutputStream().write(baos.toByteArray());
             }
-            
+            else {
+                /**
+                 * Generating Map from GeoServer
+                 **/
+                URL geoURL = new URL(this.geoserverURL);
+
+                URLConnection geoConn = geoURL.openConnection();
+                geoConn.setDoOutput(true);
+
+                wr = new OutputStreamWriter(geoConn.getOutputStream(),"UTF-8");
+                wr.write( wmsBean.getURL_PARAM() );
+                wr.flush();
+
+                in  = geoConn.getInputStream();
+                out = res.getOutputStream();
+
+                res.setContentType(wmsBean.getFORMAT());
+
+                int b;         
+                while((b = in.read()) != -1 ) {
+                    out.write(b);
+                }
+            }
         } catch (Exception e) {
             //e.printStackTrace();
         }

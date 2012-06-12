@@ -12,7 +12,7 @@
 <SCRIPT type="text/javascript" src="resources/lib/extJS/ext-base.js"></SCRIPT>
 <SCRIPT type="text/javascript" src="resources/lib/extJS/ext-all.js"></SCRIPT>
 
-<script src="http://maps.google.com/maps/api/js?v=3.3&sensor=false"></script>
+<script src="http://maps.googleapis.com/maps/api/js?sensor=false&v=3.6"></script>
     
 <SCRIPT type="text/javascript">
 
@@ -99,6 +99,117 @@
 
       Ext.get("mapLegend").update(imgHtml,true);
 
+  }
+  
+  function showPDFWin(){
+	var formItems = [
+                     {
+                         fieldLabel: 'Title',
+                         id        : 'pdf_title',
+                         allowBlank: false,
+                         maxLength : 42,
+                         minLength : 3,
+                         width     : 230,
+                         anchor    : '90%',
+                         msgTarget : 'under'
+                     },
+                     {
+                         fieldLabel: 'Description',
+                         id        : 'pdf_description',
+                         allowBlank: false,
+                         maxLength : 62,
+                         minLength : 3,
+                         width     : 230,
+                         anchor    : '90%',
+                         msgTarget : 'under'
+                      }];  
+
+	var formButtons = [
+	                   {   text    : "Create PDF",
+	                       formBind: true,
+	                       disabled: false,
+	                       handler : function() {
+	                    	   setPDF(Ext.get("pdf_title").dom.value,
+	                    			  Ext.get("pdf_description").dom.value);
+	                    	   pdfWindow.close();
+	                       }
+	                   },
+	                   { text    : "Cancel",
+                           formBind: false,
+                           disabled: false,
+                           handler : function() {
+                        	   pdfWindow.close();
+                           }
+                       } ];
+	
+	var pdfFormPanel = new Ext.FormPanel({
+        id            : 'pdfFormPanelId',
+        monitorValid  : true,
+        labelWidth    : 65,
+        frame         : true,
+        bodyStyle     : "padding:5px 5px 0",
+        autoWidth     : true,
+        autoHeight    : true,
+        defaultType   : "textfield",
+        buttonAlign   : 'center',
+        items         : formItems,
+        buttons       : formButtons
+      });
+	
+	var pdfWindow = new Ext.Window({
+	      id         : 'pdfWindowId',
+	      title      : 'PDF Report',
+	      width      : 450,
+	      autoheight : true,
+	      hideBorders: true,
+	      resizable  : true,
+	      closable   : true,
+	      modal      : true,
+	      items      : [ pdfFormPanel],
+	    });
+	
+	pdfWindow.show();
+	
+  }
+  
+  function setPDF(title,description) {
+
+	  var date     = new Date();
+	  var merc     = new OpenLayers.Projection("EPSG:900913");
+	  var latlon   = new OpenLayers.Projection("EPSG:4326");
+	  
+	  var ext      = map.getExtent().transform(merc,latlon);
+	  
+      var imgHtml  = wmsServer+
+      "?REQUEST=GetPDFGraphic"+
+      "&FORMAT="+mFormat+
+      "&LAYER="+mLayers+
+      "&TRANSPARENT=TRUE"+
+      "&SRS=EPSG:4326"+            
+      "&BBOX="+ext.toBBOX()+
+      "&SERVICE=wms"+
+      "&VIEWPARAMS="+mViewParams+
+      "&PDF_TITLE="+title+
+      "&PDF_NOTE="+description+
+      "&DATE="+date.getTime();
+
+      //window.open( imgHtml );
+      
+      var iframe;
+      iframe = document.getElementById("hiddenDownloader");
+      
+      if (iframe === null)
+      {
+          iframe = document.createElement('iframe');  
+          iframe.id = "hiddenDownloader";
+          iframe.style.visibility = 'hidden';
+          document.body.appendChild(iframe);
+      }
+      
+      iframe.src = imgHtml; 
+
+      Ext.MessageBox.alert('Status', 'Creating PDF. Depending on your '+
+    		  'network connection, this might take some time.');
   }
   
   function setOpenLayers() {
@@ -278,7 +389,12 @@
                                             width: 150
 	                                          }],
 	                                      buttons: [{text:'Submit',id:'mapSub'},
-	      	                                        {text: 'Reset',id:'mapRes'}] 
+	      	                                        {text: 'Reset',id:'mapRes'},
+	      	                                        {text: 'Print',id:'mapPrn',
+	      	                                         disabled: true,
+	      	                                         handler: function()
+	      	                                             { showPDFWin(); }
+	      	                                        }] 
 	      	                              },
 	      	                            	                             	      		      	                             
 	      	                              {region:'center',xtype:'panel',
@@ -295,11 +411,13 @@
 
         Ext.get('mapSub').on('click', function(){
             setThematics();
+            Ext.getCmp('mapPrn').setDisabled(false);
         });
-
+	    
         Ext.get('mapRes').on('click', function() {
             wmsLayer.setVisibility( false );
             Ext.get('mapLegend').update('&nbsp;',true);
+            Ext.getCmp('mapPrn').setDisabled(true);
         });
         this.setOpenLayers();        
   })
