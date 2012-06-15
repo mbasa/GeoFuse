@@ -164,13 +164,21 @@ public class wmsParamBean {
         return PDF_TITLE;
     }
     public void setPDF_TITLE(String pDF_TITLE) {
-        PDF_TITLE = pDF_TITLE;
+        try {
+            PDF_TITLE = new String(pDF_TITLE.getBytes("ISO_8859_1"),"UTF-8");
+        }
+        catch(Exception e) {
+            e.printStackTrace();
+        }
     }
     public String getPDF_NOTE() {
         return PDF_NOTE;
     }
     public void setPDF_NOTE(String pDF_NOTE) {
-        PDF_NOTE = pDF_NOTE;
+        try {
+            PDF_NOTE = new String(pDF_NOTE.getBytes("ISO_8859_1"),"UTF-8");
+        }
+        catch(Exception e) {;}
     }
 
     public String getURL_PARAM() {
