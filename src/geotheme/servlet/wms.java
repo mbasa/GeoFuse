@@ -81,6 +81,8 @@ public class wms extends HttpServlet {
         InputStream  in       = null;
         OutputStream out      = null;
 
+        //req.setCharacterEncoding("UTF-8");
+        
         try {
             Map<String,Object> reqMap = new HashMap<String,Object>();
             

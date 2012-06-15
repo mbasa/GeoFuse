@@ -189,8 +189,8 @@
       "&BBOX="+ext.toBBOX()+
       "&SERVICE=wms"+
       "&VIEWPARAMS="+mViewParams+
-      "&PDF_TITLE="+title+
-      "&PDF_NOTE="+description+
+      "&PDF_TITLE="+encodeURI(title)+
+      "&PDF_NOTE="+encodeURI(description)+
       "&DATE="+date.getTime();
 
       //window.open( imgHtml );
