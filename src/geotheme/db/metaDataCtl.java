@@ -311,7 +311,7 @@ public class metaDataCtl {
 			StringBuffer sql = new StringBuffer();
 			
 			if(mapTab.compareToIgnoreCase("latlon")!=0) {
-				sql.append("select extent(b.the_geom) as ext from ");
+				sql.append("select st_extent(b.the_geom) as ext from ");
 				sql.append( linkTab ).append(" a, ");
 				sql.append( mapTab ).append(" b where ");
 				sql.append("a.col0");
@@ -319,7 +319,7 @@ public class metaDataCtl {
 				sql.append("b.").append( linkCol );
 			}
 			else {
-				sql.append("select extent(the_geom) as ext from ");
+				sql.append("select st_extent(the_geom) as ext from ");
 				sql.append(linkTab);
 			}
 			
