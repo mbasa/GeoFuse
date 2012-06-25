@@ -69,7 +69,7 @@ public class generatePDF {
         
         StringBuffer sb = new StringBuffer();
         sb.append(this.pdfURL);
-        sb.append("?layers=").append(this.pdfLayers);
+        sb.append("&layers=").append(this.pdfLayers);
         sb.append("&bbox=").append(wpb.getBBOX());
         sb.append("&Format=image/jpeg");
         sb.append("&width=").append(width);
