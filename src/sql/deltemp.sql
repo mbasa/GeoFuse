@@ -1,3 +1,13 @@
+--
+-- This function cleans up the temporary files.
+--
+-- The function an be run through a crontab entry. Example:
+-- 0 * * * * /usr/bin/psql -U postgres -c "select deltemp('36 Hours');" licloud > /dev/null 2>&1
+--
+-- which will clean up tables that are 36 hours old in licloud databes
+--
+--
+
 CREATE OR REPLACE FUNCTION deltemp( character varying ) 
   RETURNS varchar AS $$
 DECLARE
