@@ -21,6 +21,17 @@ CREATE TABLE dummy
 );
 
 --
+-- Table: mapdummy
+-- only used to create a Parametric SQL view in Geoserver
+--
+
+CREATE TABLE mapdummy
+(
+  mapcol character varying(100),
+  the_geom geometry
+);
+
+--
 -- Table: dummy2
 -- only used to create a Parametric SQL view in Geoserver
 --
