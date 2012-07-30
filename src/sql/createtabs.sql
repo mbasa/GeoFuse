@@ -7,7 +7,7 @@ DROP TABLE dummy;
 
 CREATE TABLE dummy
 (
-  col0 character varying(100),
+  col0 character varying(100) PRIMARY KEY,
   col1 double precision,
   col2 double precision,
   col3 double precision,
@@ -40,7 +40,7 @@ DROP TABLE dummy2;
 
 CREATE TABLE dummy2
 (
-  col0 character varying(100),
+  col0 character varying(100) PRIMARY KEY,
   col1 double precision,
   col2 double precision,
   col3 double precision,
