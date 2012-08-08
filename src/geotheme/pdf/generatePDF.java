@@ -18,26 +18,14 @@
 
 package geotheme.pdf;
 
-import java.awt.image.BufferedImage;
+import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.Date;
 
-import javax.imageio.ImageIO;
-  
-import org.apache.pdfbox.exceptions.COSVisitorException;
-import org.apache.pdfbox.pdmodel.PDDocument;
-import org.apache.pdfbox.pdmodel.PDPage;
-import org.apache.pdfbox.pdmodel.edit.PDPageContentStream;
-import org.apache.pdfbox.pdmodel.font.PDFont;
-import org.apache.pdfbox.pdmodel.font.PDType1Font;
-import org.apache.pdfbox.pdmodel.graphics.xobject.PDJpeg;
-import org.apache.pdfbox.pdmodel.graphics.xobject.PDPixelMap;
-import org.apache.pdfbox.pdmodel.graphics.xobject.PDXObjectImage;
-
+import com.pdfjet.*;
 import geotheme.bean.*;
 
 public class generatePDF {
@@ -52,18 +40,23 @@ public class generatePDF {
     
     public ByteArrayOutputStream createPDFFromImage( 
             wmsParamBean wpb, String host ) 
-    throws  IOException, COSVisitorException
+    throws  Exception
     {
-        PDDocument doc = null;
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        ByteArrayOutputStream output = new ByteArrayOutputStream();
         
+        PDF pdf   = new PDF(output);
+        Page page = new Page(pdf, A4.PORTRAIT);
+        
+        Font f1   = new Font(pdf, "KozMinProVI-Bold",CodePage.UNICODE);
+        Font f2   = new Font(pdf, CoreFont.HELVETICA);
+                
         OutputStreamWriter wr = null;
         OutputStreamWriter wl = null;
         URLConnection geoConn = null;
         URLConnection legConn = null;
         
-        int width  = 500;
-        int height = 500;
+        int width  = 520;
+        int height = 520;
        
         wpb.setBBOX(retainAspectRatio(wpb.getBBOX()));
         
@@ -91,7 +84,8 @@ public class generatePDF {
             legConn = urll.openConnection();
             legConn.setDoOutput(true);
             
-            wr = new OutputStreamWriter(geoConn.getOutputStream(),"UTF-8");
+            wr = new OutputStreamWriter(
+                    geoConn.getOutputStream(),"UTF-8");
             wr.write( wpb.getURL_PARAM() );
 
             wr.flush();                        
@@ -101,77 +95,97 @@ public class generatePDF {
             wpb.setWIDTH ("");
             wpb.setHEIGHT("");
             
+            if( wpb.getLAYERS() != "" && wpb.getLAYER() == "" ) {
+                wpb.setLAYER(wpb.getLAYERS());
+                wpb.setLAYERS("");
+            }
+            
             wl = new OutputStreamWriter(legConn.getOutputStream(),"UTF-8");
             wl.write( wpb.getURL_PARAM() + "&legend_options=fontSize:9;" );
             wl.flush();
             
-            doc = new PDDocument();
- 
-            PDPage page = new PDPage(/*PDPage.PAGE_SIZE_A4*/);
-            doc.addPage( page );
+            //::::::::::::::::::::::::::
+            //: Drawing the Maps
+            //::::::::::::::::::::::::::
 
-            BufferedImage img = ImageIO.read( geoConn.getInputStream() );
-            BufferedImage leg = ImageIO.read( legConn.getInputStream() );
+            BufferedInputStream map_bis = 
+                    new BufferedInputStream(geoConn.getInputStream());
+            BufferedInputStream leg_bis = 
+                    new BufferedInputStream(legConn.getInputStream());
+            BufferedInputStream osm_bis = 
+                    new BufferedInputStream(osm.openStream());
             
-            PDXObjectImage ximage  = new PDPixelMap(doc,img);
-            PDXObjectImage xlegend = new PDPixelMap(doc,leg);
-            PDXObjectImage xosm   = new PDJpeg(doc, osm.openStream() );
+            Image img0 = new Image(pdf,osm_bis,ImageType.JPEG);
+            img0.setPosition(30d, 180d);
+            img0.drawOn(page);
             
-            PDPageContentStream contentStream = 
-                    new PDPageContentStream(doc, page);            
+            Image img1 = new Image(pdf,map_bis,ImageType.PNG);
+            img1.setPosition(30d, 180d);
+            img1.drawOn(page);
             
-            PDFont font = PDType1Font.HELVETICA_OBLIQUE;
+            Image img2 = new Image(pdf,leg_bis,ImageType.PNG);
+            double x_width  = (30d  + width ) - img2.getWidth() - 5d;
+            double x_height = (180d + height) - img2.getHeight()- 5d;
+            img2.setPosition(x_width, x_height);
+            img2.drawOn(page);
             
-            contentStream.beginText();
-            contentStream.setFont(font, 8);
-            contentStream.moveTextPositionByAmount(450, 10);
+            //::::::::::::::::::::::::::
+            //: Drawing the Box Decors
+            //::::::::::::::::::::::::::
+            
+            page.setPenWidth(0.9);
+            page.drawRect(30.0, 180.0, width, height);
+            page.setPenWidth(1.5);
+            page.drawRect(25.0, 175.0, width+10, height+10);
+            
+            //::::::::::::::::::::::::::
+            //: Drawing the Annotations
+            //::::::::::::::::::::::::::
+            
+            f1.setSize(38.0);
+            f2.setSize(38.0);
+            TextLine text = new TextLine(f1);
+            
+            if(wpb.getPDF_TITLE().matches("\\A\\p{ASCII}*\\z"))
+                text.setFont(f2);
+            
+            text.setText(wpb.getPDF_TITLE());
+            text.setPosition(30, 80);
+            text.setColor(RGB.DARK_GRAY);
+            text.drawOn(page);
+            
+            f1.setSize(14d);
+            f2.setSize(14d);
+            
+            if(wpb.getPDF_NOTE().matches("\\A\\p{ASCII}*\\z"))
+                text.setFont(f2);
+            else
+                text.setFont(f1);
+            
+            text.setColor(RGB.GRAY);
+            text.setText(wpb.getPDF_NOTE());
+            text.setPosition(30, 110);            
+            text.drawOn(page);
+            
+            f2.setSize(10d);
+            text.setFont(f2);
+            text.setColor(RGB.GRAY);
+            text.setText("GeoFuse Report: mario.basa@gmail.com");
+            text.setPosition(30d, 800d);
+            text.drawOn(page);
+            
             Date date = new Date();
-            contentStream.drawString(date.toString());
-            contentStream.endText();  
+            text.setText( date.toString() );
+            text.setPosition(400d, 800d);
+            text.drawOn(page);
             
-            contentStream.beginText();
-            contentStream.setFont(font, 8);
-            contentStream.moveTextPositionByAmount(10, 10);
-            contentStream.drawString("GeoFuse Report: mario.basa@gmail.com");
-            contentStream.endText();
-          
-            contentStream.drawImage( xosm  , 20, 160 );
-            contentStream.drawImage( ximage, 20, 160 );
-            contentStream.drawImage(xlegend, 
-                    width-xlegend.getWidth()-3, 170 );
-          
-            contentStream.beginText();
-            contentStream.setFont(font, 50);
-            contentStream.moveTextPositionByAmount(20, 720);
-            contentStream.drawString(wpb.getPDF_TITLE());
-            contentStream.endText();
-            
-            contentStream.beginText();
-            contentStream.setFont(font, 18);
-            contentStream.moveTextPositionByAmount(20, 695);
-            contentStream.drawString(wpb.getPDF_NOTE());
-            contentStream.endText();
-            
-            contentStream.setStrokingColor(180, 180, 180);
-            
-            float bx[] = {10f ,10f ,30+width,30+width,10f};
-            float by[] = {150f,170+height,170+height,150f,150f};
-            contentStream.drawPolygon(bx, by);
-
-            contentStream.close();
-            
-            doc.save( baos );
-            
+            pdf.flush();            
         }
         catch(Exception e ) {
             e.printStackTrace();
         }
         finally
         {
-            if( doc != null ) {
-                doc.close();
-            }
-            
             if( wr != null ) {
                 wr.close();
             }
@@ -181,7 +195,7 @@ public class generatePDF {
             }
         }
         
-        return baos;
+        return output;
     }
 
     public String retainAspectRatio(String bbox) {
@@ -219,5 +233,28 @@ public class generatePDF {
         sb.append(y2);
 
         return sb.toString();
+    }
+    
+    public String toHex(String str) {
+
+        StringBuffer ostr = new StringBuffer();
+
+        for (int i = 0; i < str.length(); i++) {
+            char ch = str.charAt(i);
+            
+            if ((ch >= 0x0020) && (ch <= 0x007e)) {
+                ostr.append(ch);
+            } else {
+                ostr.append("\\u");
+                String hex = Integer.toHexString(str.charAt(i) & 0xFFFF);
+                
+                for (int j = 0; j < 4 - hex.length(); j++)
+                    ostr.append("0");
+                
+                ostr.append(hex.toLowerCase());
+                // ostr.append(hex.toLowerCase(Locale.ENGLISH));
+            }
+        }
+        return (new String(ostr));
     }
 }
