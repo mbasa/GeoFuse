@@ -124,10 +124,14 @@ public class generatePDF {
             img1.drawOn(page);
             
             Image img2 = new Image(pdf,leg_bis,ImageType.PNG);
-            double x_width  = (30d  + width ) - img2.getWidth() - 5d;
-            double x_height = (180d + height) - img2.getHeight()- 5d;
-            img2.setPosition(x_width, x_height);
-            img2.drawOn(page);
+            
+            if(img2.getHeight() > 50 && img2.getWidth() > 50) {
+                double x_width  = (30d  + width ) - img2.getWidth() - 5d;
+                double x_height = (180d + height) - img2.getHeight()- 5d;
+                
+                img2.setPosition(x_width, x_height);
+                img2.drawOn(page);
+            }
             
             //::::::::::::::::::::::::::
             //: Drawing the Box Decors
