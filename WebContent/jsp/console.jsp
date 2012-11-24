@@ -111,12 +111,11 @@ textarea {
 			&nbsp;The first column must be an identifier, and the 
 			last 2 column name should be "lon,lat" that contains the 
 			WGS84 points. Maximum number of data columns is 10 exlcluding
-			the "long,lat" columns.
+			the "lon,lat" columns.
 		</p>
 	</div>
 	
-	<textarea id="tdata">
-    </textarea>
+	<textarea id="tdata"></textarea>
 	
 	<br />
 	<br />
