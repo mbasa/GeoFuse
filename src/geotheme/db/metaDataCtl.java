@@ -167,12 +167,18 @@ public class metaDataCtl {
 		createSt.append("col9 float,");
 		createSt.append("col10 float )");
 		
-		StringBuffer insertSt;
+		StringBuffer insertSt = new StringBuffer();
 		
+        insertSt.append("insert into ").append(tabName);
+        insertSt.append(" values (?,?,?,?,?,?,?,?,?,?,?)");
+        
 		try {
 			Connection con = this.getConnection();
 			Statement stmt = con.createStatement();
 			stmt.executeUpdate(createSt.toString());
+			
+			PreparedStatement pstmt = 
+			        con.prepareStatement(insertSt.toString());
 			
 			int clength;
 			
@@ -182,28 +188,31 @@ public class metaDataCtl {
 				
 				if( clength > 11 )
 					clength = 11;
-				
-				insertSt = new StringBuffer();
-				insertSt.append("insert into ").append(tabName);
-				insertSt.append(" values ('").append(inData[i][0]);
-				insertSt.append("',");
-				
-				for( int j=1;j<clength-1;j++ ) {
-					if( StringCheck.isNumeric(inData[i][j]) )
-						insertSt.append(inData[i][j]).append(",");
+			
+				pstmt.setString(1, inData[i][0]);
+								
+				for( int j=1;j<clength;j++ ) {
+					if( inData[i][j] != null && 
+					        StringCheck.isNumeric(inData[i][j]) )
+					    pstmt.setDouble(j+1,
+					            Double.valueOf(inData[i][j]));
 					else
-						insertSt.append("0,");
+						pstmt.setDouble(j+1, 0d);
 				}
 
-				if( StringCheck.isNumeric(inData[i][clength-1]) )
-					insertSt.append(inData[i][clength-1]).append(")");
-				else
-					insertSt.append("0)");
+				for( int k=clength;k<11;k++) {
+                    pstmt.setDouble(k+1,0d);
+                }
 
-				stmt.executeUpdate(insertSt.toString());
+				pstmt.addBatch();
+				
+				if( i % 200 == 0 )
+				    pstmt.executeBatch();
 			}
+			pstmt.executeBatch();
 			
 			stmt.close();
+			pstmt.close();
 			con.close();
 		}
 		catch( Exception exc ) {
@@ -242,6 +251,14 @@ public class metaDataCtl {
 			int rlength;
 			String x,y;
 			
+			insertSt = new StringBuffer();
+			insertSt.append("insert into ").append(tabName);
+            insertSt.append(" values (?,?,?,?,?,?,?,?,?,?,?,");
+            insertSt.append(" ST_GeomFromText(?,4326))");
+            
+			PreparedStatement pstmt = 
+			        con.prepareStatement(insertSt.toString());
+			
 			for(int i=1;i<inData.length;i++) {
 				
 				clength = inData[i].length;
@@ -254,21 +271,18 @@ public class metaDataCtl {
 				
 				if( clength > 11 )
 					clength = 11;
-				
-				insertSt = new StringBuffer();
-				insertSt.append("insert into ").append(tabName);
-				insertSt.append(" values ('").append(inData[i][0]);
-				insertSt.append("',");
+								
+				pstmt.setString(1, inData[i][0]);
 				
 				for( int j=1;j<clength;j++ ) {
 					if( StringCheck.isNumeric(inData[i][j]) )
-						insertSt.append(inData[i][j]).append(",");
+					    pstmt.setDouble(j+1,Double.valueOf(inData[i][j]));
 					else
-						insertSt.append("0,");
+					    pstmt.setDouble(j+1,0d);
 				}
 
 				for( int k=clength;k<11;k++) {
-					insertSt.append("0,");
+				    pstmt.setDouble(k+1,0d);
 				}
 				
 				if( StringCheck.isNumeric(inData[i][rlength-2]) )
@@ -281,14 +295,22 @@ public class metaDataCtl {
 				else
 					y = "0";
 
-				insertSt.append("ST_GeomFromText('POINT("); 
+				insertSt = new StringBuffer();
+				insertSt.append("POINT("); 
 				insertSt.append(x).append(" ");
-				insertSt.append(y).append(")'))");
+				insertSt.append(y).append(")");
 								
-				stmt.executeUpdate(insertSt.toString());
+				pstmt.setString(12, insertSt.toString());
+				pstmt.addBatch();
+				
+				if( i % 200 == 0)
+				    pstmt.executeBatch();				
 			}
 			
+			pstmt.executeBatch();
+			
 			stmt.close();
+			pstmt.close();
 			con.close();
 		}
 		catch( Exception exc ) {
