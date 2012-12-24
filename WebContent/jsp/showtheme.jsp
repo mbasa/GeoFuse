@@ -7,17 +7,21 @@
 <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <TITLE>Geoserver Thematics</TITLE>
 <LINK rel="stylesheet" type="text/css" href="resources/lib/extJS/resources/css/ext-all.css" />
-
+<!-- 
 <SCRIPT type="text/javascript" src="resources/lib/OpenLayers/OpenLayers.js"></SCRIPT>
+ -->
+<script src="http://openlayers.org/dev/OpenLayers.js"></script>
+
 <SCRIPT type="text/javascript" src="resources/lib/extJS/ext-base.js"></SCRIPT>
 <SCRIPT type="text/javascript" src="resources/lib/extJS/ext-all.js"></SCRIPT>
 
 <script src="http://maps.googleapis.com/maps/api/js?sensor=false&v=3.6"></script>
-    
+     
 <SCRIPT type="text/javascript">
 
   var map;
   var wmsLayer;
+  var wmsLayer_stile;
   
   var wmsServer    = "<%= tb.getWmsUrl() %>";
   var sldServer    = "<%= tb.getGsldUrl()%>";  
@@ -44,8 +48,9 @@
   }
   
   function setThematics() {
-
-      wmsLayer.setVisibility( false );
+	  wmsLayer.setVisibility( false );
+      wmsLayer_stile.setVisibility( false );
+      
       Ext.get('mapLegend').update('&nbsp;',true);
       
       var criteria =  Ext.get('tcriteria').dom.value;
@@ -72,12 +77,21 @@
     	   url: m_url,
     	   type:'POST',
     	   success: function() {
-               this.setLegend();
-               wmsLayer.redraw( true );
-               map.setCenter( map.getCenter(),
-                              map.getZoom(), 
-                              false, true );
-               wmsLayer.setVisibility( true );
+    		   
+    		   map.setCenter( map.getCenter(),
+                       map.getZoom(), 
+                       false, true );
+    		   
+    		   if( themetype != "Heatmap" ) {
+    			   this.setLegend();
+                   wmsLayer.redraw( true );
+                   wmsLayer.setVisibility( true );
+    		   }
+    		   else {
+    			   wmsLayer_stile.mergeNewParams({'styles': criteria });
+                   wmsLayer_stile.redraw( true );
+    			   wmsLayer_stile.setVisibility(true);
+    		   }    		                                 
            }
       });
   }
@@ -92,7 +106,8 @@
       "&FORMAT="+mFormat+
       "&LAYER="+mLayers+
       "&TRANSPARENT=TRUE"+
-      "&SRS="+mSRS+            
+      "&SRS="+mSRS+     
+      "&STYLES=aaa"+
       "&BBOX="+map.getExtent().toBBOX()+
       "&SERVICE=wms"+
       "&DATE="+date.getTime()+" id=\"legend\" /></center>";
@@ -172,6 +187,71 @@
 	
   }
   
+  function getUrlVars() {
+	    var vars = {};
+	    var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, 
+	    		function(m,key,value) { vars[key] = value; });
+	    return vars;
+  }
+  
+  function shareView() {
+
+      var url = /*window.location.protocol + "://" +*/ 
+    	  "http://"+ window.location.host + 
+                window.location.pathname;
+      
+      var sLayer    = this.getUrlVars()["layer"];
+      var sBnd      = map.getExtent();
+      
+      var sCriteria = Ext.get('tcriteria').dom.value;
+      var sTypes    = Ext.get('types'    ).dom.value;
+      var sColors   = Ext.get('colors'   ).dom.value;
+      var sRanges   = Ext.get('ranges'   ).dom.value;
+      var sBaseLayer= map.baseLayer.id;
+      
+      url = url.concat("?<br>layer=").concat(sLayer);
+      url = url.concat("<br>&bnd=").concat(sBnd);
+      url = url.concat("<br>&criteria=").concat(sCriteria);
+      url = url.concat("<br>&types=").concat(sTypes);
+      url = url.concat("<br>&ranges=").concat(sRanges);
+      url = url.concat("<br>&colors=").concat(sColors);
+      url = url.concat("<br>&baselayer=").concat(sBaseLayer);
+      
+      Ext.MessageBox.alert( "Share View",url );
+  }
+
+  function setFromParams() {
+
+	  var pParams   = this.getUrlVars();
+	  
+	  var pRanges   = pParams["ranges"];
+      var pCriteria = pParams["criteria"];
+      var pTypes    = pParams["types"];
+      var pColors   = pParams["colors"];
+      var pBnd      = pParams["bnd"];
+      var pBaseLayer= pParams["baselayer"];
+      
+      if( pRanges != null )
+    	  Ext.getCmp('rangesId').setValue(pRanges);
+      if( pCriteria != null )
+    	  Ext.getCmp('criteriaId').setValue(pCriteria);
+      if( pTypes != null )
+    	  Ext.getCmp('typesId').setValue(pTypes);
+      if( pColors )
+    	  Ext.getCmp('colorsId').setValue(pColors);
+      
+      if( pBnd != null ){
+    	  var tBnd = pBnd.split(',');
+    	  map.zoomToExtent(new OpenLayers.Bounds(
+    			  tBnd[0],tBnd[1],tBnd[2],tBnd[3]) );
+      }
+      
+      if( pBaseLayer != null ) {    	  
+    	  var bLayer = map.getLayer( pBaseLayer );
+    	  map.setBaseLayer( bLayer );
+      }
+  }
+  
   function setPDF(title,description) {
 
 	  var date     = new Date();
@@ -180,19 +260,39 @@
 	  
 	  var ext      = map.getExtent().transform(merc,latlon);
 	  
-      var imgHtml  = wmsServer+
-      "?REQUEST=GetPDFGraphic"+
-      "&FORMAT="+mFormat+
-      "&LAYER="+mLayers+
-      "&TRANSPARENT=TRUE"+
-      "&SRS=EPSG:4326"+            
-      "&BBOX="+ext.toBBOX()+
-      "&SERVICE=wms"+
-      "&VIEWPARAMS="+mViewParams+
-      "&PDF_TITLE="+encodeURI(title)+
-      "&PDF_NOTE="+encodeURI(description)+
-      "&DATE="+date.getTime();
-
+	  var criteria =  Ext.get('tcriteria').dom.value;
+	  var themetype=  Ext.get('types'   ).dom.value;
+	  
+	  if( themetype == "Heatmap" ) {
+		  var imgHtml  = wmsServer+
+		    "?REQUEST=GetPDFGraphic"+
+		    "&FORMAT="+mFormat+
+		    "&LAYERS="+mLayers+
+		    "&TRANSPARENT=TRUE"+
+		    "&SRS=EPSG:4326"+            
+		    "&BBOX="+ext.toBBOX()+
+		    "&SERVICE=wms"+
+		    "&STYLES="+criteria+
+		    "&VIEWPARAMS="+mViewParams+
+		    "&PDF_TITLE="+encodeURI(title)+
+		    "&PDF_NOTE="+encodeURI(description)+
+		    "&DATE="+date.getTime();
+	  }
+	  else {
+		  var imgHtml  = wmsServer+
+		    "?REQUEST=GetPDFGraphic"+
+		    "&FORMAT="+mFormat+
+		    "&LAYERS="+mLayers+
+		    "&TRANSPARENT=TRUE"+
+		    "&SRS=EPSG:4326"+            
+		    "&BBOX="+ext.toBBOX()+
+		    "&SERVICE=wms"+
+		    "&VIEWPARAMS="+mViewParams+
+		    "&PDF_TITLE="+encodeURI(title)+
+		    "&PDF_NOTE="+encodeURI(description)+
+		    "&DATE="+date.getTime();
+	  }
+	  
       //window.open( imgHtml );
       
       var iframe;
@@ -244,13 +344,33 @@
                   layers     : mLayers,
                   format     : mFormat,
                   viewparams : mViewParams,
-                  tiled      : "TRUE",
+                //tiled      : "false",
+                //styles     : "col1",
                   tilesorigin: [map.maxExtent.left,map.maxExtent.bottom]                        
               },
               { isBaseLayer: false,
-              //singleTile: true,
-                tileSize: new OpenLayers.Size(512,512), 
-                buffer: 0,
+                singleTile : false,
+                tileSize   : new OpenLayers.Size(512,512), 
+                buffer     : 0,
+                displayInLayerSwitcher: false } 
+          );
+	  
+	  wmsLayer_stile = new OpenLayers.Layer.WMS(
+              "Geoserver Presentation", 
+              wmsServer,        
+              {
+                  transparent: true,
+                  layers     : mLayers,
+                  format     : mFormat,
+                  viewparams : mViewParams,
+                //tiled      : "false",
+                //styles     : "col1",
+                  tilesorigin: [map.maxExtent.left,map.maxExtent.bottom]                        
+              },
+              { isBaseLayer: false,
+                singleTile : true,
+                tileSize   : new OpenLayers.Size(512,512), 
+                buffer     : 0,
                 displayInLayerSwitcher: false } 
           );
       
@@ -259,31 +379,36 @@
                 'maxZoomLevel'     : 20,
                 'sphericalMercator': true
               },{isBaseLayer: true});
-      var googlePhys  = new OpenLayers.Layer.Google( 'Google Physical',
+      
+      var googlePhys  = new OpenLayers.Layer.Google( 'GooglePhysical',
               { 'minZoomLevel'     : 1,
                 'maxZoomLevel'     : 20,
                 'type'             : google.maps.MapTypeId.TERRAIN,
                 'sphericalMercator': true
               },{isBaseLayer: true});
           
-       var googleSat   = new OpenLayers.Layer.Google( 'Google Satellite',
+       var googleSat   = new OpenLayers.Layer.Google( 'GoogleSatellite',
               { 'minZoomLevel'     : 1,
                 'maxZoomLevel'     : 20,
                 'type'             : google.maps.MapTypeId.HYBRID,
                 'sphericalMercator': true
               },{isBaseLayer: true});
        
-      var osm = new OpenLayers.Layer.OSM(); 
-      
-      map.addLayers([googleSat,googleLayer,googlePhys,osm,wmsLayer]);
+      osm = new OpenLayers.Layer.OSM(); 
+
+      map.addLayers([googleSat,googleLayer,googlePhys,osm,
+                     wmsLayer,wmsLayer_stile]);
 
       var geographic = new OpenLayers.Projection("<%= tb.getSrs() %>");
       var mercator   = new OpenLayers.Projection(mSRS);
         
       map.zoomToExtent( boundsGeoserver.transform(geographic, mercator));
+      
       map.addControl(new OpenLayers.Control.LayerSwitcher());
+      map.addControl(new OpenLayers.Control.Attribution());
 
       wmsLayer.setVisibility( false );
+      wmsLayer_stile.setVisibility( false );
   }
   
   Ext.onReady(function() {
@@ -299,13 +424,35 @@
 		    fields: ['id','range'],
 		    data  : [<%= tb.getThemeRanges() %>] });
 	    
-	    var themeType = new Ext.data.SimpleStore({
+	    var themeType;
+
+        themeType = new Ext.data.SimpleStore({
             fields: ['id','type'],
-            data: [['EQRange','Equal Range'],
-                   ['EQCount','Equal Count'],
-                   ['Natural','Natural Breaks'],
+            data: [['EQRange' ,'Equal Range'],
+                   ['EQCount' ,'Equal Count'],
+                   ['Natural' ,'Natural Breaks'],
                    ['Standard','Standard Deviation']]});  
 
+	    /** For HeatMap enabled
+	    
+	    if( mLayerType == "point" ) {
+	        themeType = new Ext.data.SimpleStore({
+                fields: ['id','type'],
+                data: [['EQRange' ,'Equal Range'],
+                       ['EQCount' ,'Equal Count'],
+                       ['Natural' ,'Natural Breaks'],
+                       ['Standard','Standard Deviation'],
+                       ['Heatmap' ,'Heat Map']]});
+	    }
+	    else {
+	    	themeType = new Ext.data.SimpleStore({
+	    	    fields: ['id','type'],
+	    	    data: [['EQRange' ,'Equal Range'],
+                       ['EQCount' ,'Equal Count'],
+                       ['Natural' ,'Natural Breaks'],
+                       ['Standard','Standard Deviation']]});  
+	    }
+	    **/
         var themeColor = new Ext.data.SimpleStore({
             fields: ['id','color'],
             data: [<%= tb.getColorNames() %>]});
@@ -346,6 +493,7 @@
 			                              { xtype: 'combo',    
 	                                        fieldLabel: 'Ranges',	                                        
 	                                        name: 'ranges',
+	                                        id: 'rangesId',
 	                                        hiddenName: 'ranges',
 	                                        mode: 'local',
 	                                        store: themeRange,
@@ -361,6 +509,7 @@
 	                                      { xtype: 'combo',
 	                                        fieldLabel: 'Type',
 	                                        name: 'types',
+	                                        id: 'typesId',
 	                                        hiddenName: 'types',
 	                                        mode: 'local',
 	                                        store: themeType,
@@ -376,6 +525,7 @@
 	                                      { xtype: 'combo',
                                             fieldLabel: 'Color',
                                             name: 'colors',
+                                            id: 'colorsId',
                                             hiddenName: 'colors',
                                             mode: 'local',
                                             store: themeColor,
@@ -388,13 +538,25 @@
                                             value: '<%= tb.getFirstColor() %>',                                 
                                             width: 150
 	                                          }],
-	                                      buttons: [{text:'Submit',id:'mapSub'},
-	      	                                        {text: 'Reset',id:'mapRes'},
-	      	                                        {text: 'Print',id:'mapPrn',
-	      	                                         disabled: true,
+	                                      buttons: [{text:'Submit',
+	                                    	         id:'mapSub', 
+	                                    	         width:'52'},
+	      	                                        {text: 'Reset',
+	                                    	    	 id:'mapRes', 
+	                                    	    	 width:'52'},
+	      	                                        {text: 'PDF',
+	                                    	         id:'mapPrn', 
+	                                    	         width:'52',
+	      	                                         disabled: false,
 	      	                                         handler: function()
 	      	                                             { showPDFWin(); }
-	      	                                        }] 
+	      	                                        },
+	      	                                        {text: "Share",
+	      	                                         id: 'mapShare',
+	      	                                         width:'52',
+	      	                                         handler: function() 
+	      	                                           {shareView();} }
+                                                   ] 
 	      	                              },
 	      	                            	                             	      		      	                             
 	      	                              {region:'center',xtype:'panel',
@@ -411,15 +573,20 @@
 
         Ext.get('mapSub').on('click', function(){
             setThematics();
-            Ext.getCmp('mapPrn').setDisabled(false);
+            Ext.getCmp('mapPrn'  ).setDisabled(false);
+            Ext.getCmp('mapShare').setDisabled(false);
         });
 	    
         Ext.get('mapRes').on('click', function() {
             wmsLayer.setVisibility( false );
+            wmsLayer_stile.setVisibility( false );
             Ext.get('mapLegend').update('&nbsp;',true);
-            Ext.getCmp('mapPrn').setDisabled(true);
+            Ext.getCmp('mapPrn'  ).setDisabled(true);
+            Ext.getCmp('mapShare').setDisabled(true);
         });
-        this.setOpenLayers();        
+        this.setOpenLayers(); 
+        this.setFromParams();
+        this.setThematics();
   })
 </SCRIPT>
 </HEAD>
