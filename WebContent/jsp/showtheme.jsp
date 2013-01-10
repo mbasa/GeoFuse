@@ -1,12 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="geotheme.bean.*" %>
-<% themeBean tb = (themeBean)request.getAttribute("themeBean"); %>
+<%@ page import="java.util.*" %>
+<% 
+
+  themeBean tb  = (themeBean)request.getAttribute("themeBean"); 
+  Locale locale = request.getLocale();
+
+  ResourceBundle rb = ResourceBundle.getBundle
+          ("properties.showtheme",locale);
+
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <HTML>
 <HEAD>
 <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <TITLE>Geoserver Thematics</TITLE>
-<LINK rel="stylesheet" type="text/css" href="resources/lib/extJS/resources/css/ext-all.css" />
+<LINK rel="stylesheet" type="text/css" 
+      href="resources/lib/extJS/resources/css/ext-all.css" />
 <!-- 
 <SCRIPT type="text/javascript" src="resources/lib/OpenLayers/OpenLayers.js"></SCRIPT>
  -->
@@ -16,7 +26,11 @@
 <SCRIPT type="text/javascript" src="resources/lib/extJS/ext-all.js"></SCRIPT>
 
 <script src="http://maps.googleapis.com/maps/api/js?sensor=false&v=3.6"></script>
-     
+
+<script type="text/javascript" 
+        src="http://portal.cyberjapan.jp/sys/v4/webtis/webtis_v4.js" 
+        charset="UTF-8"></script>     
+
 <SCRIPT type="text/javascript">
 
   var map;
@@ -119,7 +133,7 @@
   function showPDFWin(){
 	var formItems = [
                      {
-                         fieldLabel: 'Title',
+                         fieldLabel: '<%= rb.getString("PDF.TITLE") %>',
                          id        : 'pdf_title',
                          allowBlank: false,
                          maxLength : 42,
@@ -129,7 +143,7 @@
                          msgTarget : 'under'
                      },
                      {
-                         fieldLabel: 'Description',
+                         fieldLabel: '<%= rb.getString("PDF.DESC") %>',
                          id        : 'pdf_description',
                          allowBlank: false,
                          maxLength : 62,
@@ -140,7 +154,7 @@
                       }];  
 
 	var formButtons = [
-	                   {   text    : "Create PDF",
+	                   {   text    : "<%= rb.getString("PDF.CREATE_BTN") %>",
 	                       formBind: true,
 	                       disabled: false,
 	                       handler : function() {
@@ -149,7 +163,7 @@
 	                    	   pdfWindow.close();
 	                       }
 	                   },
-	                   { text    : "Cancel",
+	                   { text    : "<%= rb.getString("PDF.CANCEL_BTN") %>",
                            formBind: false,
                            disabled: false,
                            handler : function() {
@@ -173,7 +187,7 @@
 	
 	var pdfWindow = new Ext.Window({
 	      id         : 'pdfWindowId',
-	      title      : 'PDF Report',
+	      title      : '<%= rb.getString("PDF.WIN_TITLE") %>',
 	      width      : 450,
 	      autoheight : true,
 	      hideBorders: true,
@@ -186,7 +200,66 @@
 	pdfWindow.show();
 	
   }
-  
+
+  function showShareWin( url ){
+	    var formItems = [
+	                     {
+	                         fieldLabel: 'URL',
+	                         id        : 'shareUrl',
+	                         allowBlank: false,
+	                         value     : url,
+	                         maxLength : 442,
+	                         minLength : 3,
+	                         width     : 400,
+	                         anchor    : '95%',
+	                         msgTarget : 'under'
+	                     }];  
+
+	    var formButtons = [
+	                       {   text    : "<%= rb.getString("SHR.SEL_BTN") %>",
+	                           formBind: false,
+	                           disabled: false,
+	                           handler : function() {
+	                        	   document.getElementById("shareUrl").select();
+	                           }
+	                       },
+	                       { text    : "<%= rb.getString("SHR.CLOSE_BTN") %>",
+	                           formBind: false,
+	                           disabled: false,
+	                           handler : function() {
+	                               shareWindow.close();
+	                           }
+	                       } ];
+	    
+	    var shareFormPanel = new Ext.FormPanel({
+	        id            : 'shareFormPanelId',
+	        monitorValid  : true,
+	        labelWidth    : 25,
+	        frame         : true,
+	        bodyStyle     : "padding:5px 5px 0",
+	        autoWidth     : true,
+	        autoHeight    : true,
+	        defaultType   : "textfield",
+	        buttonAlign   : 'center',
+	        items         : formItems,
+	        buttons       : formButtons
+	      });
+	    
+	    var shareWindow = new Ext.Window({
+	          id         : 'shareWindowId',
+	          title      : '<%= rb.getString("SHR.WIN_TITLE") %>',
+	          width      : 450,
+	          autoheight : true,
+	          hideBorders: true,
+	          resizable  : true,
+	          closable   : true,
+	          modal      : true,
+	          items      : [ shareFormPanel],
+	        });
+	    
+	    shareWindow.show();
+  }
+
   function getUrlVars() {
 	    var vars = {};
 	    var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, 
@@ -209,15 +282,15 @@
       var sRanges   = Ext.get('ranges'   ).dom.value;
       var sBaseLayer= map.baseLayer.id;
       
-      url = url.concat("?<br>layer=").concat(sLayer);
-      url = url.concat("<br>&bnd=").concat(sBnd);
-      url = url.concat("<br>&criteria=").concat(sCriteria);
-      url = url.concat("<br>&types=").concat(sTypes);
-      url = url.concat("<br>&ranges=").concat(sRanges);
-      url = url.concat("<br>&colors=").concat(sColors);
-      url = url.concat("<br>&baselayer=").concat(sBaseLayer);
+      url = url.concat("?layer=").concat(sLayer);
+      url = url.concat("&bnd=").concat(sBnd);
+      url = url.concat("&criteria=").concat(sCriteria);
+      url = url.concat("&types=").concat(sTypes);
+      url = url.concat("&ranges=").concat(sRanges);
+      url = url.concat("&colors=").concat(sColors);
+      url = url.concat("&baselayer=").concat(sBaseLayer);
       
-      Ext.MessageBox.alert( "Share View",url );
+      showShareWin( url );
   }
 
   function setFromParams() {
@@ -308,8 +381,8 @@
       
       iframe.src = imgHtml; 
 
-      Ext.MessageBox.alert('Status', 'Creating PDF. Depending on your '+
-    		  'network connection, this might take some time.');
+      Ext.MessageBox.alert('<%= rb.getString("PDF.ALERT_TITLE") %>', 
+    		  '<%= rb.getString("PDF.ALERT_MSSG") %> ' );
   }
   
   function setOpenLayers() {
@@ -394,9 +467,29 @@
                 'sphericalMercator': true
               },{isBaseLayer: true});
        
-      osm = new OpenLayers.Layer.OSM(); 
+      var osm   = new OpenLayers.Layer.OSM(); 
+      var osmgr = new OpenLayers.Layer.OSM('OSM GrayMap', null, {
+          eventListeners: {
+              tileloaded: function(evt) {
+                  var ctx = evt.tile.getCanvasContext();
+                  if (ctx) {
+                      var imgd = ctx.getImageData(0, 0, evt.tile.size.w, evt.tile.size.h);
+                      var pix = imgd.data;
+                      for (var i = 0, n = pix.length; i < n; i += 4) {
+                          pix[i] = pix[i + 1] = pix[i + 2] = (3 * pix[i] + 
+                        		  4 * pix[i + 1] + pix[i + 2]) / 8;
+                      }
+                      ctx.putImageData(imgd, 0, 0);
+                      evt.tile.imgDiv.removeAttribute("crossorigin");
+                      evt.tile.imgDiv.src = ctx.canvas.toDataURL();
+                  }
+              }
+          }
+      });
 
-      map.addLayers([googleSat,googleLayer,googlePhys,osm,
+      var webtisMap = new webtis.Layer.BaseMap("電子国土Web");
+
+      map.addLayers([googleSat,googleLayer,googlePhys,osm,osmgr,webtisMap,
                      wmsLayer,wmsLayer_stile]);
 
       var geographic = new OpenLayers.Projection("<%= tb.getSrs() %>");
@@ -413,8 +506,10 @@
   
   Ext.onReady(function() {
 
-      Ext.util.CSS.swapStyleSheet("theme","resources/lib/extJS/resources/css/xtheme-gray.css");
-	  Ext.BLANK_IMAGE_URL = 'resources/lib/extJS/resources/images/default/s.gif';
+      Ext.util.CSS.swapStyleSheet("theme",
+    		  "resources/lib/extJS/resources/css/xtheme-gray.css");
+	  Ext.BLANK_IMAGE_URL = 
+		  'resources/lib/extJS/resources/images/default/s.gif';
 
 	    var themeCriteria = new Ext.data.SimpleStore({
 		    fields: ['idc','criteria'],
@@ -425,34 +520,34 @@
 		    data  : [<%= tb.getThemeRanges() %>] });
 	    
 	    var themeType;
-
-        themeType = new Ext.data.SimpleStore({
+        
+	    themeType = new Ext.data.SimpleStore({
             fields: ['id','type'],
-            data: [['EQRange' ,'Equal Range'],
-                   ['EQCount' ,'Equal Count'],
-                   ['Natural' ,'Natural Breaks'],
-                   ['Standard','Standard Deviation']]});  
-
-	    /** For HeatMap enabled
-	    
+            data: [['EQRange' ,'<%= rb.getString("TY.EQ_RANGE") %>'],
+                   ['EQCount' ,'<%= rb.getString("TY.EQ_COUNT") %>'],
+                   ['Natural' ,'<%= rb.getString("TY.NATURAL") %>'],
+                   ['Standard','<%= rb.getString("TY.STANDARD") %>']]});
+        
+        /** For HeatMap enabled	    
 	    if( mLayerType == "point" ) {
 	        themeType = new Ext.data.SimpleStore({
                 fields: ['id','type'],
-                data: [['EQRange' ,'Equal Range'],
-                       ['EQCount' ,'Equal Count'],
-                       ['Natural' ,'Natural Breaks'],
-                       ['Standard','Standard Deviation'],
-                       ['Heatmap' ,'Heat Map']]});
+                data: [['EQRange' ,'<%= rb.getString("TY.EQ_RANGE") %>'],
+                       ['EQCount' ,'<%= rb.getString("TY.EQ_COUNT") %>'],
+                       ['Natural' ,'<%= rb.getString("TY.NATURAL") %>'],
+                       ['Standard','<%= rb.getString("TY.STANDARD") %>'],
+                       ['Heatmap' ,'<%= rb.getString("TY.HEATMAP") %>']]});
 	    }
 	    else {
 	    	themeType = new Ext.data.SimpleStore({
 	    	    fields: ['id','type'],
-	    	    data: [['EQRange' ,'Equal Range'],
-                       ['EQCount' ,'Equal Count'],
-                       ['Natural' ,'Natural Breaks'],
-                       ['Standard','Standard Deviation']]});  
+	    	    data: [['EQRange' ,'<%= rb.getString("TY.EQ_RANGE") %>'],
+                       ['EQCount' ,'<%= rb.getString("TY.EQ_COUNT") %>'],
+                       ['Natural' ,'<%= rb.getString("TY.NATURAL") %>'],
+                       ['Standard','<%= rb.getString("TY.STANDARD") %>']]});  
 	    }
 	    **/
+	    
         var themeColor = new Ext.data.SimpleStore({
             fields: ['id','color'],
             data: [<%= tb.getColorNames() %>]});
@@ -465,16 +560,18 @@
 	            {region: 'east',xtype: 'panel',id: 'east',
 		                        split: true, width:250,minSize:250,
 		                        maxSize:250,collapsible: true,
-		                        collapseMode: 'mini',title: 'Data Thematics',
+		                        collapseMode: 'mini',
+		                        title: '<%= rb.getString("MW.DATA_TITLE") %>',
 		                        layout: 'border',		             		                                 
 		                        items: [
 		                             {region:'north',xtype:'form',	
 		                              labelWidth: 55,
                                       bodyStyle: 'padding:15px 15px',   
-			                          title: 'Parameters', height:220,
+			                          title: '<%= rb.getString("MW.PARAMETERS") %>', 
+			                          height:220,
 			                          items: [
                                         { xtype: 'combo',    
-                                            fieldLabel: 'Criteria',                                           
+                                            fieldLabel: '<%= rb.getString("PW.CRITERIA") %>',                                           
                                             name: 'criteria',
                                             id: 'criteriaId',
                                             mode: 'local',
@@ -491,7 +588,7 @@
                                             width: 150
                                           },
 			                              { xtype: 'combo',    
-	                                        fieldLabel: 'Ranges',	                                        
+	                                        fieldLabel: '<%= rb.getString("PW.RANGES") %>',	                                        
 	                                        name: 'ranges',
 	                                        id: 'rangesId',
 	                                        hiddenName: 'ranges',
@@ -507,7 +604,7 @@
 	                                        width: 150
 	                                      },
 	                                      { xtype: 'combo',
-	                                        fieldLabel: 'Type',
+	                                        fieldLabel: '<%= rb.getString("PW.TYPE") %>',
 	                                        name: 'types',
 	                                        id: 'typesId',
 	                                        hiddenName: 'types',
@@ -523,7 +620,7 @@
 	                                        width: 150
 	                                      },
 	                                      { xtype: 'combo',
-                                            fieldLabel: 'Color',
+                                            fieldLabel: '<%= rb.getString("PW.COLOR") %>',
                                             name: 'colors',
                                             id: 'colorsId',
                                             hiddenName: 'colors',
@@ -538,20 +635,20 @@
                                             value: '<%= tb.getFirstColor() %>',                                 
                                             width: 150
 	                                          }],
-	                                      buttons: [{text:'Submit',
+	                                      buttons: [{text:'<%= rb.getString("PB.SUBMIT") %>',
 	                                    	         id:'mapSub', 
 	                                    	         width:'52'},
-	      	                                        {text: 'Reset',
+	      	                                        {text: '<%= rb.getString("PB.RESET") %>',
 	                                    	    	 id:'mapRes', 
 	                                    	    	 width:'52'},
-	      	                                        {text: 'PDF',
+	      	                                        {text: '<%= rb.getString("PB.PDF") %>',
 	                                    	         id:'mapPrn', 
 	                                    	         width:'52',
 	      	                                         disabled: false,
 	      	                                         handler: function()
 	      	                                             { showPDFWin(); }
 	      	                                        },
-	      	                                        {text: "Share",
+	      	                                        {text: "<%= rb.getString("PB.SHARE") %>",
 	      	                                         id: 'mapShare',
 	      	                                         width:'52',
 	      	                                         handler: function() 
@@ -561,12 +658,14 @@
 	      	                            	                             	      		      	                             
 	      	                              {region:'center',xtype:'panel',
 	      	                               bodyStyle: 'padding:15px 15px',        
-	      		      	                   title:'Legend', autoScroll: true,
+	      		      	                   title:'<%= rb.getString("MW.LEGEND") %>', 
+	      		      	                   autoScroll: true,
 	      		      	                   html:'<div id=\'mapLegend\'></div>'}
 	      		      	               ]},
 
-		        {region: 'center',xtype: 'panel', title:'Map',html: 
-			       '<div id="mapPanel" style="width:100%;height:100%"></div>'}
+		        {region: 'center',xtype: 'panel', 
+	      		 title:'<%= rb.getString("MW.MAP_TITLE") %>',
+	      		 html:'<div id="mapPanel" style="width:100%;height:100%"></div>'}
 			     
 			]
 	    })
