@@ -38,12 +38,15 @@ import geotheme.db.*;
 public class inputData extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	private Map<String,String[]> dynamicMap = new HashMap<String,String[]>();
+	//private Map<String,String[]> dynamicMap = new HashMap<String,String[]>();
+	
 	private String db_name      = new String();
 	private String db_host      = new String();
 	private String db_user      = new String();
 	private String db_password  = new String();
 	private String db_metadata  = new String();
+	private String db_dynlinker = new String();
+	private String db_csvdata_schema = new String();
 	
     /**
      * @see HttpServlet#HttpServlet()
@@ -53,30 +56,15 @@ public class inputData extends HttpServlet {
         
         ResourceBundle rdb = ResourceBundle.getBundle(
         		"properties.database");
-        
-        ResourceBundle rlb = ResourceBundle.getBundle(
-        		"properties.dynamic_linker");
-        
-        this.db_name      = rdb.getString("DB.NAME");
-		this.db_host      = rdb.getString("DB.HOST");
-		this.db_user      = rdb.getString("DB.USER");
-		this.db_password  = rdb.getString("DB.PASSWORD");
-		this.db_metadata  = rdb.getString("DB.METADATA.TABLE");
+                
+        this.db_name           = rdb.getString("DB.NAME");
+		this.db_host           = rdb.getString("DB.HOST");
+		this.db_user           = rdb.getString("DB.USER");
+		this.db_password       = rdb.getString("DB.PASSWORD");
+		this.db_metadata       = rdb.getString("DB.METADATA.TABLE");
+		this.db_dynlinker      = rdb.getString("DB.DYNAMIC_LINKER.TABLE");
+		this.db_csvdata_schema = rdb.getString("DB.CSVDATA_SCHEMA");
 		
-        String[] columnNames= rlb.getString("DYN.COLUMN.NAMES").split(",");
-		String[] mapNames   = rlb.getString("DYN.MAP.NAMES").split(",");
-		String[] layerNames = rlb.getString("DYN.LAYER.NAMES").split(",");
-		String[] typeNames  = rlb.getString("DYN.MAP.TYPES").split(",");
-		
-		for(int i=0;i<columnNames.length;i++) {
-			String s[] = new String[3];
-			
-			s[0] = mapNames[i];
-			s[1] = layerNames[i];
-			s[2] = typeNames[i];
-			
-			this.dynamicMap.put(columnNames[i], s);
-		}
     }
 
 	/**
@@ -101,7 +89,10 @@ public class inputData extends HttpServlet {
 		PrintWriter out  = response.getWriter();
 
 		boolean isLatLon = false;
-		
+	      
+		connectionCtl conCtl = new connectionCtl(this.db_host,this.db_user,
+	                this.db_password,this.db_name);
+
 		if( inputString == null || inputString.length() < 10  ) {
 			out.write("Error: not enough input data");
 			out.close();
@@ -118,7 +109,10 @@ public class inputData extends HttpServlet {
 			return;
 		}
 		
-		if( !this.dynamicMap.containsKey(pStr[0][0]) ) {
+		mapLinkerCtl dlc = new mapLinkerCtl(conCtl,this.db_dynlinker);
+		Map<String,String[]> dynamicMap = dlc.getMapLinkData();
+		
+		if( !dynamicMap.containsKey(pStr[0][0]) ) {
 			int pStrLen = pStr[0].length;
 			
 			if( pStr[0][pStrLen-1].isEmpty() )
@@ -139,17 +133,17 @@ public class inputData extends HttpServlet {
 				return;			
 			}
 		}
-		
-		metaDataCtl mdc = new metaDataCtl(this.db_host,this.db_user,
-				this.db_password,this.db_name,this.db_metadata);
+				
+		metaDataCtl mdc = new metaDataCtl(conCtl,this.db_metadata);
 		
 		Random rand = new Random();
 		
 		String sessionID = request.getSession(true).getId();
-		String tableName = "mb_"+sessionID+"_"+rand.nextInt(10000);
+		String tableName = this.db_csvdata_schema + 
+		        ".mb_"+sessionID+"_"+rand.nextInt(10000);
 		
-		if( !mdc.setMetaInfo(pStr[0], this.dynamicMap, 
-				             this.db_metadata, tableName,isLatLon) ) {
+		if( !mdc.setMetaInfo(pStr[0], dynamicMap, this.db_metadata, 
+		        tableName,isLatLon) ) {
 			out.write("Error: Catalog entry");
 			out.close();
 			return;
@@ -172,6 +166,7 @@ public class inputData extends HttpServlet {
 		
 		StringBuffer sb = new StringBuffer();
 		sb.append(UrlUtil.getUrl(request));
+		
 		if( mapType != null && mapType.compareToIgnoreCase("zd")==0 )
 			sb.append("/zshowtheme?layer=");
 		else

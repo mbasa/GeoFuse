@@ -26,48 +26,28 @@ import geotheme.util.*;
 
 public class metaDataCtl {
 
-	private String hostname = null;
-	private String username = null;
-	private String password = null;
-	private String dbname   = null;
-	private String metaTab  = null;
+
+	private String metaTab       = null;
+	private connectionCtl conCtl = null;
 	
-	public metaDataCtl(String host,String user,
-			String pass,String db,String tab) {
-		this.hostname = host;
-		this.username = user;
-		this.password = pass;
-		this.dbname   = db;
+	public metaDataCtl(connectionCtl conCtl,String tab) {
 		this.metaTab  = tab;
-	}
-	
-	public Connection getConnection() throws Exception{
-		Class.forName("org.postgresql.Driver");
-
-		String url = "jdbc:postgresql://"+this.hostname+"/"+this.dbname;
-
-		Properties prop = new Properties();
-		prop.setProperty("user", this.username);
-		prop.setProperty("password", this.password);
-
-		Connection con = DriverManager.getConnection(url,prop);
-		
-		return con;
-
+		this.conCtl   = conCtl;
 	}
 	
 	public metaDataBean getMetaInfo(String layer)  {
 		
 		metaDataBean mdb = null;
 		
+        String sql = "select * from " + this.metaTab + " where tabid = ?";
+
 		try {
-			Connection con = this.getConnection();
-			Statement stmt = con.createStatement();
-
-			String sql = "select * from "+this.metaTab+ " where tabid = '"+
-				layer+"'";
-
-			ResultSet rs = stmt.executeQuery(sql);
+			Connection con         = this.conCtl.getConnection();
+			PreparedStatement stmt = con.prepareStatement( sql );
+			
+			stmt.setString(1, layer);
+			
+			ResultSet rs = stmt.executeQuery();
 
 			if( rs != null ) {
 				while( rs.next() ) {
@@ -126,20 +106,22 @@ public class metaDataCtl {
 		colns.append(colNames[clength-1]);
 		
 		StringBuffer sb = new StringBuffer();
-		sb.append("insert into ").append( metadata );
-		sb.append(" values ( '").append(tabName).append("','");
-		sb.append(linklayer).append("','");
-		sb.append(maptable).append("','");
-		sb.append(linkcolumn).append("','");
-		sb.append(colns.toString()).append("',now(),");
-		sb.append("'").append(mapType).append("'");
-		sb.append(")");
 		
-		try {
-			Connection con = this.getConnection();
-			Statement  stmt= con.createStatement();
+		sb.append("insert into ").append(metadata);
+        sb.append(" values (?,?,?,?,?,now(),?);");
+
+        try {
+			Connection con         = this.conCtl.getConnection();
+			PreparedStatement stmt = con.prepareStatement(sb.toString());
 			
-			stmt.executeUpdate(sb.toString());
+			stmt.setString(1, tabName);
+			stmt.setString(2, linklayer);
+			stmt.setString(3, maptable);
+			stmt.setString(4, linkcolumn);
+			stmt.setString(5, colns.toString());
+			stmt.setString(6, mapType);
+			
+			stmt.executeUpdate();
 			stmt.close();
 			con.close();
 		}
@@ -155,16 +137,16 @@ public class metaDataCtl {
 	
 		StringBuffer createSt = new StringBuffer();
 		createSt.append("create table ").append(tabName).append(" (");
-		createSt.append("col0 varchar(100) Primary Key,");
-		createSt.append("col1 float,");
-		createSt.append("col2 float,");
-		createSt.append("col3 float,");
-		createSt.append("col4 float,");
-		createSt.append("col5 float,");
-		createSt.append("col6 float,");
-		createSt.append("col7 float,");
-		createSt.append("col8 float,");
-		createSt.append("col9 float,");
+		createSt.append("col0  text Primary Key,");
+		createSt.append("col1  float,");
+		createSt.append("col2  float,");
+		createSt.append("col3  float,");
+		createSt.append("col4  float,");
+		createSt.append("col5  float,");
+		createSt.append("col6  float,");
+		createSt.append("col7  float,");
+		createSt.append("col8  float,");
+		createSt.append("col9  float,");
 		createSt.append("col10 float )");
 		
 		StringBuffer insertSt = new StringBuffer();
@@ -173,7 +155,7 @@ public class metaDataCtl {
         insertSt.append(" values (?,?,?,?,?,?,?,?,?,?,?)");
         
 		try {
-			Connection con = this.getConnection();
+			Connection con = this.conCtl.getConnection();
 			Statement stmt = con.createStatement();
 			stmt.executeUpdate(createSt.toString());
 			
@@ -227,23 +209,23 @@ public class metaDataCtl {
 		
 		StringBuffer createSt = new StringBuffer();
 		createSt.append("create table ").append(tabName).append(" (");
-		createSt.append("col0 varchar(200),");
-		createSt.append("col1 float, ");
-		createSt.append("col2 float, ");
-		createSt.append("col3 float, ");
-		createSt.append("col4 float, ");
-		createSt.append("col5 float, ");
-		createSt.append("col6 float, ");
-		createSt.append("col7 float, ");
-		createSt.append("col8 float, ");
-		createSt.append("col9 float, ");
-		createSt.append("col10 float,");
+		createSt.append("col0     text,");
+		createSt.append("col1     float, ");
+		createSt.append("col2     float, ");
+		createSt.append("col3     float, ");
+		createSt.append("col4     float, ");
+		createSt.append("col5     float, ");
+		createSt.append("col6     float, ");
+		createSt.append("col7     float, ");
+		createSt.append("col8     float, ");
+		createSt.append("col9     float, ");
+		createSt.append("col10    float,");
 		createSt.append("the_geom geometry )");
 		
 		StringBuffer insertSt;
 		
 		try {
-			Connection con = this.getConnection();
+			Connection con = this.conCtl.getConnection();
 			Statement stmt = con.createStatement();
 			stmt.executeUpdate(createSt.toString());
 			
@@ -327,7 +309,7 @@ public class metaDataCtl {
 		String[] bnd = {"EPSG:4326","-180","-90","180","90"};
 
 		try {
-			Connection con = this.getConnection();
+			Connection con = this.conCtl.getConnection();
 			Statement stmt = con.createStatement();
 
 			StringBuffer sql = new StringBuffer();
