@@ -72,10 +72,10 @@ public class showtheme extends HttpServlet {
 	        layerName = req.getParameter("layer");
 	    }	    	    
 	    
-	    metaDataCtl mdc = new metaDataCtl(this.db_host,
-	    		this.db_user,this.db_password,
-	    		this.db_name,this.db_metadata);
-	    
+	    connectionCtl conCtl = new connectionCtl(this.db_host,this.db_user,
+                this.db_password,this.db_name);
+        
+        metaDataCtl mdc  = new metaDataCtl(conCtl,this.db_metadata);        
 	    metaDataBean mdb = mdc.getMetaInfo(layerName);
 	    
 	    if( mdb == null ) {

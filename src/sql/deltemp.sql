@@ -20,14 +20,14 @@ BEGIN
   mCount := 0;
   mString:= '';
   
-  FOR mRecord IN SELECT tabid FROM metadata
+  FOR mRecord IN SELECT tabid FROM geofuse.metadata
      WHERE ddate < now() - mTime::interval  LOOP       
         mCount := mCount + 1;
         mString:= 'DROP TABLE ' || mRecord.tabid;
         EXECUTE mString;
   END LOOP;        
   
-  mString := 'DELETE FROM metadata WHERE ddate < now() - '
+  mString := 'DELETE FROM geofuse.metadata WHERE ddate < now() - '
        || quote_literal(mTime) ||'::interval';
        
   EXECUTE mString;
