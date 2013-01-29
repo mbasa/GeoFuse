@@ -38,11 +38,31 @@ public class themeBean {
     String firstRange= new String();
     String viewParams= new String();
     String mapApiKey = new String();
-    
+    String fromDate  = new String();
+    String toDate    = new String();
+        
+    public String getFromDate() {
+        return fromDate;
+    }
+    public void setFromDate(String fromDate) {
+        if( fromDate == null )
+            this.fromDate = "";
+        else
+            this.fromDate = fromDate;
+    }
+    public String getToDate() {
+        return toDate;
+    }
+    public void setToDate(String toDate) {
+        if( toDate == null ) 
+            this.toDate = "";
+        else
+            this.toDate = toDate;
+    }
     public String getFirstRange() {
 		return firstRange;
 	}
-	public void setFirstRange(String firstRange) {
+    public void setFirstRange(String firstRange) {
 		this.firstRange = firstRange;
 	}
 	public String getThemeRanges() {

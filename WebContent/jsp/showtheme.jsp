@@ -42,6 +42,9 @@
   var mLayers      = "<%= tb.getLayerName() %>";
   var mLayerType   = "<%= tb.getLayerType() %>";
   var mViewParams  = "<%= tb.getViewParams() %>";
+  var mFromDate    = "<%= tb.getFromDate() %>";
+  var mToDate      = "<%= tb.getToDate() %>";
+  
   var mFormat      = "image/png";
   var mSRS         = "EPSG:900913"; //"EPSG:4326";
 
@@ -71,6 +74,12 @@
       var ranges   =  Ext.get('ranges'  ).dom.value;
       var themetype=  Ext.get('types'   ).dom.value;
       var color    =  Ext.get('colors'  ).dom.value;
+      var cql      = "";
+      
+      if( mFromDate != "" && mToDate != "" ) {
+    	  cql = "intime >= '"+Ext.get('fromDateId').dom.value+
+    	   "' and intime <= '"+Ext.get('toDateId').dom.value+"'";
+      }
       
       var params = "?typename=" +mLayers     +
                    "&geotype="  +mLayerType  +
@@ -79,7 +88,8 @@
                    "&typerange="+themetype   +
                    "&viewparams="+mViewParams+
                    "&labscale=<%= tb.getLabelScale() %>"+
-                   "&color="    +color;
+                   "&cql="+cql+
+                   "&color="+color;
 
       var m_url = sldServer+encodeURI(params);                      
 
@@ -98,11 +108,12 @@
     		   
     		   if( themetype != "Heatmap" ) {
     			   this.setLegend();
+    			   wmsLayer.mergeNewParams({'cql_filter':cql});
                    wmsLayer.redraw( true );
                    wmsLayer.setVisibility( true );
     		   }
     		   else {
-    			   wmsLayer_stile.mergeNewParams({'styles': criteria });
+    			   wmsLayer_stile.mergeNewParams({'styles': criteria});
                    wmsLayer_stile.redraw( true );
     			   wmsLayer_stile.setVisibility(true);
     		   }    		                                 
@@ -280,6 +291,9 @@
       var sTypes    = Ext.get('types'    ).dom.value;
       var sColors   = Ext.get('colors'   ).dom.value;
       var sRanges   = Ext.get('ranges'   ).dom.value;
+      var sFromDate = Ext.get('fromDateId').dom.value;
+      var sToDate   = Ext.get('toDateId'  ).dom.value;
+    	  
       var sBaseLayer= map.baseLayer.id;
       
       url = url.concat("?layer=").concat(sLayer);
@@ -289,6 +303,8 @@
       url = url.concat("&ranges=").concat(sRanges);
       url = url.concat("&colors=").concat(sColors);
       url = url.concat("&baselayer=").concat(sBaseLayer);
+      url = url.concat("&fromDate=").concat(sFromDate);
+      url = url.concat("&toDate=").concat(sToDate);
       
       showShareWin( url );
   }
@@ -303,6 +319,8 @@
       var pColors   = pParams["colors"];
       var pBnd      = pParams["bnd"];
       var pBaseLayer= pParams["baselayer"];
+      var pFromDate = pParams["fromDate"];
+      var pToDate   = pParams["toDate"];
       
       if( pRanges != null )
     	  Ext.getCmp('rangesId').setValue(pRanges);
@@ -323,6 +341,11 @@
     	  var bLayer = map.getLayer( pBaseLayer );
     	  map.setBaseLayer( bLayer );
       }
+      
+      if(pFromDate != null && pToDate != null) {
+    	  Ext.getCmp('fromDateId').setValue(pFromDate);
+    	  Ext.getCmp('toDateId').setValue(pToDate);
+      }
   }
   
   function setPDF(title,description) {
@@ -335,7 +358,13 @@
 	  
 	  var criteria =  Ext.get('tcriteria').dom.value;
 	  var themetype=  Ext.get('types'   ).dom.value;
-	  
+      var cql      = "";
+      
+      if( mFromDate != "" && mToDate != "" ) {
+          cql = "intime >= '"+Ext.get('fromDateId').dom.value+
+           "' and intime <= '"+Ext.get('toDateId').dom.value+"'";
+      }
+      
 	  if( themetype == "Heatmap" ) {
 		  var imgHtml  = wmsServer+
 		    "?REQUEST=GetPDFGraphic"+
@@ -349,6 +378,7 @@
 		    "&VIEWPARAMS="+mViewParams+
 		    "&PDF_TITLE="+encodeURI(title)+
 		    "&PDF_NOTE="+encodeURI(description)+
+		    "&CQL_FILTER="+cql+
 		    "&DATE="+date.getTime();
 	  }
 	  else {
@@ -363,6 +393,7 @@
 		    "&VIEWPARAMS="+mViewParams+
 		    "&PDF_TITLE="+encodeURI(title)+
 		    "&PDF_NOTE="+encodeURI(description)+
+		    "&CQL_FILTER="+cql+
 		    "&DATE="+date.getTime();
 	  }
 	  
@@ -551,7 +582,13 @@
         var themeColor = new Ext.data.SimpleStore({
             fields: ['id','color'],
             data: [<%= tb.getColorNames() %>]});
-        
+     
+	    var dispDates = false;
+	    
+	    if(mFromDate == "" && mToDate == "") {
+	    	dispDates = true;
+	    }
+	    
 	    var viewport = new Ext.Viewport({
 	        layout: 'border',
 	        id: 'mainpanel',
@@ -568,7 +605,7 @@
 		                              labelWidth: 55,
                                       bodyStyle: 'padding:15px 15px',   
 			                          title: '<%= rb.getString("MW.PARAMETERS") %>', 
-			                          height:220,
+			                          height:255,
 			                          items: [
                                         { xtype: 'combo',    
                                             fieldLabel: '<%= rb.getString("PW.CRITERIA") %>',                                           
@@ -634,7 +671,31 @@
                                             triggerAction: 'all',    
                                             value: '<%= tb.getFirstColor() %>',                                 
                                             width: 150
-	                                          }],
+	                                      },
+	                                      {
+	                                    	  xtype: 'datefield',
+	                                    	  id: 'fromDateId',
+	                                    	  fieldLabel:'<%= rb.getString("PW.FROMDATE") %>',
+	                                    	  width: 150,
+	                                    	  format: 'Y/m/d',
+	                                    	  editable: false,
+	                                    	  disabled: dispDates,
+	                                    	  value: mFromDate.substring(0,10),
+	                                    	  minValue: mFromDate.substring(0,10),
+	                                    	  maxValue: mToDate.substring(0,10)
+	                                      },
+	                                      {
+                                              xtype: 'datefield',
+                                              id: 'toDateId',
+                                              fieldLabel:'<%= rb.getString("PW.TODATE") %>',
+                                              width: 150,
+                                              format: 'Y/m/d',
+                                              editable: false,
+                                              disabled: dispDates,
+                                              value: mToDate.substring(0,10),
+                                              minValue: mFromDate.substring(0,10),
+                                              maxValue: mToDate.substring(0,10)
+                                          }],
 	                                      buttons: [{text:'<%= rb.getString("PB.SUBMIT") %>',
 	                                    	         id:'mapSub', 
 	                                    	         width:'52'},

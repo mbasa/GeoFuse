@@ -20,7 +20,6 @@ package geotheme.db;
 
 import java.sql.*;
 import java.util.*;
-
 import geotheme.bean.*;
 import geotheme.util.*;
 
@@ -100,10 +99,14 @@ public class metaDataCtl {
 			clength = 11;
 		
 		for(int i=1;i<clength-1;i++){
-			colns.append(colNames[i]).append(",");
+		    if(colNames[i].compareToIgnoreCase("timestamp") != 0) {
+		        colns.append(colNames[i]).append(",");
+		    }
 		}
 		
-		colns.append(colNames[clength-1]);
+		if(colNames[clength-1].compareToIgnoreCase("timestamp") != 0) {
+		    colns.append(colNames[clength-1]);
+		}
 		
 		StringBuffer sb = new StringBuffer();
 		
@@ -133,7 +136,7 @@ public class metaDataCtl {
 		return true;
 	}
 	
-	public boolean processData(String[][] inData,String tabName) {
+	public String processData(String[][] inData,String tabName) {
 	
 		StringBuffer createSt = new StringBuffer();
 		createSt.append("create table ").append(tabName).append(" (");
@@ -147,15 +150,20 @@ public class metaDataCtl {
 		createSt.append("col7  float,");
 		createSt.append("col8  float,");
 		createSt.append("col9  float,");
-		createSt.append("col10 float )");
+		createSt.append("col10 float,");
+		createSt.append("intime timestamp)");
 		
 		StringBuffer insertSt = new StringBuffer();
 		
         insertSt.append("insert into ").append(tabName);
-        insertSt.append(" values (?,?,?,?,?,?,?,?,?,?,?)");
+        insertSt.append(" values (?,?,?,?,?,?,?,?,?,?,?,?)");
+        
+        String  retVal = null;
+        Connection con = null;
         
 		try {
-			Connection con = this.conCtl.getConnection();
+			 con = this.conCtl.getConnection();
+			
 			Statement stmt = con.createStatement();
 			stmt.executeUpdate(createSt.toString());
 			
@@ -173,19 +181,39 @@ public class metaDataCtl {
 			
 				pstmt.setString(1, inData[i][0]);
 								
-				for( int j=1;j<clength;j++ ) {
+				int colCount     = clength;
+				String timestamp = null;
+				
+				for( int j=1,k=1;j<clength;j++,k++ ) {
+				    
+				    if( inData[0][j].compareToIgnoreCase("timestamp") == 0)  {
+				        timestamp = inData[i][j];
+				        colCount--;
+				        k--;
+				        continue;
+				    }
+				    
 					if( inData[i][j] != null && 
 					        StringCheck.isNumeric(inData[i][j]) )
-					    pstmt.setDouble(j+1,
+					    pstmt.setDouble(k+1,
 					            Double.valueOf(inData[i][j]));
 					else
-						pstmt.setDouble(j+1, 0d);
+						pstmt.setDouble(k+1, 0d);
 				}
 
-				for( int k=clength;k<11;k++) {
-                    pstmt.setDouble(k+1,0d);
+				for( int l=colCount;l<11;l++) {
+                    pstmt.setDouble(l+1,0d);
                 }
 
+				Timestamp ts = this.validateTimestamp(timestamp);
+				
+				if( ts != null ) {
+				    pstmt.setTimestamp(12, ts);
+				}
+				else {
+				    pstmt.setNull(12,Types.TIMESTAMP);
+				}
+				
 				pstmt.addBatch();
 				
 				if( i % 200 == 0 )
@@ -198,14 +226,48 @@ public class metaDataCtl {
 			con.close();
 		}
 		catch( Exception exc ) {
-			exc.printStackTrace();
-			return false;
+			retVal = exc.getLocalizedMessage();
+		}
+		finally {
+		    try{
+		        if( con != null )
+		            con.close();
+		    }
+		    catch( Exception ee ) {}
 		}
 		
-		return true;
+		return retVal;
 	}
 
-	public boolean processDataLatLon(String[][] inData,String tabName) {
+	public Timestamp validateTimestamp(String timestamp) {
+	    
+	    Timestamp retval = null;
+	    
+	    if( timestamp == null || timestamp.length() < 10 )
+	        return null;
+	    
+	    if(timestamp.length() == 10)
+            timestamp = timestamp.concat(" 00:00:00");
+	    
+	    if(timestamp.length() < 19 )
+	        return null;
+	    
+	    if( timestamp.length() >= 20  )
+	        timestamp = timestamp.substring(0,19);
+	       // timestamp = timestamp.substring(0, 19)+
+	       //     "+"+timestamp.substring(20,timestamp.length());
+	    
+	    timestamp = timestamp.replace('/', '-');
+	    
+	    try {
+	        retval = Timestamp.valueOf( timestamp );
+	    }
+	    catch( Exception e) {}
+	    
+	    return retval;
+	}
+	
+	public String processDataLatLon(String[][] inData,String tabName) {
 		
 		StringBuffer createSt = new StringBuffer();
 		createSt.append("create table ").append(tabName).append(" (");
@@ -220,12 +282,16 @@ public class metaDataCtl {
 		createSt.append("col8     float, ");
 		createSt.append("col9     float, ");
 		createSt.append("col10    float,");
+		createSt.append("intime   timestamp,");
 		createSt.append("the_geom geometry )");
 		
 		StringBuffer insertSt;
 		
+		Connection con = null;
+		String retVal  = null;
+		
 		try {
-			Connection con = this.conCtl.getConnection();
+			con = this.conCtl.getConnection();
 			Statement stmt = con.createStatement();
 			stmt.executeUpdate(createSt.toString());
 			
@@ -235,7 +301,7 @@ public class metaDataCtl {
 			
 			insertSt = new StringBuffer();
 			insertSt.append("insert into ").append(tabName);
-            insertSt.append(" values (?,?,?,?,?,?,?,?,?,?,?,");
+            insertSt.append(" values (?,?,?,?,?,?,?,?,?,?,?,?,");
             insertSt.append(" ST_GeomFromText(?,4326))");
             
 			PreparedStatement pstmt = 
@@ -256,15 +322,26 @@ public class metaDataCtl {
 								
 				pstmt.setString(1, inData[i][0]);
 				
-				for( int j=1;j<clength;j++ ) {
+				int colCount     = clength;
+                String timestamp = null;
+                
+				for( int j=1,k=1;j<clength;j++,k++ ) {
+				    
+				    if( inData[0][j].compareToIgnoreCase("timestamp") == 0)  {
+                        timestamp = inData[i][j];
+                        colCount--;
+                        k--;
+                        continue;
+                    }
+				    
 					if( StringCheck.isNumeric(inData[i][j]) )
-					    pstmt.setDouble(j+1,Double.valueOf(inData[i][j]));
+					    pstmt.setDouble(k+1,Double.valueOf(inData[i][j]));
 					else
-					    pstmt.setDouble(j+1,0d);
+					    pstmt.setDouble(k+1,0d);
 				}
 
-				for( int k=clength;k<11;k++) {
-				    pstmt.setDouble(k+1,0d);
+				for( int l=colCount;l<11;l++) {
+				    pstmt.setDouble(l+1,0d);
 				}
 				
 				if( StringCheck.isNumeric(inData[i][rlength-2]) )
@@ -282,7 +359,17 @@ public class metaDataCtl {
 				insertSt.append(x).append(" ");
 				insertSt.append(y).append(")");
 								
-				pstmt.setString(12, insertSt.toString());
+				pstmt.setString(13, insertSt.toString());
+				
+				Timestamp ts = this.validateTimestamp(timestamp);
+				
+				if( ts != null ) {
+                    pstmt.setTimestamp(12, ts);
+                }
+                else {
+                    pstmt.setNull(12,Types.TIMESTAMP);
+                }
+				
 				pstmt.addBatch();
 				
 				if( i % 200 == 0)
@@ -296,20 +383,64 @@ public class metaDataCtl {
 			con.close();
 		}
 		catch( Exception exc ) {
-			exc.printStackTrace();
-			return false;
+			retVal = exc.getLocalizedMessage();
+		}
+		finally {
+		    try{
+		        if( con != null )
+		            con.close();
+		    }
+		    catch( Exception ee ) {}
 		}
 		
-		return true;
+		return retVal;
 	}
 
+	public String[] getTimestampStat(String table) {
+	    String retVal[] = new String[2];
+	    StringBuffer sb = new StringBuffer();
+	    
+	    sb.append("select min(intime) min,max(intime) max from ");
+	    sb.append(table);
+	    
+	    retVal[0]      = null;
+	    retVal[1]      = null;        
+	    Connection con = null;
+	    
+	    try {
+	        con = this.conCtl.getConnection();
+	        Statement stmt = con.createStatement();
+	        ResultSet rs   = stmt.executeQuery(sb.toString());
+
+	        if( rs != null ) {
+	            while( rs.next() ) {
+	                retVal[0] = rs.getString("min");
+	                retVal[1] = rs.getString("max");
+	            }
+	        }
+	    }
+	    catch(Exception e) {
+	        e.printStackTrace();
+	    }
+	    finally {
+	        try{
+	            if(con!=null)
+	                con.close();
+	        }
+	        catch(Exception ee) {}
+	    }
+	    return retVal;
+	}
+	
 	public String[] getLayerBnd(String mapTab,String linkTab,
 			String linkCol ){
 		
 		String[] bnd = {"EPSG:4326","-180","-90","180","90"};
 
+		Connection con = null;
+		
 		try {
-			Connection con = this.conCtl.getConnection();
+			con = this.conCtl.getConnection();
 			Statement stmt = con.createStatement();
 
 			StringBuffer sql = new StringBuffer();
@@ -350,6 +481,13 @@ public class metaDataCtl {
 		}
 		catch(Exception ex) {
 			ex.printStackTrace();
+		}
+		finally {
+		    try{
+		        if( con != null )
+		            con.close();
+		    }
+		    catch( Exception ee) {}
 		}
 		
 		return bnd;
