@@ -150,15 +150,17 @@ public class inputData extends HttpServlet {
 		}
 		
 		if( isLatLon ) {
-			if( !mdc.processDataLatLon(pStr, tableName) ) {
-				out.write("Error: Data entry");
+		    String rs = mdc.processDataLatLon(pStr, tableName); 
+			if( rs != null ) {
+				out.write("Error Data entry: "+rs);
 				out.close();
 				return;
 			}
 		}
 		else {
-			if( !mdc.processData(pStr, tableName) ) {
-				out.write("Error: Data entry");
+		    String rs = mdc.processData(pStr, tableName);
+			if( rs != null ) {
+				out.write("Error Data entry: "+rs);
 				out.close();
 				return;
 			}

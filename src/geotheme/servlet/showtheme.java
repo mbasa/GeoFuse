@@ -88,6 +88,8 @@ public class showtheme extends HttpServlet {
 	    String bnd[] = mdc.getLayerBnd(mdb.getMapTable(), 
 	    		mdb.getTabid(), mdb.getLinkColumn());
 	    
+	    String timeStamp[] = mdc.getTimestampStat(mdb.getTabid());
+	    
 	    StringBuffer viewParams = new StringBuffer();
 	    
 	    viewParams.append("linktab:").append(mdb.getTabid()).append(";");
@@ -102,6 +104,9 @@ public class showtheme extends HttpServlet {
 	    tb.setColorNames(this.colorNames);
 	    tb.setGsldUrl(thisUrl + "/gsld");
 	    tb.setWmsUrl(thisUrl  + "/wms");
+	    
+	    tb.setFromDate(timeStamp[0]);
+	    tb.setToDate(timeStamp[1]);
 	    
 	    tb.setPropList( new ArrayList<String>( 
 	    		Arrays.asList(mdb.getColNames()) ) );
