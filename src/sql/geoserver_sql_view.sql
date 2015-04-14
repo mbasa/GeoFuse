@@ -1,7 +1,7 @@
 -- 
 -- Geoserver Parametric SQL for linker1
 --   values: linktab = 'geodata.dummy', 
---           maptab  = 'goedata.mapdummy', 
+--           maptab  = 'geodata.mapdummy', 
 --           mapcol  = 'mapcol'
 --
 select a.*,the_geom from %linktab% a,%maptab% b where a.col0 = b.%mapcol%
