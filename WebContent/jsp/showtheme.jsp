@@ -20,7 +20,7 @@
 <!-- 
 <SCRIPT type="text/javascript" src="resources/lib/OpenLayers/OpenLayers.js"></SCRIPT>
  -->
-<script src="http://openlayers.org/dev/OpenLayers.js"></script>
+<script src="http://openlayers.org/api/OpenLayers.js"></script>
 
 <SCRIPT type="text/javascript" src="resources/lib/extJS/ext-base.js"></SCRIPT>
 <SCRIPT type="text/javascript" src="resources/lib/extJS/ext-all.js"></SCRIPT>
