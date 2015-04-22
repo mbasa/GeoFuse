@@ -291,8 +291,8 @@
       var sTypes    = Ext.get('types'    ).dom.value;
       var sColors   = Ext.get('colors'   ).dom.value;
       var sRanges   = Ext.get('ranges'   ).dom.value;
-      var sFromDate = Ext.get('fromDateId').dom.value;
-      var sToDate   = Ext.get('toDateId'  ).dom.value;
+      var sFromDate;
+      var sToDate;
     	  
       var sBaseLayer= map.baseLayer.id;
       
@@ -303,9 +303,16 @@
       url = url.concat("&ranges=").concat(sRanges);
       url = url.concat("&colors=").concat(sColors);
       url = url.concat("&baselayer=").concat(sBaseLayer);
-      url = url.concat("&fromDate=").concat(sFromDate);
-      url = url.concat("&toDate=").concat(sToDate);
+
+      if( Ext.get('fromDateId') != null && Ext.get('toDateId') != null ) {
+          sFromDate = Ext.get('fromDateId').dom.value;
+          sToDate   = Ext.get('toDateId'  ).dom.value;
+
+          url = url.concat("&fromDate=").concat(sFromDate);
+          url = url.concat("&toDate=").concat(sToDate);
+      }
       
+
       showShareWin( url );
   }
 
