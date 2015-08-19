@@ -1,0 +1,11 @@
+#::::::::::::::::::::::::::::::
+# PostgreSQL Login Info
+#::::::::::::::::::::::::::::::
+DB.NAME=geofuse
+DB.USER=postgres
+DB.PASSWORD=postgres
+DB.HOST=localhost
+DB.METADATA.TABLE=geofuse.metadata
+DB.DYNAMIC_LINKER.TABLE=geofuse.maplinker
+DB.CSVDATA_SCHEMA=csvdata
+

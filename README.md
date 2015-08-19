@@ -88,3 +88,6 @@ NOTE: the ColorNames and Colors should have equal number of items, otherwise
 License
 -------
 Released under GPL.
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/Georepublic/geofuse/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
