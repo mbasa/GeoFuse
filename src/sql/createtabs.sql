@@ -28,13 +28,16 @@ CREATE TABLE geodata.dummy
   col7  double precision,
   col8  double precision,
   col9  double precision,
-  col10 double precision
+  col10 double precision,
+  intime timestamp
 );
 
 --
 -- Table: mapdummy
 -- only used to create a Parametric SQL view in Geoserver
 --
+
+DROP TABLE geodata.mapdummy;
 
 CREATE TABLE geodata.mapdummy
 (
@@ -63,6 +66,7 @@ CREATE TABLE geodata.dummy_pt
   col8 double  precision,
   col9 double  precision,
   col10 double precision,
+  intime timestamp,
   the_geom geometry  -- lon,lat data will be placed here
 );
 
@@ -102,3 +106,78 @@ CREATE TABLE geofuse.maplinker
   maptype   TEXT NOT NULL, -- Type of Map: i.e. polygon,point,line
   CONSTRAINT dynlinker_pkey PRIMARY KEY (colname)
 );
+
+--
+-- Table: baselayer
+-- this table will hold the baselayers that will be displayed
+-- in GeoFuse
+--
+
+DROP TABLE geofuse.baselayer;
+
+CREATE TABLE geofuse.baselayer
+(
+    rowid       serial PRIMARY KEY,
+	rank        integer, -- Display Rank. Lower Numbers have higher rank
+	url         TEXT,    -- URL of the base layer
+	attribution TEXT,    -- Attribution of the base layer
+	subdomain   TEXT,    -- SubDomains. Should be in CSV format i.e. "a,b,c,d"
+	name        TEXT,    -- Display Name in the Layer Control
+	display     BOOLEAN  -- Display Flag
+);
+
+--
+-- Table: overlaylayer
+-- this table will hold the additional WMS overlay layers 
+-- that will be displayed in GeoFuse
+--
+
+DROP TABLE geofuse.overlaylayer;
+
+CREATE TABLE geofuse.overlaylayer
+(
+    rowid       serial PRIMARY KEY,
+	rank        integer, -- Display Rank. Lower Numbers have higher rank
+	url         TEXT,    -- URL of the WMS overlay layer
+	layers      TEXT,    -- layers. Should be in CSV format 
+	name        TEXT,    -- Display Name in the Layer Control
+	active      BOOLEAN, -- Display Flag in the Layer Control
+	display     BOOLEAN  -- Display Flag
+);
+
+--
+-- User information for Layer authentication
+--
+
+DROP TABLE geofuse.userinf;
+
+CREATE TABLE geofuse.userinf
+(
+	username TEXT PRIMARY KEY,
+	password TEXT,
+	role     TEXT
+);
+
+--
+-- Initial Data for Name: baselayer; Type: TABLE DATA; Schema: geofuse;
+--
+INSERT INTO geofuse.baselayer (rank,url,attribution,subdomain,name,display) VALUES (9, 'http://cyberjapandata.gsi.go.jp/xyz/pale/{z}/{x}/{y}.png', '電子国土基本図', '', '地理院タイル　(淡色地図)', true);
+INSERT INTO geofuse.baselayer (rank,url,attribution,subdomain,name,display) VALUES (3, 'http://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}.png', 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>', 'a,b,c,d', 'Stamen-Toner', true);
+INSERT INTO geofuse.baselayer (rank,url,attribution,subdomain,name,display) VALUES (4, 'http://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', 'Tiles &copy; Esri &mdash; Source: Esri, DeLorme, NAVTEQ, USGS, Intermap, iPC, NRCAN, Esri Japan, METI, Esri China (Hong Kong), Esri (Thailand), TomTom, 2012', '', 'ESRI StreetMap', true);
+INSERT INTO geofuse.baselayer (rank,url,attribution,subdomain,name,display) VALUES (6, 'http://{s}.tile.thunderforest.com/transport/{z}/{x}/{y}.png', 'Tiles Courtesy of <a href="http://www.thunderforest.com/" arget="_blank">Thunderforest</a>&nbspand OpenStreetMap contributors', 'a,b,c', 'ThunderForest', true);
+INSERT INTO geofuse.baselayer (rank,url,attribution,subdomain,name,display) VALUES (5, 'http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community', '', 'ESRI World', true);
+INSERT INTO geofuse.baselayer (rank,url,attribution,subdomain,name,display) VALUES (7, 'http://otile{s}.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.png', 'Tiles by <a href="http://www.mapquest.com/">MapQuest</a> &mdash; Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>', '1,2,3,4', 'MapQuest', true);
+INSERT INTO geofuse.baselayer (rank,url,attribution,subdomain,name,display) VALUES (8, 'http://cyberjapandata.gsi.go.jp/xyz/std/{z}/{x}/{y}.png', '地理院タイル（標準地図）', '', '地理院タイル（標準地図）', true);
+INSERT INTO geofuse.baselayer (rank,url,attribution,subdomain,name,display) VALUES (1, 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', '© OpenStreetMap Contributors', '', 'OSM', true);
+INSERT INTO geofuse.baselayer (rank,url,attribution,subdomain,name,display) VALUES (10, 'http://cyberjapandata.gsi.go.jp/xyz/ort/{z}/{x}/{y}.jpg', '電子国土基本図', '', '地理院タイル（オルソ画像）', true);
+INSERT INTO geofuse.baselayer (rank,url,attribution,subdomain,name,display) VALUES (2, 'http://openmapsurfer.uni-hd.de/tiles/roadsg/x={x}&y={y}&z={z}', 'Imagery from <a href="http://giscience.uni-hd.de/">GIScience Research Group @ University of Heidelberg</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>''', '', 'OSM-BW', true);
+
+--
+-- Initial Data for Name: userinf; Type: TABLE DATA; Schema: geofuse;
+--
+INSERT INTO geofuse.userinf (username,password) VALUES ('admin','admin');
+
+--
+-- Initial Data for Name: maplinker; Type: TABLE DATA; Schema: geofuse;
+--
+INSERT INTO geofuse.maplinker VALUES ( 'latlon','latlon','geofuse:geolink_pt','point');

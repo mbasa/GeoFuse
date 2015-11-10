@@ -43,10 +43,6 @@ public class showtheme extends HttpServlet {
 	private String labelScale   = new String();
 	private String themeRanges  = new String();
 	
-	private String db_name      = new String();
-	private String db_host      = new String();
-	private String db_user      = new String();
-	private String db_password  = new String();
 	private String db_metadata  = new String();
        
     /**
@@ -71,11 +67,8 @@ public class showtheme extends HttpServlet {
 	       req.getParameter("layer").length() > 1 ) {
 	        layerName = req.getParameter("layer");
 	    }	    	    
-	    
-	    connectionCtl conCtl = new connectionCtl(this.db_host,this.db_user,
-                this.db_password,this.db_name);
-        
-        metaDataCtl mdc  = new metaDataCtl(conCtl,this.db_metadata);        
+	            
+        metaDataCtl mdc  = new metaDataCtl(this.db_metadata);        
 	    metaDataBean mdb = mdc.getMetaInfo(layerName);
 	    
 	    if( mdb == null ) {
@@ -142,10 +135,6 @@ public class showtheme extends HttpServlet {
 		this.labelScale   = rb.getString("THEMATIC.LABEL.MAXSCALE");
 		this.themeRanges  = rb.getString("THEMATIC.RANGES");
 		
-		this.db_name      = rdb.getString("DB.NAME");
-		this.db_host      = rdb.getString("DB.HOST");
-		this.db_user      = rdb.getString("DB.USER");
-		this.db_password  = rdb.getString("DB.PASSWORD");
 		this.db_metadata  = rdb.getString("DB.METADATA.TABLE");
 		
     	try {

@@ -275,7 +275,7 @@ public class thematicSld {
         sb.append("  xmlns:ogc=\"http://www.opengis.net/ogc\"");
         sb.append("  xmlns:gml=\"http://www.opengis.net/gml\">");
 
-        sb.append("<sld:UserLayer >");
+        sb.append("<sld:NamedLayer >");
         sb.append("<sld:Name>");
         sb.append(layerName);
         sb.append("</sld:Name>");
@@ -299,7 +299,7 @@ public class thematicSld {
 
         sbuff.append("</sld:FeatureTypeStyle>");
         sbuff.append("</sld:UserStyle>");
-        sbuff.append("</sld:UserLayer>");
+        sbuff.append("</sld:NamedLayer>");
 
         sbuff.append("</sld:StyledLayerDescriptor> ");
 

@@ -1,0 +1,5502 @@
+.v-assistive-device-only {
+	position: absolute;
+	top: -2000px;
+	left: -2000px;
+	width: 10px;
+	overflow: hidden;
+}
+
+.v-radiobutton {
+	-webkit-user-select: none;
+}
+
+@-webkit-keyframes v-notification-animate-out {
+		100% {
+		opacity: 0;
+	}
+	}
+
+@-moz-keyframes v-notification-animate-out {
+		100% {
+		opacity: 0;
+	}
+	}
+
+@keyframes v-notification-animate-out {
+		100% {
+		opacity: 0;
+	}
+	}
+
+.v-vaadin-version:after {
+	content: "7.4.6";
+}
+
+.v-generated-body {
+	width: 100%;
+	height: 100%;
+	border: 0;
+	margin: 0;
+	overflow: hidden;
+}
+
+.v-modal-window-open {
+	overflow: hidden;
+}
+
+@font-face {
+	font-family: FontAwesome;
+	src: url(../base/fonts/fontawesome-webfont.eot);
+	src: url(../base/fonts/fontawesome-webfont.eot?#iefix) format("embedded-opentype"), url(../base/fonts/fontawesome-webfont.woff) format("woff"), url(../base/fonts/fontawesome-webfont.ttf) format("truetype"), url(../base/fonts/fontawesome-webfont.svg) format("svg");
+	font-weight: normal;
+	font-style: normal;
+}
+
+.FontAwesome {
+	font-family: FontAwesome;
+	font-style: normal;
+	font-weight: normal;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	display: inline-block;
+}
+
+.popups table, .popups th, .popups td {
+	border: 1px solid #aaa;
+	border-collapse: collapse;
+}
+
+.popups th, .popups td {
+	padding: 2px;
+}
+
+.geofuse {
+	/* font-family: 'ヒラギノ角ゴ Pro W3','Hiragino Kaku Gothic Pro','メイリオ',Meiryo,'ＭＳ Ｐゴシック','lucida grande',tahoma,arial,sans-serif; */
+	font-family: sans-serif;
+}
+
+.geofuse {
+	@font-face {
+	font-family: FontAwesome;
+	src: url(../base/fonts/fontawesome-webfont.eot);
+	src: url(../base/fonts/fontawesome-webfont.eot?#iefix) format("embedded-opentype"), url(../base/fonts/fontawesome-webfont.woff) format("woff"), url(../base/fonts/fontawesome-webfont.ttf) format("truetype"), url(../base/fonts/fontawesome-webfont.svg) format("svg");
+	font-weight: normal;
+	font-style: normal;
+}
+}
+
+.geofuse .v-widget {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	text-align: left;
+	display: inline-block;
+	white-space: normal;
+	vertical-align: bottom;
+	font-size: 12px;
+	line-height: normal;
+}
+
+.geofuse .v-absolutelayout-wrapper {
+	position: absolute;
+	overflow: hidden;
+}
+
+.geofuse .v-absolutelayout-margin, .geofuse .v-absolutelayout-canvas {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.geofuse .v-absolutelayout.v-has-height > div, .geofuse .v-absolutelayout.v-has-height > div > div {
+	height: 100%;
+}
+
+.geofuse .v-absolutelayout.v-has-width > div, .geofuse .v-absolutelayout.v-has-width > div > div {
+	width: 100%;
+}
+
+.geofuse .v-accordion {
+	position: relative;
+	outline: none;
+	overflow: visible;
+	text-align: left;
+	font-size: 0;
+}
+
+.geofuse .v-accordion-item {
+	position: relative;
+	display: inline-block;
+	width: 100%;
+}
+
+.geofuse .v-accordion-item-caption {
+	overflow: visible;
+	white-space: nowrap;
+	background: #eee;
+	border-bottom: 1px solid #ddd;
+}
+
+.geofuse .v-accordion-item-caption .v-caption {
+	cursor: pointer;
+	font-size: 12px;
+}
+
+.geofuse .v-accordion-item-open .v-accordion-item-caption .v-caption {
+	cursor: default;
+}
+
+.geofuse .v-accordion-item-content {
+	position: absolute;
+	width: 100%;
+}
+
+.geofuse .v-browserframe {
+	font-size: 0;
+}
+
+.v-webkit.v-ios .geofuse .v-browserframe {
+	-webkit-overflow-scrolling: touch;
+	overflow: auto;
+}
+
+.geofuse .v-browserframe > span {
+	font-size: 12px;
+}
+
+.geofuse .v-button {
+	display: inline-block;
+	zoom: 1;
+	text-align: center !important;
+	text-decoration: none;
+	border: 2px outset #ddd;
+	background: #eee;
+	cursor: pointer;
+	white-space: nowrap;
+	margin: 0;
+	padding: 0.2em 1em;
+	color: inherit;
+	font: inherit;
+	font-size: 12px;
+	line-height: normal;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.geofuse .v-button.v-disabled {
+	cursor: default;
+}
+
+.geofuse .v-button-wrap, .geofuse .v-button-caption {
+	vertical-align: baseline;
+	white-space: nowrap;
+	font: arial;
+	color: inherit;
+	line-height: normal;
+}
+
+.geofuse .v-button .v-icon {
+	vertical-align: middle;
+	margin-right: 3px;
+	border: none;
+}
+
+.geofuse .v-button .v-errorindicator {
+	display: inline-block;
+	zoom: 1;
+	vertical-align: middle;
+	float: none;
+}
+
+.geofuse .v-button-link {
+	border: none;
+	text-align: left !important;
+	background: transparent;
+	padding: 0;
+	color: inherit;
+	-khtml-user-select: text;
+	-moz-user-select: text;
+	-ie-user-select: text;
+	user-select: text;
+}
+
+.v-sa .geofuse .v-button-link:focus {
+	outline-offset: -3px;
+}
+
+.geofuse .v-button-link .v-button-caption {
+	text-decoration: underline;
+	color: inherit;
+	text-align: left;
+}
+
+.geofuse .v-nativebutton .v-icon {
+	vertical-align: middle;
+	margin-right: 3px;
+	border: none;
+}
+
+.geofuse .v-nativebutton .v-errorindicator {
+	display: inline-block;
+	zoom: 1;
+	vertical-align: middle;
+	float: none;
+}
+
+.geofuse .v-nativebutton-link {
+	border: none;
+	text-align: left !important;
+	background: transparent;
+	padding: 0;
+	color: inherit;
+	-khtml-user-select: text;
+	-moz-user-select: text;
+	-ie-user-select: text;
+	user-select: text;
+}
+
+.geofuse .v-nativebutton-link .v-nativebutton-caption {
+	text-decoration: underline;
+	color: inherit;
+	text-align: left;
+}
+
+.geofuse .v-nativebutton {
+	text-align: center !important;
+	cursor: pointer;
+	white-space: nowrap;
+	margin: 0;
+	color: inherit;
+	font: inherit;
+	line-height: normal;
+}
+
+.geofuse .v-nativebutton .v-nativebutton-caption {
+	vertical-align: middle;
+	white-space: nowrap;
+	font: inherit;
+	color: inherit;
+}
+
+.geofuse .v-nativebutton .v-icon {
+	vertical-align: middle;
+	margin-right: 3px;
+}
+
+.geofuse .v-nativebutton .v-errorindicator {
+	display: inline-block;
+	zoom: 1;
+	float: none;
+}
+
+.v-ie .geofuse .v-nativebutton {
+	overflow: visible;
+	padding-left: 1em;
+	padding-right: 1em;
+}
+
+.v-ie .geofuse .v-nativebutton-link {
+	padding: 0;
+}
+
+.geofuse .v-checkbox {
+	display: block;
+}
+
+.geofuse .v-checkbox, .geofuse .v-checkbox label, .geofuse .v-checkbox input, .geofuse .v-checkbox .v-icon {
+	vertical-align: middle;
+	white-space: nowrap;
+}
+
+.geofuse .v-checkbox .v-icon {
+	margin: 0 2px;
+}
+
+.geofuse .v-checkbox .v-errorindicator {
+	float: none;
+	display: inline;
+	display: inline-block;
+	zoom: 1;
+}
+
+.geofuse .v-captionwrapper {
+	text-align: left;
+}
+
+.geofuse .v-caption {
+	overflow: hidden;
+	white-space: nowrap;
+	font-size: 12px;
+}
+
+.geofuse .v-errorindicator {
+	display: inline-block;
+}
+
+.geofuse .v-caption .v-icon {
+	display: inline-block;
+	padding-right: 2px;
+	vertical-align: middle;
+}
+
+.geofuse .v-caption .v-captiontext {
+	display: inline-block;
+	overflow: hidden;
+	vertical-align: middle;
+}
+
+.geofuse .v-caption .v-required-field-indicator {
+	display: inline-block;
+}
+
+.geofuse .v-colorpicker {
+	text-align: center;
+}
+
+.geofuse .v-colorpicker-button-color {
+	border: 1px solid silver;
+	float: left;
+	width: 10px;
+	height: 10px;
+	margin-top: 2px;
+	margin-right: 5px;
+}
+
+.geofuse .v-colorpicker-area {
+	border: 1px solid silver;
+	margin: 1px auto;
+}
+
+.geofuse .v-colorpicker.v-default-caption-width {
+	width: 100px;
+}
+
+.geofuse .v-colorpicker-history {
+	margin: 5px;
+}
+
+.geofuse .v-colorpicker-history td {
+	border: 1px solid silver !important;
+}
+
+.geofuse .v-colorpicker-history td {
+	line-height: 15px;
+}
+
+.geofuse .v-colorpicker-popup {
+	width: 244px;
+}
+
+.geofuse .v-colorpicker-popup .v-scrollable {
+	background-color: #dddddd;
+}
+
+.geofuse .v-colorpicker-popup .v-tabsheet-content .v-scrollable {
+	background-color: #eaeaea;
+}
+
+.geofuse .v-colorpicker-popup .v-tabsheet-content .v-tabsheet-tabsheetpanel {
+	background: transparent;
+}
+
+.geofuse .v-colorpicker-popup .resize-button {
+	border: 0px solid silver;
+	background: url(../base/colorpicker/images/resizebg.png);
+	margin-top: 5px;
+}
+
+.geofuse .v-colorpicker-popup .resize-button-caption {
+	display: none;
+}
+
+.geofuse .v-colorpicker-popup .resize-button:hover {
+	background: url(../base/colorpicker/images/resizebg-selected.png);
+}
+
+.geofuse .v-colorpicker-popup .resize-button:focus {
+	outline: none;
+}
+
+.geofuse .v-colorpicker-gradient {
+	width: 220px;
+	height: 220px;
+	padding-left: 10px;
+	margin-top: 0px;
+}
+
+.geofuse .v-colorpicker-gradient .v-colorpicker-gradient-clicklayer {
+	background-color: white;
+	filter: alpha(opacity = 0);
+	opacity: 0;
+}
+
+.geofuse .v-colorpicker-popup .rgb-gradient .v-colorpicker-gradient-background {
+	width: 220px;
+	height: 220px;
+	background: url(../base/colorpicker/images/gradient2.png);
+}
+
+.geofuse .v-colorpicker-popup .hsv-gradient .v-colorpicker-gradient-foreground {
+	background: url(../base/colorpicker/images/gradient.png);
+}
+
+.geofuse .v-colorpicker-popup .v-colorpicker-gradient-lowerbox {
+	border-right: 1px solid white;
+	border-top: 1px solid white;
+}
+
+.geofuse .v-colorpicker-popup .v-colorpicker-gradient-higherbox {
+	border-left: 1px solid white;
+	border-bottom: 1px solid white;
+}
+
+.geofuse .v-colorpicker-popup .rgb-sliders {
+	width: 227px;
+	padding-left: 10px;
+	color: #444444;
+	text-shadow: 0 1px 0 #FFFFFF;
+}
+
+.geofuse .v-colorpicker-popup .rgb-sliders .red .v-slider-base {
+	background-color: red;
+}
+
+.geofuse .v-colorpicker-popup .rgb-sliders .green .v-slider-base {
+	background-color: green;
+}
+
+.geofuse .v-colorpicker-popup .rgb-sliders .blue .v-slider-base {
+	background-color: blue;
+}
+
+.geofuse .v-colorpicker-popup .hsv-sliders {
+	padding-left: 10px;
+	color: #444444;
+	text-shadow: 0 1px 0 #FFFFFF;
+}
+
+.geofuse .v-colorpicker-popup .hue-slider {
+	height: 10px;
+	border: 0px solid silver;
+	background-image: url(../base/colorpicker/images/slider_hue_bg.png);
+	background-color: transparent;
+	background-repeat: no-repeat;
+	background-position: 0 3px;
+	margin-top: 0px;
+}
+
+.geofuse .v-colorpicker-popup .hue-slider .v-slider-handle {
+	margin-top: -2px;
+}
+
+.geofuse .v-colorpicker-popup .hue-slider .v-slider-base {
+	border: 0px none;
+	height: 0px;
+	background-color: transparent;
+}
+
+.geofuse .v-colorpicker-popup .v-colorpicker-preview {
+	margin-top: 5px;
+	padding-left: 12px;
+	padding-right: 10px;
+	margin-bottom: 0px;
+}
+
+.geofuse .v-colorpicker-popup .v-absolutelayout-wrapper {
+	width: 100%;
+	height: 100%;
+}
+
+.geofuse .v-colorpicker-popup .v-colorpicker-preview-textfield {
+	background: none;
+	overflow: hidden;
+	overflow-y: hidden;
+	overflow-x: hidden;
+}
+
+.geofuse .v-colorpicker-popup .v-textfield-dark {
+	color: #FFFFFF;
+}
+
+.geofuse .v-colorpicker-popup .v-textfield-light {
+	color: #000000;
+}
+
+.geofuse .v-colorpicker-popup .colorselect {
+	margin-top: 5px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+.geofuse .v-colorpicker-popup .v-tabsheet .v-colorpicker-grid {
+	height: 319px;
+}
+
+.geofuse .v-colorpicker-popup .colorselect td {
+	line-height: 15px;
+}
+
+.geofuse .v-colorpicker-popup .v-filterselect {
+	padding-right: 16px;
+}
+
+.geofuse .v-calendar-nresize DIV DIV {
+	cursor: n-resize !important;
+}
+
+.geofuse .v-calendar-sresize DIV DIV {
+	cursor: s-resize !important;
+}
+
+.geofuse .v-calendar {
+	background-color: #fff;
+}
+
+.geofuse .v-calendar-header-month, .geofuse .v-calendar-header-week {
+	border-bottom: 1px solid #c1c1c1;
+}
+
+.geofuse .v-calendar-header-day {
+	text-align: center;
+	color: #666;
+	font-size: 12px;
+	line-height: normal;
+}
+
+.geofuse .v-calendar-header-week .v-calendar-header-day:hover {
+	cursor: pointer;
+	color: #222;
+}
+
+.geofuse .v-calendar-header-day-today {
+	font-weight: normal;
+	color: #444;
+}
+
+.geofuse .v-calendar-header-month td:first-child {
+	padding-left: 19px;
+}
+
+.geofuse .v-calendar-header-week .v-calendar-back, .geofuse .v-calendar-header-week .v-calendar-next {
+	border: none;
+	padding: 0;
+	margin: 0;
+	height: 12px;
+	width: 12px;
+	overflow: hidden;
+	background: transparent url(../base/calendar/img/arrows.png) no-repeat 50% 0;
+	opacity: 0.3;
+	filter: alpha(opacity = 30);
+	cursor: default;
+}
+
+.geofuse .v-calendar-header-week .v-calendar-back:hover, .geofuse .v-calendar-header-week .v-calendar-next:hover {
+	opacity: 0.6;
+	filter: alpha(opacity = 60);
+}
+
+.geofuse .v-calendar-header-week .v-calendar-back:active, .geofuse .v-calendar-header-week .v-calendar-next:active {
+	opacity: 1;
+	filter: alpha(opacity = 100);
+}
+
+.geofuse .v-calendar-header-week .v-calendar-next {
+	background-position: 50% -12px;
+}
+
+.geofuse .v-calendar-month {
+	outline: none;
+}
+
+.geofuse .v-calendar-week-numbers {
+	width: 20px;
+	border-right: 1px solid #ccc;
+}
+
+.geofuse .v-calendar-week-number {
+	border: none;
+	background: transparent;
+	padding: 0;
+	margin: 0;
+	cursor: pointer;
+	opacity: 0.5;
+	width: 20px;
+	text-align: center;
+	border-bottom: 1px solid #ddd;
+}
+
+.geofuse .v-calendar-week-number:hover {
+	opacity: 1;
+}
+
+.geofuse .v-calendar-month-day {
+	border-bottom: 1px solid #ccc;
+	border-right: 1px solid #ccc;
+	outline: none;
+}
+
+.geofuse .v-calendar-month-day-today {
+	background-color: #e7f0f5;
+}
+
+.geofuse .v-calendar-month-day-selected {
+	background-color: #fffee7;
+}
+
+.geofuse .v-calendar-month-day-dragemphasis {
+	background-color: #a8a8a8;
+}
+
+.geofuse .v-calendar-month-day-scrollable {
+	overflow-y: scroll;
+}
+
+.geofuse .v-calendar-day-number {
+	height: 18px;
+	line-height: 18px;
+	font-size: 12px;
+	text-align: right;
+	padding-right: 3px;
+	white-space: nowrap;
+}
+
+.geofuse .v-calendar-day-number:hover {
+	cursor: pointer;
+	opacity: 0.6;
+	filter: alpha(opacity = 60);
+}
+
+.geofuse .v-calendar-month .v-calendar-spacer, .geofuse .v-calendar-month .v-calendar-bottom-spacer, .geofuse .v-calendar-month .v-calendar-bottom-spacer-empty {
+	height: 15px;
+	font-size: 12px;
+}
+
+.geofuse .v-calendar-month .v-calendar-bottom-spacer:hover {
+	cursor: pointer;
+	opacity: 0.6;
+	filter: alpha(opacity = 60);
+}
+
+.geofuse .v-calendar-event {
+	line-height: 14px;
+	font-size: 12px;
+	padding: 0 0 0 4px;
+	cursor: pointer;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	outline: none;
+}
+
+.geofuse .v-calendar-event-month {
+	margin-bottom: 1px;
+	white-space: nowrap;
+}
+
+.geofuse .v-calendar-event-month:hover {
+	text-decoration: underline;
+}
+
+.geofuse .v-calendar-event-all-day {
+	background: #999;
+	display: block;
+	margin-left: -2px;
+}
+
+.geofuse div.v-calendar-event-all-day {
+	color: #fff;
+	height: 14px;
+}
+
+.geofuse .v-calendar-event-continued-from {
+	margin-left: 0;
+}
+
+.geofuse .v-calendar-event-start {
+	-webkit-border-top-left-radius: 6px;
+	-webkit-border-bottom-left-radius: 6px;
+	-moz-border-radius-topleft: 6px;
+	-moz-border-radius-bottomleft: 6px;
+	border-top-left-radius: 6px;
+	border-bottom-left-radius: 6px;
+	margin-left: 0;
+}
+
+.geofuse .v-calendar-event-end {
+	-webkit-border-top-right-radius: 6px;
+	-webkit-border-bottom-right-radius: 6px;
+	-moz-border-radius-topright: 6px;
+	-moz-border-radius-bottomright: 6px;
+	border-top-right-radius: 6px;
+	border-bottom-right-radius: 6px;
+}
+
+.geofuse .v-calendar-week-wrapper {
+	position: relative;
+}
+
+.geofuse .v-calendar-times {
+	width: 51px;
+}
+
+.geofuse .v-calendar-time {
+	padding: 0 8px 7px 0;
+	margin-top: -7px;
+	text-align: right;
+	font-size: 12px;
+	color: #666;
+	border-right: 1px solid #ccc;
+}
+
+.geofuse .v-calendar-weekly-longevents {
+	border-left: 1px solid #ccc;
+	border-bottom: 2px solid #bbb;
+	margin-left: 50px;
+}
+
+.geofuse .v-calendar-weekly-longevents .v-calendar-datecell {
+	border-right: 1px solid #ccc;
+	padding: 1px 0 0;
+}
+
+.geofuse .v-calendar-weekly-longevents .v-calendar-event {
+	height: 14px;
+	margin-bottom: 1px;
+}
+
+.geofuse .v-calendar-weekly-longevents .v-calendar-event:hover {
+	text-decoration: underline;
+}
+
+.geofuse .v-calendar-day-times {
+	border-right: 1px solid #ccc;
+	outline: none;
+}
+
+.geofuse .v-calendar-day-times .v-datecellslot, .geofuse .v-calendar-day-times .v-datecellslot-even {
+	border-bottom: 1px solid #ccc;
+}
+
+.geofuse .v-calendar-day-times .v-datecellslot-even {
+	border-bottom-color: #eee;
+}
+
+.geofuse .v-calendar-day-times .v-daterange {
+	background-color: #a8a8a8;
+}
+
+.geofuse .v-calendar-day-times .v-reserved {
+	background-color: #FF3333;
+}
+
+.geofuse .v-calendar-day-times .dragemphasis {
+	background-color: #a8a8a8;
+}
+
+.geofuse .v-calendar-week-wrapper .v-calendar-event {
+	padding: 0;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	margin-top: -1px;
+}
+
+.geofuse .v-calendar-event-caption {
+	position: absolute;
+	z-index: 1;
+	top: 2px;
+	left: 4px;
+	width: 100%;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	line-height: normal;
+}
+
+.geofuse .v-calendar-event-content {
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	border: 1px solid #777;
+	background: #eee;
+	opacity: 0.8;
+	filter: alpha(opacity = 80);
+	height: 14px;
+}
+
+.geofuse .v-calendar-current-time {
+	position: absolute;
+	left: 0;
+	width: 100%;
+	height: 1px;
+	overflow: hidden;
+	background: #5a6c86;
+	opacity: 0.6;
+	filter: alpha(opacity = 60);
+	z-index: 2;
+}
+
+.geofuse .v-calendar-event-resizetop {
+	position: absolute;
+	cursor: n-resize;
+	height: 5%;
+	min-height: 3px;
+	top: 0;
+	width: 100%;
+	z-index: 1;
+}
+
+.geofuse .v-calendar-event-resizebottom {
+	position: absolute;
+	cursor: s-resize;
+	height: 5%;
+	min-height: 3px;
+	bottom: 0;
+	width: 100%;
+	z-index: 1;
+}
+
+.geofuse .v-calendar-month-sizedheight .v-calendar-month-day {
+	height: 100px;
+}
+
+.geofuse .v-calendar-month-sizedwidth .v-calendar-month-day {
+	width: 100px;
+}
+
+.geofuse .v-calendar-header-month-Hsized .v-calendar-header-day {
+	width: 101px;
+}
+
+.geofuse .v-calendar-header-month-Hsized td:first-child {
+	padding-left: 21px;
+}
+
+.geofuse .v-calendar-header-day-Hsized {
+	width: 200px;
+}
+
+.geofuse .v-calendar-week-numbers-Vsized .v-calendar-week-number {
+	height: 100px;
+	line-height: 100px;
+}
+
+.geofuse .v-calendar-week-wrapper-Vsized {
+	height: 400px;
+	overflow-x: hidden !important;
+}
+
+.geofuse .v-calendar-times-Vsized .v-calendar-time {
+	height: 38px;
+}
+
+.geofuse .v-calendar-times-Hsized .v-calendar-time {
+	width: 42px;
+}
+
+.geofuse .v-calendar-day-times-Vsized .v-datecellslot, .geofuse .v-calendar-day-times-Vsized .v-datecellslot-even {
+	height: 18px;
+}
+
+.geofuse .v-calendar-day-times-Hsized, .geofuse .v-calendar-day-times-Hsized .v-datecellslot, .geofuse .v-calendar-day-times-Hsized .v-datecellslot-even {
+	width: 200px;
+}
+
+.geofuse.v-app {
+	height: 100%;
+}
+
+.geofuse.v-app, .geofuse .v-window, .geofuse .v-popupview-popup, .geofuse .v-label, .geofuse .v-caption {
+	cursor: default;
+}
+
+.geofuse .v-window {
+	box-shadow: 0 5px 18px 0 rgba(0, 0, 0, 0.5);
+}
+
+.geofuse .v-datefield-popup, .geofuse .v-filterselect-suggestpopup, .geofuse .v-menubar-popup, .geofuse .v-slider-feedback, .geofuse .v-popupview-popup, .geofuse .v-contextmenu {
+	box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.5);
+}
+
+body .geofuse.v-app .v-app-loading {
+	background-image: url(../base/common/img/loading-indicator.gif);
+	background-repeat: no-repeat;
+	background-position: 50%;
+	width: 100%;
+	height: 100%;
+}
+
+.geofuse .v-ui {
+	height: 100%;
+	width: 100%;
+	outline: none;
+	position: relative;
+}
+
+.geofuse .v-ui.v-ui-embedded {
+	margin-top: -1px;
+	border-top: 1px solid transparent;
+}
+
+.geofuse .v-ui:active, .geofuse .v-ui:focus {
+	outline: none;
+}
+
+.geofuse.v-app select, .geofuse .v-window select {
+	margin: 0;
+}
+
+.geofuse .v-disabled {
+	opacity: 0.3;
+	filter: alpha(opacity=30);
+	cursor: default;
+}
+
+.geofuse .v-disabled * {
+	cursor: default;
+}
+
+* html .geofuse .v-disabled {
+	zoom: 1;
+}
+
+* + html .geofuse .v-disabled {
+	zoom: 1;
+}
+
+.geofuse .v-disabled .v-disabled {
+	opacity: 1;
+}
+
+.geofuse .v-required-field-indicator {
+	padding-left: 2px;
+	color: red;
+}
+
+.geofuse .v-form fieldset {
+	border: none;
+	padding: 0;
+	margin: 0;
+	height: 100%;
+}
+
+.geofuse .v-form-content {
+	height: 100%;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.geofuse .v-tooltip {
+	cursor: default;
+	background: #fff;
+	box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.5);
+}
+
+.geofuse .v-tooltip-text {
+	overflow: auto;
+}
+
+.geofuse .v-tooltip .v-errormessage {
+	overflow: auto;
+}
+
+.geofuse .v-contextmenu {
+	background: #fff;
+}
+
+.geofuse .v-contextmenu .gwt-MenuItem {
+	cursor: pointer;
+	vertical-align: middle;
+	padding: 0;
+	border: 0;
+	margin: 0;
+}
+
+.geofuse .v-contextmenu .gwt-MenuBar {
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+
+.geofuse .v-contextmenu .gwt-MenuItem div {
+	cursor: pointer;
+	vertical-align: middle;
+	white-space: nowrap;
+}
+
+.geofuse .v-contextmenu .gwt-MenuItem-selected div {
+	background: #aaa;
+	color: #fff;
+}
+
+.geofuse .v-contextmenu table {
+	border-collapse: collapse;
+	margin: 0;
+	padding: 0;
+}
+
+.geofuse .v-contextmenu .gwt-MenuItem img {
+	margin-right: 1em;
+	vertical-align: middle;
+}
+
+.geofuse .v-label pre {
+	margin: 0;
+}
+
+.geofuse .v-label-undef-w {
+	white-space: nowrap;
+}
+
+.geofuse .v-label h1, .geofuse .v-label h2, .geofuse .v-label h3, .geofuse .v-label h4, .geofuse .v-label h5, .geofuse .v-label h6 {
+	line-height: normal;
+}
+
+.geofuse .v-loading-indicator, .geofuse .v-loading-indicator-delay, .geofuse .v-loading-indicator-wait {
+	position: absolute;
+	top: 0;
+	right: 0;
+	z-index: 30000;
+	width: 31px;
+	height: 31px;
+	background: transparent url(../base/common/img/loading-indicator.gif);
+	margin-right: 5px;
+	margin-top: 5px;
+}
+
+.geofuse .v-loading-indicator-delay {
+	background-image: url(../base/common/img/loading-indicator-delay.gif);
+}
+
+.geofuse .v-loading-indicator-wait {
+	background-image: url(../base/common/img/loading-indicator-wait.gif);
+}
+
+.geofuse.v-app input[type="text"], .geofuse.v-app input[type="password"], .geofuse.v-app input[type="reset"], .geofuse.v-app select, .geofuse.v-app textarea, .geofuse .v-window input[type="text"], .geofuse .v-window input[type="password"], .geofuse .v-window input[type="reset"], .geofuse .v-window select, .geofuse .v-window textarea {
+	padding: 2px;
+}
+
+.geofuse input::-ms-clear {
+	display: none;
+}
+
+.geofuse .v-drag-element {
+	z-index: 60000;
+	position: absolute !important;
+	opacity: 0.5;
+	filter: alpha(opacity=50);
+	cursor: default;
+}
+
+.geofuse .v-clip {
+	overflow: hidden;
+}
+
+.geofuse .v-scrollable {
+	overflow: auto;
+	font-size: 0;
+	line-height: normal;
+}
+
+.v-ff .geofuse .v-scrollable {
+	font-size: 12px;
+}
+
+.v-ios.v-webkit .geofuse .v-scrollable {
+	-webkit-overflow-scrolling: touch;
+}
+
+.v-ios5.v-webkit .geofuse .v-scrollable {
+	-webkit-overflow-scrolling: none;
+}
+
+.geofuse .v-scrollable.v-panel-content > .v-widget {
+	vertical-align: middle;
+	overflow: hidden;
+}
+
+.geofuse.v-overlay-container {
+	width: 0;
+	height: 0;
+}
+
+.geofuse .v-vertical.v-margin-top, .geofuse .v-horizontal.v-margin-top {
+	padding-top: 12px;
+}
+
+.geofuse .v-vertical.v-margin-right, .geofuse .v-horizontal.v-margin-right {
+	padding-right: 12px;
+}
+
+.geofuse .v-vertical.v-margin-bottom, .geofuse .v-horizontal.v-margin-bottom {
+	padding-bottom: 12px;
+}
+
+.geofuse .v-vertical.v-margin-left, .geofuse .v-horizontal.v-margin-left {
+	padding-left: 12px;
+}
+
+.geofuse .v-gridlayout.v-layout-margin-top {
+	padding-top: 24px;
+}
+
+.geofuse .v-gridlayout, .geofuse .v-verticallayout, .geofuse .v-horizontallayout {
+	font-size: 0;
+	line-height: normal;
+}
+
+.geofuse .v-gridlayout.v-layout-margin-bottom {
+	padding-bottom: 24px;
+}
+
+.geofuse .v-gridlayout.v-layout-margin-left {
+	padding-left: 24px;
+}
+
+.geofuse .v-gridlayout.v-layout-margin-right {
+	padding-right: 24px;
+}
+
+.geofuse .v-gridlayout .v-layout-spacing-on {
+	padding-left: 12px;
+	padding-top: 12px;
+}
+
+.geofuse .v-spacing {
+	width: 6px;
+	height: 6px;
+}
+
+.geofuse .v-vertical, .geofuse .v-horizontal {
+	display: inline-block;
+}
+
+.geofuse div.v-layout.v-horizontal.v-widget {
+	white-space: nowrap;
+}
+
+.geofuse .v-layout.v-vertical > .v-expand, .geofuse .v-layout.v-horizontal > .v-expand {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	width: 100%;
+	height: 100%;
+}
+
+.geofuse .v-slot, .geofuse .v-spacing {
+	display: inline-block;
+	white-space: normal;
+	vertical-align: top;
+}
+
+.geofuse .v-vertical > .v-slot:after {
+	display: inline-block;
+	clear: both;
+	width: 0;
+	height: 0;
+	overflow: hidden;
+	line-height: 0;
+}
+
+.geofuse .v-vertical > .v-slot, .geofuse .v-vertical > .v-expand > .v-slot {
+	display: block;
+	clear: both;
+}
+
+.geofuse .v-horizontal > .v-slot, .geofuse .v-horizontal > .v-expand > .v-slot {
+	height: 100%;
+}
+
+.geofuse .v-horizontal > .v-expand > .v-slot {
+	position: relative;
+}
+
+.geofuse .v-vertical > .v-spacing, .geofuse .v-vertical > .v-expand > .v-spacing {
+	width: 0;
+	display: block;
+	clear: both;
+}
+
+.geofuse .v-horizontal > .v-spacing, .geofuse .v-horizontal > .v-expand > .v-spacing {
+	height: 0;
+}
+
+.geofuse .v-align-middle:before, .geofuse .v-align-bottom:before, .geofuse .v-expand > .v-align-middle:before, .geofuse .v-expand > .v-align-bottom:before {
+	content: "";
+	display: inline-block;
+	height: 100%;
+	vertical-align: middle;
+	width: 0;
+}
+
+.geofuse .v-align-middle, .geofuse .v-align-bottom {
+	white-space: nowrap;
+}
+
+.geofuse .v-align-middle > .v-widget, .geofuse .v-align-bottom > .v-widget {
+	display: inline-block;
+}
+
+.geofuse .v-align-middle, .geofuse .v-align-middle > .v-widget {
+	vertical-align: middle;
+}
+
+.geofuse .v-align-bottom, .geofuse .v-align-bottom > .v-widget {
+	vertical-align: bottom;
+}
+
+.geofuse .v-align-center {
+	text-align: center;
+}
+
+.geofuse .v-align-center > .v-widget {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.geofuse .v-align-right {
+	text-align: right;
+}
+
+.geofuse .v-align-right > .v-widget {
+	margin-left: auto;
+}
+
+.geofuse .v-has-caption, .geofuse .v-has-caption > .v-caption {
+	display: inline-block;
+}
+
+.geofuse .v-caption {
+	overflow: visible;
+	vertical-align: middle;
+}
+
+.geofuse .v-caption-on-left, .geofuse .v-caption-on-right {
+	white-space: nowrap;
+}
+
+.geofuse .v-caption-on-top > .v-caption, .geofuse .v-caption-on-bottom > .v-caption {
+	display: block;
+}
+
+.geofuse .v-caption-on-left > .v-caption {
+	padding-right: 0.5em;
+}
+
+.geofuse .v-caption-on-right > .v-caption {
+	vertical-align: top;
+}
+
+.geofuse .v-caption-on-left > .v-widget, .geofuse .v-caption-on-right > .v-widget {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.geofuse .v-has-caption.v-has-width > .v-widget {
+	width: 100% !important;
+}
+
+.geofuse .v-has-caption.v-has-height > .v-widget {
+	height: 100% !important;
+}
+
+.geofuse .v-errorindicator {
+	vertical-align: middle;
+}
+
+.geofuse .v-csslayout {
+	overflow: hidden;
+}
+
+.geofuse div.v-csslayout {
+	display: block;
+}
+
+.geofuse .v-csslayout-margin, .geofuse .v-csslayout-container {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.geofuse .v-has-width > .v-csslayout-margin, .geofuse .v-has-width > .v-csslayout-margin > .v-csslayout-container {
+	width: 100%;
+}
+
+.geofuse .v-has-height > .v-csslayout-margin, .geofuse .v-has-height > .v-csslayout-margin > .v-csslayout-container {
+	height: 100%;
+}
+
+.geofuse .v-csslayout-margin-top {
+	padding-top: 12px;
+}
+
+.geofuse .v-csslayout-margin-bottom {
+	padding-bottom: 12px;
+}
+
+.geofuse .v-csslayout-margin-left {
+	padding-left: 12px;
+}
+
+.geofuse .v-csslayout-margin-right {
+	padding-right: 12px;
+}
+
+.geofuse .v-customlayout {
+	overflow: hidden;
+}
+
+.geofuse .v-datefield {
+	white-space: nowrap;
+	display: inline-block;
+}
+
+.geofuse .v-datefield-textfield {
+	vertical-align: top;
+}
+
+.v-ie .geofuse .v-datefield-button:after {
+	content: "\200B";
+}
+
+.geofuse .v-datefield-button {
+	cursor: pointer;
+	vertical-align: top;
+}
+
+.geofuse .v-has-width > input.v-datefield-textfield {
+	width: 100%;
+}
+
+.geofuse .v-datefield-prompt .v-datefield-textfield {
+	color: #999;
+	font-style: normal;
+}
+
+.geofuse .v-datefield .v-datefield-button-readonly {
+	display: none;
+}
+
+.geofuse .v-datefield-calendarpanel table {
+	width: 100%;
+}
+
+.geofuse .v-datefield-calendarpanel td {
+	padding: 0;
+	margin: 0;
+}
+
+.geofuse .v-datefield-calendarpanel:focus {
+	outline: none;
+}
+
+.geofuse .v-datefield-calendarpanel-header td {
+	text-align: center;
+}
+
+.geofuse .v-datefield-calendarpanel-month {
+	text-align: center;
+	white-space: nowrap;
+}
+
+.geofuse .v-datefield-calendarpanel-weeknumber {
+	color: #999;
+	border-right: 1px solid #ddd;
+	font-size: 12px;
+}
+
+.geofuse .v-datefield-calendarpanel-day, .geofuse .v-datefield-calendarpanel-day-today {
+	cursor: pointer;
+}
+
+.geofuse .v-datefield-calendarpanel-day-today {
+	border: 1px solid #ddd;
+}
+
+.geofuse .v-disabled .v-datefield-calendarpanel-day, .geofuse .v-disabled .v-datefield-calendarpanel-day-today, .geofuse .v-disabled.v-datefield-popupcalendar .v-datefield-button {
+	cursor: default;
+}
+
+.geofuse .v-datefield-calendarpanel-day-disabled, .geofuse .v-datefield-calendarpanel-day-outside-range {
+	cursor: default;
+	opacity: 0.5;
+}
+
+.geofuse .v-datefield-calendarpanel-prevyear button.outside-range, .geofuse .v-datefield-calendarpanel-nextyear button.outside-range, .geofuse .v-datefield-calendarpanel-prevmonth button.outside-range, .geofuse .v-datefield-calendarpanel-nextmonth button.outside-range {
+	opacity: 0.5;
+}
+
+.geofuse .v-datefield-calendarpanel-day-selected {
+	cursor: default;
+	background: #333;
+	color: #fff;
+}
+
+.geofuse .v-datefield-calendarpanel-day-focused {
+	outline: 1px dotted black;
+}
+
+.geofuse .v-datefield-calendarpanel-day-offmonth {
+	color: #666;
+}
+
+.geofuse .v-datefield-time {
+	white-space: nowrap;
+}
+
+.geofuse .v-datefield-time .v-label {
+	display: inline;
+}
+
+.geofuse .v-datefield-popup {
+	background: #fff;
+}
+
+.v-ie9 .geofuse .v-datefield-popup, .v-ie10 .geofuse .v-datefield-popup, .v-ie11 .geofuse .v-datefield-popup {
+	box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.5);
+}
+
+.geofuse .v-datefield-popupcalendar input.v-datefield-textfield {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.geofuse .v-inline-datefield {
+	white-space: nowrap;
+	display: inline-block;
+}
+
+.geofuse .v-inline-datefield-textfield {
+	vertical-align: top;
+}
+
+.v-ie .geofuse .v-inline-datefield-button:after {
+	content: "\200B";
+}
+
+.geofuse .v-inline-datefield-button {
+	cursor: pointer;
+	vertical-align: top;
+}
+
+.geofuse .v-has-width > input.v-inline-datefield-textfield {
+	width: 100%;
+}
+
+.geofuse .v-inline-datefield-prompt .v-inline-datefield-textfield {
+	color: #999;
+	font-style: normal;
+}
+
+.geofuse .v-inline-datefield .v-inline-datefield-button-readonly {
+	display: none;
+}
+
+.geofuse .v-inline-datefield-calendarpanel table {
+	width: 100%;
+}
+
+.geofuse .v-inline-datefield-calendarpanel td {
+	padding: 0;
+	margin: 0;
+}
+
+.geofuse .v-inline-datefield-calendarpanel:focus {
+	outline: none;
+}
+
+.geofuse .v-inline-datefield-calendarpanel-header td {
+	text-align: center;
+}
+
+.geofuse .v-inline-datefield-calendarpanel-month {
+	text-align: center;
+	white-space: nowrap;
+}
+
+.geofuse .v-inline-datefield-calendarpanel-weeknumber {
+	color: #999;
+	border-right: 1px solid #ddd;
+	font-size: 12px;
+}
+
+.geofuse .v-inline-datefield-calendarpanel-day, .geofuse .v-inline-datefield-calendarpanel-day-today {
+	cursor: pointer;
+}
+
+.geofuse .v-inline-datefield-calendarpanel-day-today {
+	border: 1px solid #ddd;
+}
+
+.geofuse .v-disabled .v-inline-datefield-calendarpanel-day, .geofuse .v-disabled .v-inline-datefield-calendarpanel-day-today, .geofuse .v-disabled.v-inline-datefield-popupcalendar .v-inline-datefield-button {
+	cursor: default;
+}
+
+.geofuse .v-inline-datefield-calendarpanel-day-disabled, .geofuse .v-inline-datefield-calendarpanel-day-outside-range {
+	cursor: default;
+	opacity: 0.5;
+}
+
+.geofuse .v-inline-datefield-calendarpanel-prevyear button.outside-range, .geofuse .v-inline-datefield-calendarpanel-nextyear button.outside-range, .geofuse .v-inline-datefield-calendarpanel-prevmonth button.outside-range, .geofuse .v-inline-datefield-calendarpanel-nextmonth button.outside-range {
+	opacity: 0.5;
+}
+
+.geofuse .v-inline-datefield-calendarpanel-day-selected {
+	cursor: default;
+	background: #333;
+	color: #fff;
+}
+
+.geofuse .v-inline-datefield-calendarpanel-day-focused {
+	outline: 1px dotted black;
+}
+
+.geofuse .v-inline-datefield-calendarpanel-day-offmonth {
+	color: #666;
+}
+
+.geofuse .v-inline-datefield-time {
+	white-space: nowrap;
+}
+
+.geofuse .v-inline-datefield-time .v-label {
+	display: inline;
+}
+
+.geofuse .v-inline-datefield-popup {
+	background: #fff;
+}
+
+.v-ie9 .geofuse .v-inline-datefield-popup, .v-ie10 .geofuse .v-inline-datefield-popup, .v-ie11 .geofuse .v-inline-datefield-popup {
+	box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.5);
+}
+
+.geofuse .v-inline-datefield-popupcalendar input.v-inline-datefield-textfield {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.geofuse .v-ddwrapper {
+	padding: 2px;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	border-radius: 4px;
+	position: relative;
+	-ms-touch-action: none;
+	touch-action: none;
+}
+
+.geofuse [draggable=true] {
+	-khtml-user-drag: element;
+	-webkit-user-drag: element;
+	-khtml-user-select: none;
+	-webkit-user-select: none;
+}
+
+.v-ie .geofuse .v-ddwrapper a.drag-start {
+	display: block;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+	background-color: cyan;
+	filter: alpha(opacity=0);
+}
+
+.geofuse .v-ddwrapper-over {
+	border: 2px solid #1d9dff;
+	background-color: #bcdcff;
+	padding: 0;
+}
+
+.geofuse .v-ddwrapper-over {
+	background-color: rgba(169, 209, 255, 0.6);
+}
+
+.geofuse .no-box-drag-hints .v-ddwrapper-over {
+	border: none;
+	background-color: transparent;
+	padding: 2px;
+}
+
+.geofuse.v-app .v-ddwrapper-over-top, .geofuse .v-window .v-ddwrapper-over-top, .geofuse .v-popupview-popup .v-ddwrapper-over-top {
+	border: none;
+	border-top: 2px solid #1d9dff;
+	background-color: transparent;
+	padding: 2px;
+	padding-top: 0;
+	-moz-border-radius: 0;
+	-webkit-border-radius: 0;
+	border-radius: 0;
+}
+
+.geofuse.v-app .v-ddwrapper-over-bottom, .geofuse .v-window .v-ddwrapper-over-bottom, .geofuse .v-popupview-popup .v-ddwrapper-over-bottom {
+	border: none;
+	border-bottom: 2px solid #1d9dff;
+	background-color: transparent;
+	padding: 2px;
+	padding-bottom: 0;
+	-moz-border-radius: 0;
+	-webkit-border-radius: 0;
+	border-radius: 0;
+}
+
+.geofuse.v-app .v-ddwrapper-over-left, .geofuse .v-window .v-ddwrapper-over-left, .geofuse .v-popupview-popup .v-ddwrapper-over-left {
+	border: none;
+	border-left: 2px solid #1d9dff;
+	background-color: transparent;
+	padding: 2px;
+	padding-left: 0;
+	-moz-border-radius: 0;
+	-webkit-border-radius: 0;
+	border-radius: 0;
+}
+
+.geofuse.v-app .v-ddwrapper-over-right, .geofuse .v-window .v-ddwrapper-over-right, .geofuse .v-popupview-popup .v-ddwrapper-over-right {
+	border: none;
+	border-right: 2px solid #1d9dff;
+	background-color: transparent;
+	padding: 2px;
+	padding-right: 0;
+	-moz-border-radius: 0;
+	-webkit-border-radius: 0;
+	border-radius: 0;
+}
+
+.geofuse .v-ddwrapper, .geofuse .v-ddwrapper-over, .geofuse.v-app .v-ddwrapper-over-top, .geofuse .v-window .v-ddwrapper-over-top, .geofuse .v-popupview-popup .v-ddwrapper-over-top, .geofuse.v-app .v-ddwrapper-over-bottom, .geofuse .v-window .v-ddwrapper-over-bottom, .geofuse .v-popupview-popup .v-ddwrapper-over-bottom, .geofuse.v-app .v-ddwrapper-over-left, .geofuse .v-window .v-ddwrapper-over-left, .geofuse .v-popupview-popup .v-ddwrapper-over-left, .geofuse.v-app .v-ddwrapper-over-right, .geofuse .v-window .v-ddwrapper-over-right, .geofuse .v-popupview-popup .v-ddwrapper-over-right {
+	border-color: rgba(0, 109, 232, 0.6);
+}
+
+.geofuse .v-ddwrapper-over-top:before, .geofuse .v-ddwrapper-over-bottom:after, .geofuse .v-ddwrapper-over-left:before, .geofuse .v-ddwrapper-over-right:before {
+	display: block;
+	position: absolute;
+	width: 6px;
+	height: 6px;
+	margin-top: -4px;
+	margin-left: -2px;
+	background: transparent url(../base/common/img/drag-slot-dot.png) no-repeat;
+}
+
+.geofuse .v-ddwrapper-over-bottom:after {
+	margin-top: -2px;
+}
+
+.geofuse .v-ddwrapper-over-left:before, .geofuse .v-ddwrapper-over-right:before {
+	background-position: 0 -6px;
+	margin-top: -2px;
+	margin-left: -4px;
+}
+
+.geofuse .v-ddwrapper-over-right:before {
+	position: relative;
+	margin-bottom: -4px;
+	margin-right: -4px;
+	margin-left: 0;
+	width: auto;
+	background-position: 100% -6px;
+}
+
+.geofuse .no-horizontal-drag-hints .v-ddwrapper-over-left {
+	padding-left: 2px;
+	border-left: none;
+}
+
+.geofuse .no-horizontal-drag-hints .v-ddwrapper-over-right {
+	padding-right: 2px;
+	border-right: none;
+}
+
+.geofuse .no-vertical-drag-hints .v-ddwrapper-over-top {
+	padding-top: 2px;
+	border-top: none;
+}
+
+.geofuse .no-vertical-drag-hints .v-ddwrapper-over-bottom {
+	padding-bottom: 2px;
+	border-bottom: none;
+}
+
+.geofuse .no-horizontal-drag-hints .v-ddwrapper-over-left:before, .geofuse .no-horizontal-drag-hints .v-ddwrapper-over-right:before, .geofuse .no-vertical-drag-hints .v-ddwrapper-over-top:before, .geofuse .no-vertical-drag-hints .v-ddwrapper-over-bottom:after {
+	display: none;
+}
+
+.geofuse .v-table .v-embedded-image {
+	display: inline-block;
+}
+
+.geofuse .v-escalator {
+	position: relative;
+}
+
+.geofuse .v-escalator-scroller {
+	position: absolute;
+	z-index: 1;
+	outline: none;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.geofuse .v-escalator-scroller-horizontal {
+	left: 0;
+	right: 0;
+	bottom: 0;
+	overflow-y: hidden;
+	-ms-overflow-y: hidden;
+}
+
+.geofuse .v-escalator-scroller-vertical {
+	right: 0;
+	top: 0;
+	bottom: 0;
+	overflow-x: hidden;
+	-ms-overflow-x: hidden;
+}
+
+.geofuse .v-escalator-tablewrapper {
+	position: absolute;
+	overflow: hidden;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	z-index: 5;
+}
+
+.geofuse .v-escalator-tablewrapper > table {
+	border-spacing: 0;
+	table-layout: fixed;
+	width: inherit;
+}
+
+.geofuse .v-escalator-header-deco, .geofuse .v-escalator-footer-deco {
+	position: absolute;
+	right: 0;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.geofuse .v-escalator-horizontal-scrollbar-deco {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.geofuse .v-escalator-header, .geofuse .v-escalator-body, .geofuse .v-escalator-footer {
+	position: absolute;
+	left: 0;
+	width: inherit;
+	z-index: 10;
+}
+
+.geofuse .v-escalator-header, .geofuse .v-escalator-header-deco {
+	top: 0;
+}
+
+.geofuse .v-escalator-footer, .geofuse .v-escalator-footer-deco {
+	bottom: 0;
+}
+
+.geofuse .v-escalator-body {
+	z-index: 0;
+	top: 0;
+}
+
+.geofuse .v-escalator-body .v-escalator-row {
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+.geofuse .v-escalator-row {
+	display: block;
+}
+
+.v-ie8 .geofuse .v-escalator-row, .v-ie9 .geofuse .v-escalator-row {
+	float: left;
+	clear: left;
+	margin-top: 0;
+}
+
+.geofuse .v-escalator-row  > td, .geofuse .v-escalator-row  > th {
+	background-color: #fff;
+}
+
+.geofuse .v-escalator-row {
+	width: inherit;
+}
+
+.geofuse .v-escalator-cell {
+	display: block;
+	float: left;
+	padding: 2px;
+	white-space: nowrap;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	overflow: hidden;
+	font-size: 16px;
+}
+
+.geofuse .v-escalator-cell.frozen {
+	position: relative;
+	z-index: 1;
+}
+
+.geofuse .v-formlayout.v-has-width > table {
+	width: 100%;
+}
+
+.geofuse .v-formlayout.v-has-height > table {
+	height: 100%;
+}
+
+.geofuse .v-formlayout-cell .v-errorindicator {
+	display: block;
+}
+
+.geofuse .v-formlayout-error-indicator {
+	width: 12px;
+}
+
+.geofuse .v-formlayout-captioncell {
+	text-align: right;
+	white-space: nowrap;
+}
+
+.geofuse .v-formlayout-errorcell, .geofuse .v-formlayout-captioncell {
+	width: 1px;
+}
+
+.geofuse .v-formlayout-captioncell .v-caption {
+	overflow: visible;
+}
+
+.geofuse .v-formlayout-spacing > tbody > .v-formlayout-row > .v-formlayout-captioncell, .geofuse .v-formlayout-spacing > tbody > .v-formlayout-row > .v-formlayout-contentcell, .geofuse .v-formlayout-spacing > tbody > .v-formlayout-row > .v-formlayout-errorcell {
+	padding-top: 6px;
+}
+
+.geofuse .v-formlayout-spacing > tbody > .v-formlayout-firstrow > .v-formlayout-captioncell, .geofuse .v-formlayout-spacing > tbody > .v-formlayout-firstrow > .v-formlayout-contentcell, .geofuse .v-formlayout-spacing > tbody > .v-formlayout-firstrow > .v-formlayout-errorcell {
+	padding-top: 0;
+}
+
+.geofuse .v-formlayout-margin-top > tbody > .v-formlayout-firstrow > .v-formlayout-captioncell, .geofuse .v-formlayout-margin-top > tbody > .v-formlayout-firstrow > .v-formlayout-contentcell, .geofuse .v-formlayout-margin-top > tbody > .v-formlayout-firstrow > .v-formlayout-errorcell {
+	padding-top: 12px;
+}
+
+.geofuse .v-formlayout-margin-bottom > tbody > .v-formlayout-lastrow > .v-formlayout-captioncell, .geofuse .v-formlayout-margin-bottom > tbody > .v-formlayout-lastrow > .v-formlayout-contentcell, .geofuse .v-formlayout-margin-bottom > tbody > .v-formlayout-lastrow > .v-formlayout-errorcell {
+	padding-bottom: 12px;
+}
+
+.geofuse .v-formlayout-margin-left > tbody > .v-formlayout-row > .v-formlayout-captioncell {
+	padding-left: 12px;
+}
+
+.geofuse .v-formlayout-margin-right > tbody > .v-formlayout-row > .v-formlayout-contentcell {
+	padding-right: 12px;
+}
+
+.geofuse .v-formlayout-captioncell .v-caption .v-required-field-indicator {
+	float: none;
+}
+
+.geofuse .v-grid {
+	position: relative;
+}
+
+.geofuse .v-grid-scroller {
+	position: absolute;
+	z-index: 1;
+	outline: none;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.geofuse .v-grid-scroller-horizontal {
+	left: 0;
+	right: 0;
+	bottom: 0;
+	overflow-y: hidden;
+	-ms-overflow-y: hidden;
+}
+
+.geofuse .v-grid-scroller-vertical {
+	right: 0;
+	top: 0;
+	bottom: 0;
+	overflow-x: hidden;
+	-ms-overflow-x: hidden;
+}
+
+.geofuse .v-grid-tablewrapper {
+	position: absolute;
+	overflow: hidden;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	z-index: 5;
+}
+
+.geofuse .v-grid-tablewrapper > table {
+	border-spacing: 0;
+	table-layout: fixed;
+	width: inherit;
+}
+
+.geofuse .v-grid-header-deco, .geofuse .v-grid-footer-deco {
+	position: absolute;
+	right: 0;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.geofuse .v-grid-horizontal-scrollbar-deco {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.geofuse .v-grid-header, .geofuse .v-grid-body, .geofuse .v-grid-footer {
+	position: absolute;
+	left: 0;
+	width: inherit;
+	z-index: 10;
+}
+
+.geofuse .v-grid-header, .geofuse .v-grid-header-deco {
+	top: 0;
+}
+
+.geofuse .v-grid-footer, .geofuse .v-grid-footer-deco {
+	bottom: 0;
+}
+
+.geofuse .v-grid-body {
+	z-index: 0;
+	top: 0;
+}
+
+.geofuse .v-grid-body .v-grid-row {
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+.geofuse .v-grid-row {
+	display: block;
+}
+
+.v-ie8 .geofuse .v-grid-row, .v-ie9 .geofuse .v-grid-row {
+	float: left;
+	clear: left;
+	margin-top: 0;
+}
+
+.geofuse .v-grid-row  > td, .geofuse .v-grid-row  > th {
+	background-color: #fff;
+}
+
+.geofuse .v-grid-row {
+	width: inherit;
+}
+
+.geofuse .v-grid-cell {
+	display: block;
+	float: left;
+	padding: 2px;
+	white-space: nowrap;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	overflow: hidden;
+	font-size: 16px;
+}
+
+.geofuse .v-grid-cell.frozen {
+	position: relative;
+	z-index: 1;
+}
+
+.geofuse .v-grid {
+	outline: none;
+}
+
+.geofuse .v-grid-scroller-vertical, .geofuse .v-grid-scroller-horizontal {
+	border: 1px solid #ddd;
+}
+
+.geofuse .v-grid-scroller-vertical {
+	border-left: none;
+}
+
+.geofuse .v-grid-scroller-horizontal {
+	border-top: none;
+}
+
+.geofuse .v-grid-tablewrapper {
+	border: 1px solid #ddd;
+}
+
+.geofuse .v-grid-cell {
+	background-color: #fff;
+	padding: 0 5px;
+	line-height: 24px;
+	text-overflow: ellipsis;
+}
+
+.geofuse .v-grid-cell  > * {
+	line-height: normal;
+	vertical-align: middle;
+}
+
+.geofuse .v-grid-cell  > div {
+	display: inline-block;
+}
+
+.geofuse .v-grid-cell.frozen {
+	-webkit-box-shadow: 1px 0 2px rgba(0, 0, 0, 0.1);
+	-moz-box-shadow: 1px 0 2px rgba(0, 0, 0, 0.1);
+	box-shadow: 1px 0 2px rgba(0, 0, 0, 0.1);
+	border-right: 1px solid #ddd;
+}
+
+.geofuse .v-grid-cell.frozen  + th, .geofuse .v-grid-cell.frozen  + td {
+	border-left: none;
+}
+
+.geofuse .v-grid-row > td, .geofuse .v-grid-editor-cells > div {
+	border-left: 1px solid #ddd;
+	border-bottom: 1px solid #ddd;
+}
+
+.geofuse .v-grid-row > td:first-child, .geofuse .v-grid-editor-cells > div:first-child {
+	border-left: none;
+}
+
+.geofuse .v-grid-row-stripe > td {
+	background-color: #f2f2f2;
+}
+
+.geofuse .v-grid-row-selected > td {
+	background: #bfbfbf;
+}
+
+.geofuse .v-grid-row-focused > td {
+	
+}
+
+.geofuse .v-grid-header th {
+	position: relative;
+	background-color: #fff;
+	font-size: 16px;
+	font-weight: inherit;
+	border-left: 1px solid #ddd;
+	border-bottom: 1px solid #ddd;
+	
+	text-align: left;
+}
+
+.geofuse .v-grid-header th:first-child {
+	border-left: none;
+}
+
+.geofuse .v-grid-header .sort-asc, .geofuse .v-grid-header .sort-desc {
+	padding-right: 24px;
+}
+
+.geofuse .v-grid-header .sort-asc:after, .geofuse .v-grid-header .sort-desc:after {
+	font-family: FontAwesome, sans-serif;
+	content: "\f0de" " " attr(sort-order);
+	position: absolute;
+	right: 5px;
+	font-size: 14px;
+}
+
+.geofuse .v-grid-header .sort-desc:after {
+	content: "\f0dd" " " attr(sort-order);
+}
+
+.geofuse .v-grid-footer td {
+	background-color: #fff;
+	font-size: 16px;
+	font-weight: inherit;
+	border-left: 1px solid #ddd;
+	border-top: 1px solid #ddd;
+	border-bottom: none;
+	
+}
+
+.geofuse .v-grid-footer td:first-child {
+	border-left: none;
+}
+
+.geofuse .v-grid-header-deco {
+	border-top: 1px solid #ddd;
+	border-right: 1px solid #ddd;
+	background-color: #fff;
+}
+
+.geofuse .v-grid-footer-deco {
+	border-bottom: 1px solid #ddd;
+	border-right: 1px solid #ddd;
+	background-color: #fff;
+}
+
+.geofuse .v-grid-horizontal-scrollbar-deco {
+	background-color: #fff;
+	border: 1px solid #ddd;
+	border-top: none;
+}
+
+.geofuse .v-grid-cell-focused {
+	position: relative;
+}
+
+.geofuse .v-grid-cell-focused:before {
+	content: "";
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	border: 1px solid;
+	display: none;
+	pointer-events: none;
+}
+
+.ie8 .geofuse .v-grid-cell-focused:before, .ie9 .geofuse .v-grid-cell-focused:before, .ie10 .geofuse .v-grid-cell-focused:before {
+	content: url(data:image/svg+xml;charset=utf-8;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjwvc3ZnPg==);
+}
+
+.geofuse .v-grid:focus .v-grid-cell-focused:before {
+	display: block;
+}
+
+.geofuse .v-grid.v-disabled:focus .v-grid-cell-focused:before {
+	display: none;
+}
+
+.geofuse .v-grid-editor {
+	position: absolute;
+	z-index: 20;
+	overflow: hidden;
+	left: 0;
+	right: 0;
+	border: 1px solid #ddd;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	margin-top: -1px;
+	-webkit-box-shadow: 0 0 9px rgba(0, 0, 0, 0.2);
+	-moz-box-shadow: 0 0 9px rgba(0, 0, 0, 0.2);
+	box-shadow: 0 0 9px rgba(0, 0, 0, 0.2);
+}
+
+.geofuse .v-grid-editor-cells {
+	position: relative;
+	white-space: nowrap;
+}
+
+.geofuse .v-grid-editor-cells  > div {
+	display: inline-block;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	vertical-align: middle;
+	background: #fff;
+}
+
+.geofuse .v-grid-editor-cells  > div:first-child {
+	border-left: none;
+}
+
+.geofuse .v-grid-editor-cells  > div  > * {
+	vertical-align: middle;
+	display: inline-block;
+}
+
+.geofuse .v-grid-editor-cells  > div .v-textfield, .geofuse .v-grid-editor-cells  > div .v-datefield, .geofuse .v-grid-editor-cells  > div .v-filterselect {
+	min-width: 100%;
+	max-width: 100%;
+	min-height: 100%;
+	max-height: 100%;
+}
+
+.geofuse .v-grid-editor-cells  > div .v-select, .geofuse .v-grid-editor-cells  > div .v-select-select {
+	min-width: 100%;
+	max-width: 100%;
+}
+
+.geofuse .v-grid-editor-cells .error::before {
+	position: absolute;
+	display: block;
+	height: 0;
+	width: 0;
+	content: "";
+	border-top: 5px solid red;
+	border-right: 5px solid transparent;
+}
+
+.geofuse .v-grid-editor-cells .error, .geofuse .v-grid-editor-cells .error > input {
+	background-color: #fee;
+}
+
+.geofuse .v-grid-editor-footer {
+	display: table;
+	height: 24px;
+	border-top: 1px solid #ddd;
+	margin-top: -1px;
+	background: #fff;
+	padding: 0 5px;
+}
+
+.geofuse .v-grid-editor-footer  + .v-grid-editor-cells > div {
+	border-bottom: none;
+	border-top: 1px solid #ddd;
+}
+
+.geofuse .v-grid-editor-footer:first-child {
+	border-top: none;
+	margin-top: 0;
+	border-bottom: 1px solid #ddd;
+	margin-bottom: -1px;
+}
+
+.geofuse .v-grid-editor-message, .geofuse .v-grid-editor-buttons {
+	display: table-cell;
+	white-space: nowrap;
+	vertical-align: middle;
+}
+
+.geofuse .v-grid-editor-message {
+	width: 100%;
+	position: relative;
+}
+
+.geofuse .v-grid-editor-message  > div {
+	position: absolute;
+	width: 100%;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	line-height: 24px;
+	top: 0;
+}
+
+.geofuse .v-grid-editor-save {
+	margin-right: 4px;
+}
+
+.geofuse .v-grid-cell > .v-progressbar {
+	width: 100%;
+}
+
+.geofuse .v-gridlayout {
+	position: relative;
+}
+
+.geofuse .v-gridlayout-slot {
+	position: absolute;
+}
+
+.geofuse .v-gridlayout-margin-top {
+	padding-top: 12px;
+}
+
+.geofuse .v-gridlayout-margin-bottom {
+	padding-bottom: 12px;
+}
+
+.geofuse .v-gridlayout-margin-left {
+	padding-left: 12px;
+}
+
+.geofuse .v-gridlayout-margin-right {
+	padding-right: 12px;
+}
+
+.geofuse .v-gridlayout-spacing-on {
+	padding-left: 6px;
+	padding-top: 6px;
+	overflow: hidden;
+}
+
+.geofuse .v-gridlayout-spacing, .geofuse .v-gridlayout-spacing-off {
+	padding-left: 0;
+	padding-top: 0;
+}
+
+.geofuse .v-gridlayout-spacing-off {
+	overflow: hidden;
+}
+
+.geofuse .v-label {
+	overflow: hidden;
+}
+
+.geofuse .v-label.v-has-width {
+	white-space: normal;
+}
+
+.geofuse .v-link {
+	white-space: nowrap;
+}
+
+.geofuse .v-link a {
+	vertical-align: middle;
+	text-decoration: none;
+}
+
+.geofuse .v-link span {
+	text-decoration: underline;
+	vertical-align: middle;
+}
+
+.geofuse .v-disabled a {
+	cursor: default;
+}
+
+.geofuse .v-link img {
+	vertical-align: middle;
+	border: none;
+}
+
+.geofuse .v-loginform {
+	height: 140px;
+	width: 200px;
+}
+
+.geofuse .v-app-loginpage .v-button {
+	float: left;
+}
+
+.geofuse .v-menubar {
+	display: inline-block;
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+.geofuse .v-menubar .v-menubar-menuitem {
+	cursor: default;
+	vertical-align: middle;
+	white-space: nowrap;
+	display: inline;
+	display: inline-block;
+	zoom: 1;
+}
+
+.geofuse .v-menubar .v-menubar-menuitem-caption .v-icon {
+	vertical-align: middle;
+	white-space: nowrap;
+}
+
+.geofuse .v-menubar-submenu {
+	background: #fff;
+}
+
+.geofuse .v-menubar-menuitem-selected {
+	background: #333;
+	color: #fff;
+}
+
+.geofuse .v-menubar-submenu .v-menubar-menuitem {
+	cursor: default;
+	display: block;
+	position: relative;
+	padding-right: 1.5em;
+}
+
+.geofuse .v-menubar-submenu .v-menubar-menuitem-caption {
+	display: block;
+}
+
+.geofuse .v-menubar-submenu .v-menubar-menuitem *, .geofuse .v-menubar-submenu .v-menubar-menuitem-caption * {
+	white-space: nowrap;
+}
+
+.geofuse .v-menubar-submenu-indicator {
+	display: none;
+	font-family: arial, helvetica, sans-serif;
+}
+
+.geofuse .v-menubar-submenu .v-menubar-submenu-indicator {
+	display: block;
+	position: absolute;
+	right: 0;
+	width: 1em;
+	height: 1em;
+	font-size: 12px;
+}
+
+.geofuse .v-menubar-menuitem-disabled, .geofuse .v-menubar span.v-menubar-menuitem-disabled:hover, .geofuse .v-menubar span.v-menubar-menuitem-disabled:focus, .geofuse .v-menubar span.v-menubar-menuitem-disabled:active {
+	color: #999;
+}
+
+.geofuse .v-menubar-more-menuitem {
+	font-family: arial, helvetica, sans-serif;
+}
+
+.geofuse .v-menubar-separator {
+	overflow: hidden;
+}
+
+.geofuse .v-menubar-separator span {
+	display: block;
+	text-indent: -9999px;
+	font-size: 1px;
+	line-height: 1px;
+	border-top: 1px solid #ddd;
+	margin: 3px 0 2px;
+	overflow: hidden;
+}
+
+.geofuse .v-menubar .v-icon, .geofuse .v-menubar-submenu .v-icon {
+	margin-right: 3px;
+}
+
+.geofuse .v-menubar:focus, .geofuse .v-menubar-popup:focus, .geofuse .v-menubar-popup .popupContent:focus, .geofuse .v-menubar-popup .popupContent .v-menubar-submenu:focus {
+	outline: none;
+}
+
+.geofuse .v-menubar-submenu-check-column .v-menubar-menuitem {
+	padding-left: 6px;
+}
+
+.geofuse .v-menubar-submenu-check-column .v-menubar-menuitem-caption {
+	padding-left: 18px;
+}
+
+.geofuse .v-menubar-submenu .v-menubar-menuitem-checked .v-menubar-menuitem-caption {
+	background: transparent url(../base/menubar/img/check.gif) no-repeat left;
+}
+
+.geofuse .v-Notification {
+	background: #999;
+	color: #fff;
+	cursor: pointer;
+	overflow: hidden;
+	padding: 1em;
+	max-width: 85%;
+	opacity: 0.9;
+	filter: alpha(opacity=90);
+}
+
+.geofuse .v-Notification h1, .geofuse .v-Notification p, .geofuse .v-Notification-error h1, .geofuse .v-Notification-error p, .geofuse .v-Notification-warning h1, .geofuse .v-Notification-warning p {
+	display: inline;
+	margin: 0 0.5em 0 0;
+}
+
+.geofuse .v-Notification-warning {
+	background: orange;
+}
+
+.geofuse .v-Notification-error {
+	background: red;
+}
+
+.geofuse .v-Notification-tray h1 {
+	display: block;
+}
+
+.geofuse .v-Notification-tray p {
+	display: block;
+}
+
+.geofuse .v-Notification-system {
+	background-color: red;
+}
+
+.geofuse .v-Notification-system h1 {
+	display: block;
+	margin: 0;
+}
+
+.geofuse .v-Notification-animate-out {
+	-webkit-animation: v-notification-animate-out 400ms;
+	-moz-animation: v-notification-animate-out 400ms;
+	animation: v-notification-animate-out 400ms;
+}
+
+.geofuse .v-Notification.v-position-top {
+	top: 0;
+}
+
+.geofuse .v-Notification.v-position-right {
+	right: 0;
+}
+
+.geofuse .v-Notification.v-position-bottom {
+	bottom: 0;
+}
+
+.geofuse .v-Notification.v-position-left {
+	left: 0;
+}
+
+.geofuse .v-Notification.v-position-assistive {
+	top: -9999px;
+	left: -9999px;
+}
+
+.geofuse .v-orderedlayout, .geofuse .v-horizontallayout, .geofuse .v-verticallayout {
+	position: relative;
+}
+
+.geofuse .v-orderedlayout-margin-top, .geofuse .v-horizontallayout-margin-top, .geofuse .v-verticallayout-margin-top {
+	padding-top: 12px;
+}
+
+.geofuse .v-orderedlayout-margin-right, .geofuse .v-horizontallayout-margin-right, .geofuse .v-verticallayout-margin-right {
+	padding-right: 12px;
+}
+
+.geofuse .v-orderedlayout-margin-bottom, .geofuse .v-horizontallayout-margin-bottom, .geofuse .v-verticallayout-margin-bottom {
+	padding-bottom: 12px;
+}
+
+.geofuse .v-orderedlayout-margin-left, .geofuse .v-horizontallayout-margin-left, .geofuse .v-verticallayout-margin-left {
+	padding-left: 12px;
+}
+
+.geofuse .v-orderedlayout-spacing-on, .geofuse .v-horizontallayout-spacing-on, .geofuse .v-verticallayout-spacing-on {
+	padding-top: 6px;
+	padding-left: 6px;
+}
+
+.geofuse .v-orderedlayout-spacing-off, .geofuse .v-horizontallayout-spacing-off, .geofuse .v-verticallayout-spacing-off {
+	padding-top: 0;
+	padding-left: 0;
+}
+
+.geofuse .v-horizontallayout-slot, .geofuse .v-verticallayout-slot {
+	position: absolute;
+}
+
+.geofuse .v-panel, .geofuse .v-panel-caption, .geofuse .v-panel-content, .geofuse .v-panel-deco, .geofuse .v-panel-light, .geofuse .v-panel-caption-light, .geofuse .v-panel-content-light, .geofuse .v-panel-deco-light {
+	outline: none;
+	text-align: left;
+}
+
+.geofuse .v-panel-caption .v-errorindicator {
+	float: none;
+	display: inline;
+}
+
+.geofuse .v-panel-caption .v-icon {
+	display: inline;
+	vertical-align: middle;
+}
+
+.geofuse .v-panel-caption span {
+	vertical-align: middle;
+}
+
+.geofuse .v-panel-caption {
+	white-space: nowrap;
+	overflow: hidden;
+	font-weight: normal;
+}
+
+.geofuse .v-panel-nocaption {
+	overflow: hidden;
+}
+
+.geofuse .v-panel-content {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.geofuse .v-panel.v-has-width > .v-panel-content {
+	width: 100%;
+}
+
+.geofuse .v-panel.v-has-height > .v-panel-content {
+	height: 100%;
+}
+
+.geofuse .v-popupview {
+	cursor: pointer;
+	text-decoration: underline;
+	white-space: nowrap;
+}
+
+.geofuse .v-popupview-popup {
+	overflow: auto;
+}
+
+.geofuse .v-popupview-loading {
+	width: 30px;
+	height: 30px;
+	background: transparent url(../base/common/img/ajax-loader-medium.gif) no-repeat 50%;
+}
+
+.geofuse .v-progressbar {
+	width: 150px;
+}
+
+.geofuse .v-progressbar-wrapper {
+	height: 7px;
+	border: 1px solid #ddd;
+}
+
+.geofuse .v-progressbar-indicator {
+	height: 7px;
+	background: #ddd;
+}
+
+.geofuse div.v-progressbar-indeterminate {
+	height: 20px;
+	width: 20px;
+	background: #fff url(../base/common/img/ajax-loader-medium.gif) no-repeat 50%;
+	border-radius: 4px;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+}
+
+.geofuse .v-progressbar-indeterminate .v-progressbar-wrapper, .geofuse .v-progressbar-indeterminate .v-progressbar-indicator, .geofuse .v-progressbar-indeterminate-disabled .v-progressbar-wrapper, .geofuse .v-progressbar-indeterminate-disabled .v-progressbar-indicator {
+	display: none;
+}
+
+.geofuse div.v-progressbar-indeterminate-disabled {
+	height: 20px;
+	width: 20px;
+	background: transparent;
+}
+
+.geofuse .v-progressindicator {
+	width: 150px;
+}
+
+.geofuse .v-progressindicator-wrapper {
+	height: 7px;
+	border: 1px solid #ddd;
+}
+
+.geofuse .v-progressindicator-indicator {
+	height: 7px;
+	background: #ddd;
+}
+
+.geofuse div.v-progressindicator-indeterminate {
+	height: 20px;
+	width: 20px;
+	background: #fff url(../base/common/img/ajax-loader-medium.gif) no-repeat 50%;
+	border-radius: 4px;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+}
+
+.geofuse .v-progressindicator-indeterminate .v-progressindicator-wrapper, .geofuse .v-progressindicator-indeterminate .v-progressindicator-indicator, .geofuse .v-progressindicator-indeterminate-disabled .v-progressindicator-wrapper, .geofuse .v-progressindicator-indeterminate-disabled .v-progressindicator-indicator {
+	display: none;
+}
+
+.geofuse div.v-progressindicator-indeterminate-disabled {
+	height: 20px;
+	width: 20px;
+	background: transparent;
+}
+
+.geofuse .v-select {
+	text-align: left;
+}
+
+.geofuse .v-select-optiongroup .v-select-option {
+	display: block;
+	white-space: nowrap;
+}
+
+.geofuse .v-select-optiongroup .v-icon {
+	vertical-align: middle;
+	white-space: nowrap;
+	margin: 0 2px;
+}
+
+.v-ie .geofuse .v-select-optiongroup .v-select-option {
+	zoom: 1;
+}
+
+.geofuse .v-select-select {
+	display: block;
+}
+
+.geofuse .v-select-twincol {
+	white-space: nowrap;
+}
+
+.geofuse .v-select-twincol-options {
+	float: left;
+}
+
+.geofuse .v-select-twincol-caption-left {
+	float: left;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.geofuse .v-select-twincol-selections {
+	font-weight: normal;
+}
+
+.geofuse .v-select-twincol-caption-right {
+	float: right;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.geofuse .v-select-twincol-buttons {
+	float: left;
+	text-align: center;
+}
+
+.geofuse .v-select-twincol-buttons .v-select-twincol-deco {
+	clear: both;
+}
+
+.geofuse .v-select-twincol .v-textfield {
+	display: block;
+	float: left;
+	clear: left;
+}
+
+.geofuse .v-select-twincol .v-button {
+	float: left;
+}
+
+.geofuse .v-select-twincol-buttons .v-button {
+	float: none;
+}
+
+.geofuse .v-filterselect {
+	white-space: nowrap;
+	text-align: left;
+	display: inline-block;
+	padding-right: 1em;
+}
+
+.geofuse .v-filterselect .v-icon {
+	float: left;
+}
+
+.geofuse.v-app .v-filterselect-input, .geofuse .v-window .v-filterselect-input, .geofuse .v-popupview-popup .v-filterselect-input {
+	margin: 0;
+	float: left;
+	-webkit-border-radius: 0px;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.geofuse .v-filterselect-prompt .v-filterselect-input {
+	color: #999;
+	font-style: normal;
+}
+
+.geofuse .v-filterselect-button {
+	display: inline-block;
+	cursor: pointer;
+	width: 1em;
+	margin-right: -1em;
+	height: 1em;
+	background: transparent url(../base/common/img/sprites.png) no-repeat -5px -8px;
+}
+
+.geofuse .v-filterselect.v-readonly .v-filterselect-button {
+	display: none;
+}
+
+.geofuse .v-filterselect.v-readonly, .geofuse .v-filterselect.v-readonly .v-filterselect-input {
+	background: transparent;
+}
+
+.geofuse .v-filterselect-suggestpopup {
+	background: #fff;
+	border: 1px solid #eee;
+}
+
+.geofuse .v-filterselect-suggestmenu table {
+	border-collapse: collapse;
+	border: none;
+	vertical-align: top;
+}
+
+.geofuse .v-filterselect-suggestmenu .gwt-MenuItem {
+	white-space: nowrap;
+}
+
+.geofuse .v-filterselect-suggestmenu .gwt-MenuItem .v-icon {
+	margin-right: 3px;
+	vertical-align: middle;
+}
+
+.geofuse .v-filterselect-suggestmenu .gwt-MenuItem span {
+	vertical-align: middle;
+}
+
+.geofuse .v-filterselect-suggestmenu .gwt-MenuItem-selected {
+	background: #333;
+	color: #fff;
+}
+
+.geofuse .v-filterselect-nextpage, .geofuse .v-filterselect-nextpage-off, .geofuse .v-filterselect-prevpage-off, .geofuse .v-filterselect-prevpage {
+	width: 100%;
+	background: #aaa;
+	text-align: center;
+	overflow: hidden;
+	cursor: pointer;
+}
+
+.geofuse .v-filterselect-nextpage-off, .geofuse .v-filterselect-prevpage-off {
+	color: #666;
+	opacity: 0.5;
+	filter: alpha(opacity=50);
+	cursor: default;
+}
+
+.geofuse .v-filterselect-nextpage-off span, .geofuse .v-filterselect-prevpage-off span {
+	cursor: default;
+}
+
+.geofuse .v-filterselect-status {
+	white-space: nowrap;
+	text-align: center;
+}
+
+.geofuse .v-filterselect-no-input .v-filterselect-input {
+	cursor: default;
+}
+
+.geofuse .v-shadow {
+	position: absolute;
+	display: none;
+	pointer-events: none;
+}
+
+.v-ie8 .geofuse .v-shadow {
+	display: block;
+}
+
+.geofuse .v-shadow .top-left {
+	position: absolute;
+	overflow: hidden;
+	top: -3px;
+	left: -5px;
+	width: 10px;
+	height: 10px;
+	background: transparent url(../base/shadow/img/top-left.png);
+}
+
+.geofuse .v-shadow .top {
+	position: absolute;
+	overflow: hidden;
+	top: -3px;
+	left: 5px;
+	height: 10px;
+	right: 5px;
+	background: transparent url(../base/shadow/img/top.png);
+}
+
+.geofuse .v-shadow .top-right {
+	position: absolute;
+	overflow: hidden;
+	top: -3px;
+	right: -5px;
+	width: 10px;
+	height: 10px;
+	background: transparent url(../base/shadow/img/top-right.png);
+}
+
+.geofuse .v-shadow .left {
+	position: absolute;
+	overflow: hidden;
+	top: 7px;
+	left: -5px;
+	width: 10px;
+	bottom: 3px;
+	background: transparent url(../base/shadow/img/left.png);
+}
+
+.geofuse .v-shadow .center {
+	position: absolute;
+	overflow: hidden;
+	top: 7px;
+	left: 5px;
+	bottom: 3px;
+	right: 5px;
+	background: transparent url(../base/shadow/img/center.png);
+}
+
+.geofuse .v-shadow .right {
+	position: absolute;
+	overflow: hidden;
+	top: 7px;
+	right: -5px;
+	width: 10px;
+	bottom: 3px;
+	background: transparent url(../base/shadow/img/right.png);
+}
+
+.geofuse .v-shadow .bottom-left {
+	position: absolute;
+	overflow: hidden;
+	bottom: -7px;
+	left: -5px;
+	width: 10px;
+	height: 10px;
+	background: transparent url(../base/shadow/img/bottom-left.png);
+}
+
+.geofuse .v-shadow .bottom {
+	position: absolute;
+	overflow: hidden;
+	bottom: -7px;
+	left: 5px;
+	right: 5px;
+	height: 10px;
+	background: transparent url(../base/shadow/img/bottom.png);
+}
+
+.geofuse .v-shadow .bottom-right {
+	position: absolute;
+	overflow: hidden;
+	bottom: -7px;
+	right: -5px;
+	width: 10px;
+	height: 10px;
+	background: transparent url(../base/shadow/img/bottom-right.png);
+}
+
+.geofuse .v-slider {
+	margin: 5px 0;
+}
+
+.geofuse .v-slider-base {
+	height: 2px;
+	border-top: 1px solid #ddd;
+	background: #eee;
+	border-left: 1px solid #ddd;
+	border-right: 1px solid #eee;
+}
+
+.geofuse .v-slider-handle {
+	background: #aaa;
+	width: 12px;
+	height: 12px;
+	margin-top: -5px;
+	font-size: 0;
+	-ms-touch-action: none;
+	touch-action: none;
+}
+
+.geofuse .v-slider-vertical {
+	width: 2px;
+	height: auto;
+	margin: 0 5px;
+	border: none;
+	border-left: 1px solid #cccfd0;
+	border-right: 1px solid #cccfd0;
+}
+
+.geofuse .v-slider-vertical .v-slider-base {
+	width: 2px;
+	border-bottom: 1px solid #eee;
+	border-right: none;
+}
+
+.geofuse .v-slider-vertical .v-slider-handle {
+	width: 12px;
+	height: 12px;
+	font-size: 0;
+	margin-left: -5px;
+}
+
+.geofuse .v-slider-feedback {
+	padding: 2px 5px;
+	background: #444;
+	color: #fff;
+	font-size: 12px;
+	line-height: 12px;
+	font-weight: normal;
+	font-family: Arial, Helvetica, sans-serif;
+	border-radius: 4px;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	margin: -2px 0 0 2px;
+	text-shadow: 0 1px 0 #000;
+}
+
+.geofuse .v-splitpanel-horizontal, .geofuse .v-splitpanel-vertical {
+	overflow: hidden;
+}
+
+.geofuse .v-splitpanel-hsplitter {
+	width: 6px;
+}
+
+.geofuse .v-splitpanel-hsplitter div {
+	width: 6px;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	background: #ddd;
+	cursor: e-resize;
+	cursor: col-resize;
+	-ms-touch-action: none;
+	touch-action: none;
+}
+
+.geofuse .v-disabled .v-splitpanel-hsplitter div {
+	cursor: default;
+}
+
+.geofuse .v-splitpanel-vsplitter {
+	height: 6px;
+}
+
+.geofuse .v-splitpanel-vsplitter div {
+	height: 6px;
+	background: #ddd;
+	cursor: s-resize;
+	cursor: row-resize;
+	-ms-touch-action: none;
+	touch-action: none;
+}
+
+.geofuse .v-disabled .v-splitpanel-vsplitter div {
+	cursor: default;
+}
+
+.geofuse .v-table {
+	overflow: hidden;
+	text-align: left;
+}
+
+.geofuse .v-table-header-wrap {
+	overflow: hidden;
+	border: 1px solid #aaa;
+	border-bottom: none;
+	background: #efefef;
+}
+
+.geofuse .v-table-header table, .geofuse .v-table-table {
+	border-spacing: 0;
+	border-collapse: separate;
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+
+.geofuse .v-table-table {
+	font-size: 12px;
+}
+
+.geofuse .v-table-header td {
+	padding: 0;
+}
+
+.geofuse .v-table-header-cell, .geofuse .v-table-header-cell-asc, .geofuse .v-table-header-cell-desc {
+	cursor: pointer;
+}
+
+.geofuse .v-table.v-disabled .v-table-header-cell, .geofuse .v-table.v-disabled .v-table-header-cell-asc, .geofuse .v-table.v-disabled .v-table-header-cell-desc {
+	cursor: default;
+}
+
+.geofuse .v-table-footer-wrap {
+	overflow: hidden;
+	border: 1px solid #aaa;
+	border-top: none;
+	background: #efefef;
+}
+
+.geofuse .v-table-footer table {
+	border-spacing: 0;
+	border-collapse: collapse;
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+
+.geofuse .v-table-footer td {
+	padding: 0;
+	border-right: 1px solid #aaa;
+}
+
+.geofuse .v-table-footer-cell {
+	cursor: pointer;
+}
+
+.geofuse .v-table-footer-container {
+	float: right;
+	padding-right: 6px;
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+.geofuse .v-table-resizer {
+	display: block;
+	height: 1.2em;
+	float: right;
+	background: #aaa;
+	cursor: e-resize;
+	cursor: col-resize;
+	width: 1px;
+	overflow: hidden;
+}
+
+.geofuse .v-table.v-disabled .v-table-resizer {
+	cursor: default;
+}
+
+.geofuse .v-table-caption-container {
+	overflow: hidden;
+	white-space: nowrap;
+	margin-left: 6px;
+}
+
+.geofuse .v-table-caption-container-align-right {
+	float: right;
+}
+
+.geofuse .v-table-sort-indicator {
+	width: 0px;
+	height: 1.2em;
+	float: right;
+}
+
+.geofuse .v-table-header-cell-asc .v-table-sort-indicator, .geofuse .v-table-header-cell-desc .v-table-sort-indicator {
+	width: 16px;
+	height: 1.2em;
+	float: right;
+}
+
+.geofuse .v-table-header-cell-asc .v-table-sort-indicator {
+	background: transparent url(../base/common/img/sprites.png) no-repeat right 6px;
+}
+
+.geofuse .v-table-header-cell-desc .v-table-sort-indicator {
+	background: transparent url(../base/common/img/sprites.png) no-repeat right -10px;
+}
+
+.geofuse .v-table-caption-container-align-center {
+	text-align: center;
+}
+
+.geofuse .v-table-caption-container-align-right {
+	text-align: right;
+}
+
+.geofuse .v-table-caption-container .v-icon, .geofuse .v-table-header-drag .v-icon {
+	vertical-align: middle;
+}
+
+.geofuse .v-table-body {
+	border: 1px solid #aaa;
+}
+
+.geofuse .v-table-row-spacer {
+	height: 10px;
+	overflow: hidden;
+}
+
+.geofuse .v-table-row, .geofuse .v-table-row-odd {
+	background: #fff;
+	border: 0;
+	margin: 0;
+	padding: 0;
+	cursor: pointer;
+}
+
+.geofuse .v-table-generated-row {
+	background: #efefef;
+}
+
+.geofuse .v-table-body-noselection .v-table-row, .geofuse .v-table-body-noselection .v-table-row-odd {
+	cursor: default;
+}
+
+.geofuse .v-table .v-selected {
+	background: #999;
+	color: #fff;
+}
+
+.geofuse .v-table-cell-content {
+	white-space: nowrap;
+	overflow: hidden;
+	padding: 0 6px;
+	border-right: 1px solid #aaa;
+}
+
+.geofuse .v-table-cell-wrapper {
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+.geofuse .v-table-cell-wrapper-align-center {
+	text-align: center;
+}
+
+.geofuse .v-table-cell-wrapper-align-right {
+	text-align: right;
+}
+
+.geofuse .v-table-column-selector {
+	float: right;
+	background: transparent url(../base/common/img/sprites.png) no-repeat 4px -37px;
+	margin: -1.2em 0 0 0;
+	height: 1.2em;
+	width: 14px;
+	position: relative;
+	cursor: pointer;
+}
+
+.geofuse .v-table.v-disabled .v-table-column-selector {
+	cursor: default;
+}
+
+.geofuse .v-table-focus-slot-left {
+	border-left: 2px solid #999;
+	float: none;
+	margin-bottom: -1.2em;
+	width: auto;
+	background: transparent;
+	border-right: 1px solid #aaa;
+}
+
+.geofuse .v-table-focus-slot-right {
+	border-right: 2px solid #999;
+	margin-left: -2px;
+}
+
+.geofuse .v-table-header-drag {
+	position: absolute;
+	background: #efefef;
+	border: 1px solid #eee;
+	opacity: 0.9;
+	filter: alpha(opacity=90);
+	margin-top: 20px;
+	z-index: 30000;
+}
+
+.geofuse .v-table-header-drag .v-icon {
+	vertical-align: middle;
+}
+
+.geofuse .v-table-scrollposition {
+	width: 160px;
+	background: #eee;
+	border: 1px solid #aaa;
+}
+
+.geofuse .v-table-scrollposition span {
+	display: block;
+	text-align: center;
+}
+
+.geofuse .v-table-body:focus, .geofuse .v-table-body-wrapper:focus {
+	outline: none;
+}
+
+.geofuse .v-table-body.focused {
+	border-color: #388ddd;
+}
+
+.geofuse .v-table-focus .v-table-cell-content {
+	border-top: 1px dotted #0066bd;
+	border-bottom: 1px dotted #0066bd;
+}
+
+.geofuse .v-table-focus .v-table-cell-wrapper {
+	margin-top: -1px;
+	margin-bottom: -1px;
+}
+
+.geofuse .v-off {
+	color: #ddd;
+}
+
+.geofuse .v-table .v-checkbox {
+	display: inline-block;
+}
+
+.geofuse .v-table-drag .v-table-body {
+	border-color: #1d9dff;
+}
+
+.geofuse .v-table-row-drag-middle .v-table-cell-content {
+	background-color: #bcdcff;
+}
+
+.geofuse .v-table-row-drag-top .v-table-cell-content {
+	border-top: 2px solid #1d9dff;
+}
+
+.geofuse .v-table-row-drag-top .v-table-cell-wrapper {
+	margin-top: -2px;
+}
+
+.geofuse .v-table-row-drag-bottom .v-table-cell-content {
+	border-bottom: 2px solid #1d9dff;
+}
+
+.geofuse .v-table-row-drag-bottom .v-table-cell-wrapper {
+	margin-bottom: -2px;
+}
+
+.geofuse .v-table-row-drag-top .v-table-cell-content:first-child:before, .geofuse .v-table-row-drag-bottom .v-table-cell-content:first-child:after {
+	display: block;
+	position: absolute;
+	width: 6px;
+	height: 6px;
+	margin-top: -4px;
+	margin-left: -6px;
+	background: transparent url(../base/common/img/drag-slot-dot.png);
+}
+
+.v-ff .geofuse .v-table-row-drag-bottom .v-table-cell-content:first-child:after, .v-ie .geofuse .v-table-row-drag-bottom .v-table-cell-content:first-child:after {
+	margin-top: -2px;
+}
+
+.geofuse .v-tabsheet, .geofuse .v-tabsheet-content, .geofuse .v-tabsheet-deco {
+	outline: none;
+	text-align: left;
+}
+
+.geofuse .v-tabsheet-tabs {
+	empty-cells: hide;
+	border-collapse: collapse;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	width: 100%;
+	overflow: hidden;
+}
+
+.geofuse .v-tabsheet-tabitemcell:focus {
+	outline: none;
+}
+
+.geofuse .v-tabsheet-tabitemcell, .geofuse .v-tabsheet-spacertd {
+	margin: 0;
+	padding: 0;
+	vertical-align: bottom;
+}
+
+.geofuse .v-tabsheet-spacertd {
+	width: 100%;
+}
+
+.geofuse .v-tabsheet-spacertd div {
+	border-left: 1px solid #aaa;
+	border-bottom: 1px solid #aaa;
+	height: 1em;
+	padding: 0.2em 0;
+}
+
+.geofuse .v-tabsheet-hidetabs > .v-tabsheet-tabcontainer {
+	display: none;
+}
+
+.geofuse .v-tabsheet-scroller {
+	white-space: nowrap;
+	text-align: right;
+	margin-top: -1em;
+}
+
+.geofuse .v-disabled .v-tabsheet-scroller {
+	display: none;
+}
+
+.geofuse .v-tabsheet-scrollerPrev, .geofuse .v-tabsheet-scrollerNext, .geofuse .v-tabsheet-scrollerPrev-disabled, .geofuse .v-tabsheet-scrollerNext-disabled {
+	border: 1px solid #aaa;
+	background: #fff;
+	width: 12px;
+	height: 1em;
+	cursor: pointer;
+}
+
+.geofuse .v-tabsheet-scrollerPrev-disabled, .geofuse .v-tabsheet-scrollerNext-disabled {
+	opacity: 0.5;
+	cursor: default;
+}
+
+.geofuse .v-tabsheet-tabs .v-caption, .geofuse .v-tabsheet-tabs .v-caption span {
+	white-space: nowrap;
+}
+
+.geofuse .v-tabsheet-caption-close {
+	display: inline;
+	display: inline-block;
+	zoom: 1;
+	width: 16px;
+	height: 16px;
+	text-align: center;
+	font-weight: normal;
+	cursor: pointer;
+	vertical-align: middle;
+	user-select: none;
+	-khtml-user-select: none;
+	-ms-user-select: none;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+}
+
+.geofuse .v-tabsheet .v-disabled .v-tabsheet-caption-close {
+	cursor: default;
+	visibility: hidden;
+}
+
+.geofuse .v-tabsheet-tabitem:hover .v-tabsheet-caption-close {
+	visibility: visible;
+}
+
+.geofuse .v-tabsheet-tabitem {
+	border: 1px solid #aaa;
+	border-right: none;
+	cursor: pointer;
+	padding: 0.2em 0.5em;
+}
+
+.geofuse .v-tabsheet-tabitem .v-caption {
+	cursor: inherit;
+}
+
+.geofuse .v-tabsheet.v-disabled .v-tabsheet-tabitem, .geofuse .v-tabsheet-tabitemcell-disabled .v-tabsheet-tabitem {
+	cursor: default;
+}
+
+.geofuse .v-tabsheet-tabitem-selected {
+	cursor: default;
+	border-bottom-color: #fff;
+}
+
+.geofuse .v-tabsheet-tabitem-selected .v-caption {
+	cursor: default;
+}
+
+.geofuse .v-tabsheet-tabitem-focus .v-captiontext {
+	text-decoration: underline;
+}
+
+.geofuse .v-tabsheet-tabitem-selected.v-tabsheet-tabitem-focus .v-captiontext {
+	text-decoration: inherit;
+}
+
+.geofuse .v-tabsheet-content {
+	border: 1px solid #aaa;
+	border-top: none;
+	border-bottom: none;
+	position: relative;
+}
+
+.geofuse .v-tabsheet-deco {
+	height: 1px;
+	background: #aaa;
+	overflow: hidden;
+}
+
+.geofuse .v-tabsheet-hidetabs .v-tabsheet-content {
+	border: none;
+}
+
+.geofuse .v-tabsheet-hidetabs .v-tabsheet-deco {
+	height: 0;
+}
+
+.geofuse .v-textfield {
+	text-align: left;
+}
+
+.geofuse .v-textarea {
+	resize: none;
+	white-space: pre-wrap;
+}
+
+.geofuse input.v-textfield-prompt, .geofuse textarea.v-textarea-prompt {
+	color: #999;
+	font-style: normal;
+}
+
+.geofuse input.v-textfield-readonly, .geofuse textarea.v-textarea-readonly {
+	background: transparent;
+	border: none;
+	resize: none;
+}
+
+.geofuse input.v-disabled, .geofuse textarea.v-disabled {
+	resize: none;
+}
+
+.geofuse input.v-textfield-readonly:focus, .geofuse textarea.v-textarea-readonly:focus {
+	outline: none;
+}
+
+.v-sa .geofuse input:focus, .v-sa .geofuse textarea:focus {
+	outline-width: medium;
+}
+
+.geofuse .v-richtextarea {
+	border: 1px solid #aaa;
+	overflow: hidden;
+}
+
+.geofuse .v-richtextarea .gwt-RichTextArea {
+	background: #fff;
+	border: none;
+}
+
+.geofuse .v-richtextarea .gwt-HTML {
+	height: 100%;
+	font-size: 12px;
+}
+
+.geofuse .v-richtextarea .gwt-RichTextToolbar {
+	white-space: nowrap;
+	background: #959595 url(../base/textfield/img/richtext-toolbar-bg.png) repeat-x 0 -42px;
+	border-bottom: 1px solid #7d7d7d;
+	padding: 2px;
+	overflow: hidden;
+}
+
+.geofuse .v-richtextarea .gwt-RichTextToolbar-top {
+	padding-bottom: 1px;
+	overflow: hidden;
+	white-space: normal;
+}
+
+.geofuse .v-richtextarea .gwt-RichTextToolbar-bottom {
+	clear: left;
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+.geofuse .v-richtextarea .gwt-RichTextToolbar .gwt-ToggleButton, .geofuse .v-richtextarea .gwt-RichTextToolbar .gwt-PushButton {
+	float: left;
+	display: inline;
+	width: 22px;
+	height: 21px;
+	overflow: hidden;
+	background: transparent url(../base/textfield/img/richtext-toolbar-bg.png) repeat-x;
+	cursor: pointer;
+	margin-right: 2px;
+	text-align: center;
+}
+
+.geofuse .v-richtextarea .gwt-RichTextToolbar .gwt-ToggleButton-down, .geofuse .v-richtextarea .gwt-RichTextToolbar .gwt-PushButton-down, .geofuse .v-richtextarea .gwt-RichTextToolbar .gwt-ToggleButton-down-hovering, .geofuse .v-richtextarea .gwt-RichTextToolbar .gwt-PushButton-down-hovering {
+	background-position: 0 -21px;
+}
+
+.geofuse .v-richtextarea .gwt-RichTextToolbar .gwt-ListBox {
+	width: 24.5%;
+	margin-right: 2px;
+}
+
+.geofuse .v-richtextarea-readonly {
+	border: none;
+}
+
+.geofuse .v-tree {
+	text-align: left;
+	padding: 1px 0;
+	outline: none;
+}
+
+.geofuse .v-tree-node {
+	background: transparent url(../base/common/img/sprites.png) no-repeat 5px -37px;
+	padding: 1px 0;
+}
+
+.geofuse .v-tree-node-caption:focus {
+	outline: none;
+}
+
+.geofuse div.v-tree-node-leaf {
+	background: transparent;
+}
+
+.geofuse .v-tree-node-expanded {
+	background: transparent url(../base/common/img/sprites.png) no-repeat -5px -10px;
+}
+
+.geofuse .v-tree-node-caption {
+	margin-left: 1em;
+}
+
+.geofuse .v-tree-node span {
+	cursor: pointer;
+}
+
+.geofuse .v-tree-node-caption div {
+	white-space: nowrap;
+}
+
+.geofuse .v-tree-node-caption span, .geofuse .v-tree-node-caption .v-icon {
+	vertical-align: middle;
+}
+
+.geofuse .v-tree-node-selected span {
+	background: #999;
+	color: #fff;
+}
+
+.geofuse .v-tree-node-children {
+	padding-left: 1em;
+}
+
+.geofuse .v-tree .v-tree-node-drag-top {
+	border-top: 2px solid #1d9dff;
+	margin-top: -1px;
+	padding-top: 0;
+}
+
+.geofuse .v-tree .v-tree-node-drag-bottom {
+	border-bottom: 2px solid #1d9dff;
+	margin-bottom: -1px;
+	padding-bottom: 0;
+}
+
+.geofuse .v-tree .v-tree-node-drag-top:before, .geofuse .v-tree .v-tree-node-drag-bottom:after, .geofuse .v-tree .v-tree-node-caption-drag-center:after {
+	display: block;
+	position: absolute;
+	width: 6px;
+	height: 6px;
+	margin-top: -4px;
+	background: transparent url(../base/common/img/drag-slot-dot.png);
+}
+
+.geofuse .v-tree .v-tree-node-drag-bottom:after {
+	margin-top: -2px;
+}
+
+.geofuse .v-tree .v-tree-node-caption-drag-center:after {
+	margin-left: 14px;
+}
+
+.v-ff .geofuse .v-tree .v-tree-node-caption-drag-center:after, .v-ie .geofuse .v-tree .v-tree-node-caption-drag-center:after {
+	margin-top: -2px;
+}
+
+.geofuse .v-tree .v-tree-node-drag-top {
+	background-position: 5px -38px;
+}
+
+.geofuse .v-tree .v-tree-node-drag-top.v-tree-node-expanded {
+	background-position: -5px -12px;
+}
+
+.geofuse .v-tree .v-tree-node-caption-drag-center div {
+	border: 2px solid #1d9dff;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	border-radius: 4px;
+	margin: -2px 2px -2px -2px;
+	background-color: #bcdcff;
+}
+
+.geofuse .v-tree .v-tree-node-caption-drag-center div {
+	background-color: rgba(169, 209, 255, 0.6);
+}
+
+.geofuse .v-tree .v-tree-node-caption-drag-center div, .geofuse .v-tree .v-tree-node-drag-top, .geofuse .v-tree .v-tree-node-drag-bottom {
+	border-color: rgba(0, 109, 232, 0.6);
+}
+
+.geofuse .v-tree-connectors .v-tree-node-caption {
+	padding-top: 1px;
+}
+
+.geofuse .v-tree-connectors .v-tree-node {
+	background: transparent url(../base/tree/img/connector-expand.png) no-repeat 2px -52px;
+}
+
+.geofuse .v-tree-connectors .v-tree-node-expanded {
+	background: transparent url(../base/tree/img/connector-collapse.png) no-repeat 2px -52px;
+}
+
+.geofuse .v-tree-connectors .v-tree-node-last {
+	background: transparent url(../base/tree/img/connector-expand-last.png) no-repeat 2px -52px;
+}
+
+.geofuse .v-tree-connectors .v-tree-node-expanded.v-tree-node-last {
+	background: transparent url(../base/tree/img/connector-collapse-last.png) no-repeat 2px -52px;
+}
+
+.geofuse .v-tree-connectors .v-tree-node-leaf {
+	background: transparent url(../base/tree/img/connector-leaf.png) repeat-y 2px 50%;
+}
+
+.geofuse .v-tree-connectors .v-tree-node-leaf-last {
+	background: transparent url(../base/tree/img/connector-leaf-last.png) repeat-y 2px 50%;
+}
+
+.geofuse .v-tree-connectors .v-tree-node-children {
+	background: transparent url(../base/tree/img/connector.png) repeat-y 2px 0;
+}
+
+.geofuse .v-tree-connectors .v-tree-node-children-last {
+	background: transparent;
+}
+
+.geofuse .v-tree-connectors .v-tree-node-drag-top, .geofuse .v-tree-connectors .v-tree-node-expanded.v-tree-node-drag-top {
+	background-position: 2px -53px;
+}
+
+.geofuse .v-tree-connectors .v-tree-node-drag-top.v-tree-node-leaf {
+	background-position: 2px 50%;
+}
+
+.geofuse .v-treetable-treespacer {
+	display: inline-block;
+	background: transparent;
+	height: 10px;
+	width: 18px;
+	position: absolute;
+	left: 0;
+	top: 5px;
+}
+
+.geofuse .v-treetable-node-closed {
+	background: url(../base/treetable/img/arrow-right.png) right top no-repeat;
+}
+
+.geofuse .v-treetable-node-open {
+	background: url(../base/treetable/img/arrow-down.png) right top no-repeat;
+}
+
+.geofuse .v-treetable .v-checkbox {
+	display: inline-block;
+	padding-bottom: 4px;
+}
+
+.geofuse .v-treetable .v-table-row .v-table-cell-content, .geofuse .v-treetable .v-table-row-odd .v-table-cell-content {
+	z-index: 10;
+}
+
+.geofuse .v-treetable .v-table-cell-wrapper {
+	position: relative;
+}
+
+.geofuse .v-treetable .v-table-body .v-table-table .v-table-row-animating {
+	zoom: 1;
+	z-index: 1;
+}
+
+.geofuse .v-treetable .v-table-body .v-table-table .v-table-row-animating, .geofuse .v-treetable .v-table-body .v-table-table .v-table-row-animating .v-table-cell-content {
+	background: transparent;
+}
+
+.geofuse .v-treetable-animation-clone {
+	border-spacing: 0;
+	zoom: 1;
+}
+
+.geofuse div.v-treetable-animation-clone-wrapper {
+	position: absolute;
+	z-index: 2;
+	background-color: #fff;
+}
+
+.geofuse div.v-treetable-animation-clone-wrapper table.v-treetable-animation-clone {
+	background-color: #fff;
+}
+
+.geofuse div table.v-treetable-animation-clone tr.v-table-row, .geofuse div table.v-treetable-animation-clone tr.v-table-row-odd, .geofuse div table.v-treetable-animation-clone tr.v-table-row td.v-table-cell-content, .geofuse div table.v-treetable-animation-clone tr.v-table-row-odd td.v-table-cell-content {
+	visibility: visible;
+}
+
+.geofuse .v-upload {
+	white-space: nowrap;
+}
+
+.geofuse .v-upload-immediate {
+	position: relative;
+	margin: 0;
+	overflow: hidden;
+}
+
+.geofuse .v-upload-immediate .v-button {
+	width: 100%;
+}
+
+.v-ff .geofuse .v-upload-immediate, .v-op .geofuse .v-upload-immediate {
+	display: inline-block;
+}
+
+.geofuse .v-upload-immediate input {
+	opacity: 0;
+	filter: alpha(opacity=0);
+	z-index: 2;
+	position: absolute;
+	right: 0;
+	height: 21px;
+	text-align: right;
+	border: none;
+	background: transparent;
+}
+
+.geofuse .v-upload-immediate button {
+	position: relative;
+	left: 0;
+	top: 0;
+	width: 100%;
+	text-align: left;
+}
+
+.geofuse .v-window {
+	background: #fff;
+}
+
+.geofuse .v-window-contents {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.geofuse .v-window.v-has-width > div.popupContent, .geofuse .v-window.v-has-width .v-window-wrap, .geofuse .v-window.v-has-width .v-window-contents, .geofuse .v-window.v-has-width .v-window-contents > div {
+	width: 100%;
+}
+
+.geofuse .v-window.v-has-height > div.popupContent, .geofuse .v-window.v-has-height .v-window-wrap, .geofuse .v-window.v-has-height .v-window-contents, .geofuse .v-window.v-has-height .v-window-contents > div {
+	height: 100%;
+}
+
+.geofuse .v-window-outerheader {
+	padding: 0.3em 1em;
+	height: 1.6em;
+	position: relative;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.geofuse .v-window-outerheader, .geofuse .v-window-draggingCurtain {
+	cursor: move;
+}
+
+.geofuse .v-window-header {
+	font-weight: normal;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ie-user-select: none;
+	user-select: none;
+}
+
+.geofuse div.v-window-header {
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	-ms-text-overflow: ellipsis;
+	overflow: hidden;
+	padding: 0;
+}
+
+.geofuse .v-window-header .v-icon {
+	vertical-align: middle;
+}
+
+.geofuse .v-window-contents > div {
+	outline: none;
+}
+
+.geofuse .v-window-footer {
+	overflow: hidden;
+	zoom: 1;
+	height: 10px;
+	position: relative;
+	cursor: move;
+}
+
+.geofuse .v-window-resizebox {
+	width: 10px;
+	height: 10px;
+	background: #ddd;
+	overflow: hidden;
+	position: absolute;
+	right: 0;
+}
+
+.geofuse .v-window-resizebox, .geofuse .v-window-resizingCurtain {
+	cursor: se-resize;
+}
+
+.geofuse .v-window div.v-window-footer-noresize {
+	height: 0;
+}
+
+.geofuse .v-window-resizebox-disabled, .geofuse .v-window-closebox-disabled, .geofuse .v-window-restorebox-disabled, .geofuse .v-window-maximizebox-disabled {
+	cursor: default;
+	display: none;
+}
+
+.geofuse .v-window-closebox, .geofuse .v-window-restorebox, .geofuse .v-window-maximizebox {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 1em;
+	height: 1em;
+	cursor: pointer;
+	overflow: hidden;
+}
+
+.geofuse .v-window-maximizebox, .geofuse .v-window-restorebox {
+	right: 1.1em;
+}
+
+.geofuse .v-window-closebox {
+	background: red;
+}
+
+.geofuse .v-window-maximizebox {
+	background: blue;
+}
+
+.geofuse .v-window-restorebox {
+	background: yellow;
+}
+
+.geofuse .v-window-modalitycurtain {
+	top: 0;
+	left: 0;
+	background: #999;
+	opacity: 0.5;
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	filter: alpha(opacity=50);
+}
+
+.geofuse .v-shadow-window {
+	position: absolute;
+	display: none;
+	pointer-events: none;
+}
+
+.v-ie8 .geofuse .v-shadow-window {
+	display: block;
+}
+
+.geofuse .v-shadow-window .top-left {
+	position: absolute;
+	overflow: hidden;
+	top: -10px;
+	left: -15px;
+	width: 28px;
+	height: 28px;
+	background: transparent url(../base/window/img/shadow/top-left.png);
+}
+
+.geofuse .v-shadow-window .top {
+	position: absolute;
+	overflow: hidden;
+	top: -10px;
+	left: 12px;
+	height: 28px;
+	right: 12px;
+	background: transparent url(../base/window/img/shadow/top.png);
+}
+
+.geofuse .v-shadow-window .top-right {
+	position: absolute;
+	overflow: hidden;
+	top: -10px;
+	right: -15px;
+	width: 28px;
+	height: 28px;
+	background: transparent url(../base/window/img/shadow/top-right.png);
+}
+
+.geofuse .v-shadow-window .left {
+	position: absolute;
+	overflow: hidden;
+	top: 18px;
+	left: -15px;
+	width: 28px;
+	bottom: 10px;
+	background: transparent url(../base/window/img/shadow/left.png);
+}
+
+.geofuse .v-shadow-window .center {
+	position: absolute;
+	overflow: hidden;
+	top: 18px;
+	left: 12px;
+	bottom: 10px;
+	right: 12px;
+	background: transparent url(../base/window/img/shadow/center.png);
+}
+
+.geofuse .v-shadow-window .right {
+	position: absolute;
+	overflow: hidden;
+	top: 18px;
+	right: -15px;
+	width: 28px;
+	bottom: 10px;
+	background: transparent url(../base/window/img/shadow/right.png);
+}
+
+.geofuse .v-shadow-window .bottom-left {
+	position: absolute;
+	overflow: hidden;
+	bottom: -18px;
+	left: -15px;
+	width: 28px;
+	height: 28px;
+	background: transparent url(../base/window/img/shadow/bottom-left.png);
+}
+
+.geofuse .v-shadow-window .bottom {
+	position: absolute;
+	overflow: hidden;
+	bottom: -18px;
+	left: 12px;
+	right: 12px;
+	height: 28px;
+	background: transparent url(../base/window/img/shadow/bottom.png);
+}
+
+.geofuse .v-shadow-window .bottom-right {
+	position: absolute;
+	overflow: hidden;
+	bottom: -18px;
+	right: -15px;
+	width: 28px;
+	height: 28px;
+	background: transparent url(../base/window/img/shadow/bottom-right.png);
+}
+
+.geofuse .v-accordion {
+	border: 1px solid #999;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+}
+
+.geofuse .v-accordion-item-caption {
+	color: #222;
+	text-shadow: 1px 1px #FFFFFF;
+	font-weight: normal;
+	background: #c0c2c5 url(/html/themes/classic/images/application/panel_header_bg.png) repeat-x scroll 0 0;
+	border-top: 1px solid #999;
+	border-bottom: none;
+	padding: 4px 5px 5px 5px;
+}
+
+.geofuse .v-accordion-item-caption .v-caption {
+	font-size: 12px;
+}
+
+.geofuse .v-accordion-item-first .v-accordion-item-caption {
+	border-top: none;
+	-webkit-border-radius: 4px 4px 0 0;
+	-moz-border-radius: 4px 4px 0 0;
+	border-radius: 4px 4px 0 0;
+}
+
+.geofuse .v-accordion-item-open .v-accordion-item-caption {
+	border-bottom: 1px solid #999;
+}
+
+.geofuse .v-button:focus {
+	outline: none;
+}
+
+.geofuse .v-button:hover .v-button-wrap {
+	background: #b9ced9 url(/html/themes/classic/images/application/state_hover_bg.png) repeat-x 0 0;
+	border-color: #627782;
+	color: #369;
+}
+
+.geofuse .v-button:active .v-button-wrap, .geofuse .v-button.v-pressed .v-button-wrap, .geofuse .v-button:focus .v-button-wrap {
+	background: #ebebeb url(/html/themes/classic/images/application/state_active_bg.png) repeat-x 0 0;
+	border-color: #555;
+}
+
+.geofuse .v-button {
+	padding: 0;
+	border: none;
+	height: 26px;
+	overflow: hidden;
+}
+
+.geofuse .v-nativebutton {
+	font-size: 12px;
+}
+
+.geofuse .v-button .v-button-wrap, .geofuse .v-disabled.v-button .v-button-wrap {
+	display: block;
+	font-size: 12px;
+	font-weight: normal;
+	border: 1px solid #c8c9ca;
+	border-right-color: #9e9e9e;
+	border-bottom-color: #9e9e9e;
+	background: #d4d4d4 url(/html/themes/classic/images/portlet/header_bg.png) repeat-x 0 0;
+	-webkit-background-origin: padding;
+	-moz-background-origin: padding;
+	padding: 4px 4px 0px 4px;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	line-height: 16px;
+	min-height: 16px;
+	text-shadow: 1px 1px #fff;
+	color: #34404f;
+	text-overflow: ellipsis;
+	height: 20px;
+}
+
+.geofuse .v-button-caption {
+	line-height: 16px;
+}
+
+.geofuse .v-button-link, .geofuse .v-disabled.v-button-link, .geofuse .v-button-link:focus, .geofuse .v-button-link:active, .geofuse .v-button-link:hover, .geofuse .v-button-link-pressed, .geofuse button.v-nativebutton-link, .geofuse .v-disabled.v-nativebutton-link, .geofuse button.v-nativebutton-link:focus, .geofuse button.v-nativebutton-link:active, .geofuse button.v-nativebutton-link:hover, .geofuse button.v-nativebutton-link-pressed, .geofuse .v-button.v-button-link .v-button-wrap, .geofuse .v-button.v-button-link:focus .v-button-wrap, .geofuse .v-button.v-button-link:active .v-button-wrap, .geofuse .v-disabled.v-button.v-button-link .v-button-wrap {
+	color: #5B677D;
+	font-weight: normal;
+	border: none;
+	border-style: none;
+	background: transparent;
+	padding: 0;
+	font-size: 12px;
+	-webkit-box-shadow: none;
+	-mox-box-shadow: none;
+	-webkit-border-radius: 0;
+	-moz-border-radius: 0;
+	border-radius: 0;
+	text-shadow: none;
+	height: auto;
+}
+
+.geofuse .v-button-link:hover {
+	color: #0066cc;
+	text-decoration: none;
+}
+
+.geofuse .v-button-link:focus, .v-sa .geofuse .v-button-link:focus {
+	outline: 1px dotted #1b699f;
+	outline-offset: -1px;
+}
+
+.v-sa .geofuse .v-button-link:focus {
+	outline-offset: -1px;
+}
+
+.geofuse .v-checkbox input {
+	margin-right: 3px;
+}
+
+.geofuse .v-colorpicker-button-color {
+	border: 1px solid #999999;
+}
+
+.geofuse .v-colorpicker-popup {
+	width: 252px;
+}
+
+.geofuse .v-colorpicker-popup .v-tabsheet .v-colorpicker-grid {
+	height: 312px;
+}
+
+.geofuse .v-colorpicker-popup .v-filterselect {
+	padding-right: 24px;
+}
+
+body .geofuse.v-app {
+	background-color: transparent;
+}
+
+.geofuse .v-caption {
+	font-weight: normal;
+}
+
+.geofuse .v-tooltip {
+	background-color: #fffcdd;
+	border: 1px solid #b8b295;
+	font-size: 12px;
+	color: #222;
+}
+
+.geofuse .v-tooltip-text {
+	padding: 2px 4px;
+}
+
+.geofuse .v-tooltip .v-errormessage {
+	padding: 3px 4px;
+	background: #ffecc6;
+	color: #b74100;
+	border: none;
+	border-top: 1px solid #fff3dc;
+}
+
+.geofuse .v-tooltip .v-errormessage h2 {
+	font-size: 16px;
+	font-weight: normal;
+	color: #ab3101;
+	margin: 2px 0 8px 0;
+}
+
+.geofuse .v-tooltip .v-errormessage h3 {
+	font-size: 12px;
+	font-weight: normal;
+	margin: 1px 0 4px 0;
+}
+
+.geofuse .v-contextmenu {
+	background: #ccc9c9 url(/html/themes/classic/images/application/menu_bg.png) repeat-x 0 0;
+	border: 1px solid;
+	border-color: #aeafb1 #777879 #777879 #aeafb1;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+}
+
+.geofuse .v-contextmenu table {
+	border-collapse: separate;
+}
+
+.geofuse .v-contextmenu .gwt-MenuItem {
+	padding: 3px 8px 2px 8px;
+	height: 16px;
+	color: #2c2f34;
+	text-shadow: -1px -1px #fff;
+	font-weight: normal;
+	border-bottom: 1px solid #bcbbbb;
+	border-top: 1px solid #eee;
+}
+
+.geofuse .v-contextmenu tr:last-child .gwt-MenuItem {
+	border-bottom-width: 0;
+}
+
+.geofuse .v-contextmenu .gwt-MenuItem img {
+	margin-right: 4px;
+}
+
+.geofuse .v-contextmenu .gwt-MenuItem-selected {
+	background-color: #5b677d;
+	color: #FFF;
+	text-shadow: -1px -1px #2c2f34;
+}
+
+.geofuse .v-contextmenu .gwt-MenuItem-selected div {
+	background: transparent;
+}
+
+.geofuse .v-datefield-popup {
+	padding: 3px;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+}
+
+.geofuse .v-datefield-calendarpanel-header {
+	height: 28px;
+}
+
+.geofuse .v-datefield-calendarpanel:focus {
+	outline: none;
+}
+
+.geofuse .v-datefield-calendarpanel-body {
+	text-align: right;
+	vertical-align: top;
+}
+
+.geofuse .v-datefield-popupcalendar .v-datefield-button {
+	background: transparent url(../liferay/common/buttons_sprites.png) no-repeat 0 -48px;
+	width: 24px;
+	height: 24px;
+	border: none;
+}
+
+.geofuse .v-datefield-popupcalendar .v-datefield-button:hover {
+	background-position: 0px -72px;
+}
+
+.geofuse .v-datefield-popupcalendar .v-datefield-button:focus {
+	background-position: 0px -96px;
+}
+
+.geofuse .v-datefield-month .v-datefield-calendarpanel-month, .geofuse .v-datefield-day .v-datefield-calendarpanel-month, .geofuse .v-datefield-full .v-datefield-calendarpanel-month {
+	width: 124px;
+}
+
+.geofuse .v-datefield-year .v-datefield-calendarpanel-month {
+	width: 35px;
+}
+
+.geofuse .v-datefield-calendarpanel-month {
+	background: transparent url(../liferay/datefield/datefield_sprites.png) repeat-x 0 -112px;
+	font-weight: normal;
+}
+
+.geofuse span.v-datefield-calendarpanel-month {
+	display: block;
+	text-align: center;
+	background: transparent;
+	overflow: hidden;
+	padding: 1px 3px 0;
+}
+
+.geofuse .v-datefield-calendarpanel-prevyear, .geofuse .v-datefield-calendarpanel-nextyear {
+	width: 22px;
+}
+
+.geofuse .v-datefield-calendarpanel-prevyear button, .geofuse .v-datefield-calendarpanel-prevmonth button, .geofuse .v-datefield-calendarpanel-nextmonth button, .geofuse .v-datefield-calendarpanel-nextyear button {
+	width: 22px;
+	height: 28px;
+	border: none;
+	background: transparent;
+	background-repeat: no-repeat;
+	background-image: url(../liferay/datefield/datefield_sprites.png);
+	background-position: 0 0;
+	overflow: hidden;
+	padding: 0;
+	text-indent: -9999px;
+	outline: none;
+	-webkit-border-radius: 0;
+	-moz-border-radius: 0;
+	border-radius: 0;
+}
+
+.v-ie .geofuse .v-datefield-calendarpanel-prevyear button, .v-ie .geofuse .v-datefield-calendarpanel-nextyear button, .v-ie .geofuse .v-datefield-calendarpanel-prevmonth button, .v-ie .geofuse .v-datefield-calendarpanel-nextmonth button {
+	text-indent: 0;
+	font-size: 1px;
+}
+
+.geofuse .v-datefield-calendarpanel-prevmonth button {
+	background-position: 0 -56px;
+}
+
+.geofuse .v-datefield-calendarpanel-prevmonth {
+	background: transparent url(../liferay/datefield/datefield_sprites.png) repeat-x 0 -112px;
+}
+
+.geofuse .v-datefield-calendarpanel-nextyear button {
+	background-position: 0 -28px;
+	width: 100%;
+	min-width: 22px;
+}
+
+.geofuse .v-datefield-calendarpanel-nextmonth button {
+	background-position: 0 -84px;
+}
+
+.geofuse .v-datefield-calendarpanel-nextmonth {
+	background: transparent url(../liferay/datefield/datefield_sprites.png) repeat-x 0 -112px;
+}
+
+.geofuse .v-datefield-calendarpanel-prevyear button {
+	width: 100%;
+	min-width: 22px;
+}
+
+.geofuse .v-datefield-calendarpanel-day {
+	display: block;
+	width: 22px;
+	margin: 0 0 3px 3px;
+	text-align: center;
+	background: #d4d4d4 url(/html/themes/classic/images/application/state_default_bg.png) repeat-x 0 0;
+	border-color: #c8c9ca #9e9e9e #9e9e9e #c8c9ca;
+	border-style: solid;
+	border-width: 1px;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+}
+
+.geofuse .v-datefield-calendarpanel-day-today {
+	font-weight: normal;
+}
+
+.geofuse .v-datefield-calendarpanel-day-selected {
+	background: #b5b5b5 url(/html/themes/classic/images/application/state_active_bg.png) repeat-x 0 0;
+	color: #000;
+	border-color: #555;
+}
+
+.geofuse .v-datefield-calendarpanel-day-focused {
+	outline: 1px dotted #555;
+}
+
+.geofuse .v-datefield-calendarpanel-weekdays {
+	text-align: center;
+}
+
+.geofuse .v-datefield-calendarpanel-weekdays strong {
+	font-weight: normal;
+}
+
+.geofuse .v-datefield-calendarpanel-weeknumber {
+	display: block;
+	border: none;
+	padding: 2px 0 2px 0;
+	margin: 0;
+	font-size: 9.9px;
+}
+
+.geofuse .v-datefield-calendarpanel-body table {
+	margin: 0 auto;
+	width: 200px;
+}
+
+.geofuse .v-inline-datefield-popup {
+	padding: 3px;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+}
+
+.geofuse .v-inline-datefield-calendarpanel-header {
+	height: 28px;
+}
+
+.geofuse .v-inline-datefield-calendarpanel:focus {
+	outline: none;
+}
+
+.geofuse .v-inline-datefield-calendarpanel-body {
+	text-align: right;
+	vertical-align: top;
+}
+
+.geofuse .v-inline-datefield-popupcalendar .v-inline-datefield-button {
+	background: transparent url(../liferay/common/buttons_sprites.png) no-repeat 0 -48px;
+	width: 24px;
+	height: 24px;
+	border: none;
+}
+
+.geofuse .v-inline-datefield-popupcalendar .v-inline-datefield-button:hover {
+	background-position: 0px -72px;
+}
+
+.geofuse .v-inline-datefield-popupcalendar .v-inline-datefield-button:focus {
+	background-position: 0px -96px;
+}
+
+.geofuse .v-inline-datefield-month .v-inline-datefield-calendarpanel-month, .geofuse .v-inline-datefield-day .v-inline-datefield-calendarpanel-month, .geofuse .v-inline-datefield-full .v-inline-datefield-calendarpanel-month {
+	width: 124px;
+}
+
+.geofuse .v-inline-datefield-year .v-inline-datefield-calendarpanel-month {
+	width: 35px;
+}
+
+.geofuse .v-inline-datefield-calendarpanel-month {
+	background: transparent url(../liferay/datefield/datefield_sprites.png) repeat-x 0 -112px;
+	font-weight: normal;
+}
+
+.geofuse span.v-inline-datefield-calendarpanel-month {
+	display: block;
+	text-align: center;
+	background: transparent;
+	overflow: hidden;
+	padding: 1px 3px 0;
+}
+
+.geofuse .v-inline-datefield-calendarpanel-prevyear, .geofuse .v-inline-datefield-calendarpanel-nextyear {
+	width: 22px;
+}
+
+.geofuse .v-inline-datefield-calendarpanel-prevyear button, .geofuse .v-inline-datefield-calendarpanel-prevmonth button, .geofuse .v-inline-datefield-calendarpanel-nextmonth button, .geofuse .v-inline-datefield-calendarpanel-nextyear button {
+	width: 22px;
+	height: 28px;
+	border: none;
+	background: transparent;
+	background-repeat: no-repeat;
+	background-image: url(../liferay/datefield/datefield_sprites.png);
+	background-position: 0 0;
+	overflow: hidden;
+	padding: 0;
+	text-indent: -9999px;
+	outline: none;
+	-webkit-border-radius: 0;
+	-moz-border-radius: 0;
+	border-radius: 0;
+}
+
+.v-ie .geofuse .v-inline-datefield-calendarpanel-prevyear button, .v-ie .geofuse .v-inline-datefield-calendarpanel-nextyear button, .v-ie .geofuse .v-inline-datefield-calendarpanel-prevmonth button, .v-ie .geofuse .v-inline-datefield-calendarpanel-nextmonth button {
+	text-indent: 0;
+	font-size: 1px;
+}
+
+.geofuse .v-inline-datefield-calendarpanel-prevmonth button {
+	background-position: 0 -56px;
+}
+
+.geofuse .v-inline-datefield-calendarpanel-prevmonth {
+	background: transparent url(../liferay/datefield/datefield_sprites.png) repeat-x 0 -112px;
+}
+
+.geofuse .v-inline-datefield-calendarpanel-nextyear button {
+	background-position: 0 -28px;
+	width: 100%;
+	min-width: 22px;
+}
+
+.geofuse .v-inline-datefield-calendarpanel-nextmonth button {
+	background-position: 0 -84px;
+}
+
+.geofuse .v-inline-datefield-calendarpanel-nextmonth {
+	background: transparent url(../liferay/datefield/datefield_sprites.png) repeat-x 0 -112px;
+}
+
+.geofuse .v-inline-datefield-calendarpanel-prevyear button {
+	width: 100%;
+	min-width: 22px;
+}
+
+.geofuse .v-inline-datefield-calendarpanel-day {
+	display: block;
+	width: 22px;
+	margin: 0 0 3px 3px;
+	text-align: center;
+	background: #d4d4d4 url(/html/themes/classic/images/application/state_default_bg.png) repeat-x 0 0;
+	border-color: #c8c9ca #9e9e9e #9e9e9e #c8c9ca;
+	border-style: solid;
+	border-width: 1px;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+}
+
+.geofuse .v-inline-datefield-calendarpanel-day-today {
+	font-weight: normal;
+}
+
+.geofuse .v-inline-datefield-calendarpanel-day-selected {
+	background: #b5b5b5 url(/html/themes/classic/images/application/state_active_bg.png) repeat-x 0 0;
+	color: #000;
+	border-color: #555;
+}
+
+.geofuse .v-inline-datefield-calendarpanel-day-focused {
+	outline: 1px dotted #555;
+}
+
+.geofuse .v-inline-datefield-calendarpanel-weekdays {
+	text-align: center;
+}
+
+.geofuse .v-inline-datefield-calendarpanel-weekdays strong {
+	font-weight: normal;
+}
+
+.geofuse .v-inline-datefield-calendarpanel-weeknumber {
+	display: block;
+	border: none;
+	padding: 2px 0 2px 0;
+	margin: 0;
+	font-size: 9.9px;
+}
+
+.geofuse .v-inline-datefield-calendarpanel-body table {
+	margin: 0 auto;
+	width: 200px;
+}
+
+.geofuse .v-inline-datefield {
+	line-height: 19px;
+}
+
+.geofuse .v-formlayout .v-caption {
+	font-weight: normal;
+}
+
+.geofuse .v-menubar {
+	background: #97A1AE url(/html/themes/classic/images/dockbar/dockbar_bg.png) repeat-x 0 0;
+	border-bottom: 1px solid #636364;
+}
+
+.geofuse .v-menubar-separator span {
+	display: none;
+}
+
+.geofuse .v-menubar-menuitem {
+	padding: 3px 8px;
+	line-height: 16px;
+	font-weight: normal;
+	color: #2c2f34;
+	text-shadow: -1px -1px #FFF;
+}
+
+.geofuse .v-menubar-menuitem-selected {
+	color: #FFF;
+	text-shadow: -1px -1px #2c2f34;
+}
+
+.geofuse .v-menubar-submenu {
+	background: #CCC9C9 url(/html/themes/classic/images/application/menu_bg.png) repeat-x 0 0;
+	border: 1px solid;
+	border-color: #aeafb1 #777879 #777879 #aeafb1;
+	-webkit-border-radius: 0 0 4px 4px;
+	-moz-border-radius: 0 0 4px 4px;
+	border-radius: 0 0 4px 4px;
+	padding: 2px 0;
+}
+
+.geofuse .v-menubar-submenu .v-menubar-submenu-indicator {
+	font-size: 9.9px;
+}
+
+.geofuse .v-menubar-submenu .v-menubar-menuitem {
+	color: #2c2f34;
+	font-weight: normal;
+	text-shadow: 1px 1px #fff;
+	padding: 1px 26px 1px 10px;
+	line-height: 16px;
+	border-bottom: 1px solid #bcbbbb;
+	border-top: 1px solid #eee;
+}
+
+.geofuse .v-menubar-submenu .v-menubar-menuitem:last-child {
+	border-bottom-width: 0;
+}
+
+.geofuse .v-menubar-submenu .v-menubar-menuitem-caption * {
+	vertical-align: middle;
+}
+
+.geofuse .v-menubar .v-menubar-menuitem-selected, .geofuse .v-menubar-submenu .v-menubar-menuitem-selected {
+	color: #fff;
+	text-shadow: 1px 1px #000;
+	background-color: #5b677d;
+}
+
+.geofuse .v-menubar-popup {
+	border-radius: 5px;
+}
+
+.geofuse .v-menubar-menuitem-disabled, .geofuse .v-menubar-submenu .v-menubar-menuitem-disabled, .geofuse .v-menubar span.v-menubar-menuitem-disabled:hover, .geofuse .v-menubar span.v-menubar-menuitem-disabled:focus, .geofuse .v-menubar span.v-menubar-menuitem-disabled:active {
+	color: #999;
+}
+
+.geofuse .v-Notification {
+	background: #dff4ff;
+	color: #34404F;
+	font-weight: normal;
+	cursor: pointer;
+	overflow: hidden;
+	padding: 1em;
+	max-width: 85%;
+	border: 1px solid #a7cedf;
+}
+
+.geofuse .v-Notification h1, .geofuse .v-Notification p, .geofuse .v-Notification-error h1, .geofuse .v-Notification-error p, .geofuse .v-Notification-warning h1, .geofuse .v-Notification-warning p {
+	display: inline;
+	margin: 0 0.5em 0 0;
+}
+
+.geofuse .v-Notification-warning {
+	background: #ffc;
+	border-color: #fc0;
+}
+
+.geofuse .v-Notification-error {
+	background-color: #ffdddd;
+	border-color: #ff0000;
+}
+
+.geofuse .v-Notification-tray {
+	color: #111111;
+	background-color: #e5e5e5;
+	border-color: #b5b5b5;
+}
+
+.geofuse .v-Notification-tray h1 {
+	display: block;
+}
+
+.geofuse .v-Notification-tray p {
+	display: block;
+}
+
+.geofuse .v-Notification-system {
+	background-color: #ffdddd;
+	border-color: #ff0000;
+}
+
+.geofuse .v-Notification-system h1 {
+	display: block;
+	margin: 0;
+}
+
+.geofuse .v-panel {
+	background: transparent url(../liferay/panel/top-left.png) no-repeat;
+}
+
+.geofuse .v-panel-caption, .geofuse .v-panel-nocaption {
+	text-shadow: 1px 1px #fff;
+	font-size: 12px;
+	color: #222;
+	margin-left: 4px;
+	background: transparent url(../liferay/panel/top-right.png) no-repeat right top;
+	padding: 5px 5px 10px 2px;
+	height: 12px;
+}
+
+.geofuse .v-panel-caption .v-icon {
+	padding-right: 2px;
+}
+
+.geofuse .v-panel-content {
+	border: 1px solid #999;
+	-webkit-border-radius: 0 0 4px 4px;
+	-moz-border-radius: 0 0 4px 4px;
+	border-radius: 0 0 4px 4px;
+}
+
+.geofuse .v-panel-light {
+	background: transparent;
+}
+
+.geofuse .v-panel-caption-light, .geofuse .v-panel-nocaption-light {
+	margin: 0;
+	border: none;
+	background: none;
+}
+
+.geofuse .v-panel-caption-light {
+	border-bottom: 1px solid #999;
+}
+
+.geofuse .v-panel-nocaption-light {
+	padding: 0;
+	height: 0;
+}
+
+.geofuse .v-panel-content-light {
+	border: none;
+}
+
+.geofuse .v-panel-content-light > div {
+	background: transparent;
+}
+
+.geofuse .v-panel-deco {
+	height: 0;
+	overflow: hidden;
+}
+
+.v-ie .geofuse .v-panel {
+	background: transparent;
+}
+
+.v-ie .geofuse .v-panel-caption, .v-ie .geofuse .v-panel-nocaption {
+	border: 1px solid #999;
+	border-bottom: none;
+	background: #c0c2c5 url(/html/themes/classic/images/application/panel_header_bg.png) repeat-x 0 0;
+	margin: 0;
+	padding-left: 5px;
+}
+
+.v-ie .geofuse .v-panel-caption-light, .v-ie .geofuse .v-panel-nocaption-light {
+	border: none;
+	background: transparent;
+}
+
+.v-ie .geofuse .v-panel-caption-light {
+	border-bottom: 1px solid #999;
+}
+
+.geofuse .v-popupview-popup {
+	background: #d4d4d4 url(/html/themes/classic/images/application/state_default_bg.png) repeat-x 0 0;
+	padding: 8px;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	border: 1px solid #c8c9ca;
+	border-color: #c8c9ca #9e9e9e #9e9e9e #c8c9ca;
+}
+
+.geofuse .v-progressindicator-wrapper {
+	background: #dfe2e4 url(../reindeer/progressindicator/img/base.gif) repeat-x;
+	border: 1px solid #bfbfbf;
+}
+
+.geofuse .v-disabled .v-progressindicator-wrapper {
+	background-image: url(../reindeer/progressindicator/img/disabled.gif);
+}
+
+.geofuse .v-progressindicator-indicator {
+	background: #f7f9f9 url(../reindeer/progressindicator/img/progress.png);
+}
+
+.geofuse .v-progressindicator-wrapper {
+	background: #dfe2e4 url(../reindeer/progressindicator/img/base.gif) repeat-x;
+	border: 1px solid #bfbfbf;
+}
+
+.geofuse .v-disabled .v-progressindicator-wrapper {
+	background-image: url(../reindeer/progressindicator/img/disabled.gif);
+}
+
+.geofuse .v-progressindicator-indicator {
+	background: #f7f9f9 url(../reindeer/progressindicator/img/progress.png);
+}
+
+.geofuse.v-app select, .geofuse .v-window select {
+	padding: 1px;
+}
+
+.geofuse select {
+	background-color: #fff;
+}
+
+.geofuse .v-filterselect {
+	padding-right: 24px;
+}
+
+.geofuse .v-filterselect-button {
+	width: 24px;
+	margin-right: -24px;
+	height: 24px;
+	background: transparent url(../liferay/common/buttons_sprites.png) no-repeat 0 0;
+}
+
+.geofuse .v-filterselect-button:hover {
+	background-position: 0px -24px;
+}
+
+.geofuse .v-filterselect-suggestpopup {
+	border: 1px solid #98C0F4;
+}
+
+.geofuse .v-filterselect-suggestmenu {
+	min-height: 2px;
+}
+
+.geofuse .v-filterselect-prevpage, .geofuse .v-filterselect-prevpage-off, .geofuse .v-filterselect-nextpage, .geofuse .v-filterselect-nextpage-off {
+	background-color: #fff;
+}
+
+.geofuse .v-filterselect-prevpage span, .geofuse .v-filterselect-prevpage-off span, .geofuse .v-filterselect-nextpage span, .geofuse .v-filterselect-nextpage-off span {
+	display: block;
+	height: 8px;
+	width: 16px;
+	margin-left: auto;
+	margin-right: auto;
+	text-indent: -99999px;
+}
+
+.geofuse .v-filterselect-prevpage span, .geofuse .v-filterselect-nextpage span {
+	background: transparent no-repeat 0 -4px;
+	background-image: url(/html/themes/classic/images/aui/icon_sprite.png);
+}
+
+.geofuse .v-filterselect-nextpage span {
+	background-position: -65px -4px;
+}
+
+.geofuse .v-filterselect-suggestmenu .gwt-MenuItem span {
+	display: block;
+	width: 100%;
+	height: 18px;
+	border: 1px solid #fff;
+	border-style: solid none;
+}
+
+.geofuse .v-filterselect-suggestmenu .gwt-MenuItem-selected span {
+	color: #000;
+	background: #dfe8f6;
+	border-color: #a3bae9;
+}
+
+.geofuse .v-filterselect-suggestmenu .gwt-MenuItem .v-icon {
+	float: left;
+}
+
+.geofuse .v-select-twincol-buttons .v-button-wrap {
+	padding-left: 12px;
+	padding-right: 12px;
+}
+
+.geofuse .v-slider {
+	border: 1px solid #9e9e9e;
+	border-right: 1px solid #c8c9ca;
+	border-bottom: 1px solid #c8c9ca;
+	margin: 4px 0;
+}
+
+.geofuse .v-slider-base {
+	height: 1px;
+}
+
+.geofuse .v-slider-vertical {
+	margin: 0 5px;
+	width: 2px;
+}
+
+.geofuse .v-slider-vertical .v-slider-base {
+	width: 1px;
+}
+
+.geofuse .v-slider-handle {
+	background: transparent url(/html/themes/classic/images/aui/icon_sprite.png) no-repeat -115px -147px;
+	width: 10px;
+	height: 10px;
+}
+
+.geofuse .v-splitpanel-hsplitter, .geofuse .v-splitpanel-hsplitter-locked {
+	font-size: 1px;
+	width: 3px;
+	background-color: #c8c9ca;
+}
+
+.geofuse .v-splitpanel-hsplitter div {
+	font-size: 1px;
+	width: 3px;
+	background: transparent;
+	background-repeat: no-repeat;
+	background-image: url(../liferay/splitpanel/hsplit.png);
+	background-position: center;
+}
+
+.geofuse .v-splitpanel-hsplitter-locked div {
+	font-size: 1px;
+	width: 3px;
+}
+
+.geofuse .v-splitpanel-vsplitter, .geofuse .v-splitpanel-vsplitter-locked {
+	font-size: 1px;
+	height: 3px;
+}
+
+.geofuse .v-splitpanel-vsplitter div {
+	font-size: 1px;
+	height: 3px;
+	background: transparent;
+	background-color: #c8c9ca;
+	background-repeat: no-repeat;
+	background-image: url(../liferay/splitpanel/vsplit.png);
+	background-position: center;
+}
+
+.geofuse .v-splitpanel-vsplitter-locked, .geofuse .v-splitpanel-vsplitter-locked div {
+	font-size: 1px;
+	height: 3px;
+	background-color: #c8c9ca;
+}
+
+.geofuse .v-splitpanel-hsplitter-small, .geofuse .v-splitpanel-hsplitter-small div, .geofuse .v-splitpanel-hsplitter-small-locked, .geofuse .v-splitpanel-hsplitter-small-locked div {
+	font-size: 1px;
+	width: 1px;
+	background: #c8c9ca;
+}
+
+.geofuse .v-splitpanel-vsplitter-small, .geofuse .v-splitpanel-vsplitter-small div, .geofuse .v-splitpanel-vsplitter-small-locked, .geofuse .v-splitpanel-vsplitter-small-locked div {
+	font-size: 1px;
+	height: 1px;
+	background: #c8c9ca;
+}
+
+.geofuse .v-table-body {
+	border: 1px solid #999;
+}
+
+.geofuse .v-table-body:focus, .geofuse .v-table-body-wrapper:focus {
+	outline: none;
+}
+
+.geofuse .v-table-body.focused {
+	border-color: #555;
+}
+
+.geofuse .v-table-focus .v-table-cell-content {
+	border-top: 1px dotted #555;
+	border-bottom: 1px dotted #555;
+}
+
+.geofuse .v-table-header-wrap, .geofuse .v-table-footer-wrap {
+	border-color: #999;
+	background: #c0c2c5 url(/html/themes/classic/images/application/panel_header_bg.png) repeat-x 0 0;
+	height: 26px;
+}
+
+.geofuse .v-table-footer-wrap {
+	border: 1px solid #999;
+	border-top: none;
+}
+
+.geofuse .v-table-footer td {
+	height: 100%;
+	border-right: 1px solid #999;
+	padding-bottom: 5px;
+	padding-top: 5px;
+}
+
+.geofuse .v-table-footer-container {
+	height: 16px;
+	float: right;
+	padding-right: 7px;
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+.geofuse .v-table-caption-container {
+	color: #336699;
+	font-weight: normal;
+	font-size: 12px;
+	padding-left: 0px;
+	padding-top: 6px;
+}
+
+.geofuse .v-table-caption-container-align-right {
+	margin-left: 0;
+	margin-right: 6px;
+	padding-left: 0;
+}
+
+.geofuse .v-table-caption-container .v-icon {
+	height: 16px;
+	margin: -4px 3px 0 0;
+}
+
+.v-ie .geofuse .v-table-caption-container .v-icon {
+	margin-top: -2px;
+}
+
+.geofuse .v-table-header-cell-asc .v-table-sort-indicator {
+	background: transparent url(/html/themes/control_panel/images/arrows/05_up.png) no-repeat right 8px;
+	height: 26px;
+}
+
+.geofuse .v-table-header-cell-desc .v-table-sort-indicator {
+	background: transparent url(/html/themes/control_panel/images/arrows/05_down.png) no-repeat right 10px;
+	height: 26px;
+}
+
+.geofuse .v-table-resizer {
+	height: 26px;
+	background: #999;
+}
+
+.geofuse .v-table-focus-slot-left {
+	margin-bottom: -26px;
+	background: transparent;
+}
+
+.geofuse .v-table-column-selector {
+	background: transparent url(../liferay/table/columnselect.png);
+	width: 16px;
+	height: 26px;
+	margin: -26px 0 0;
+}
+
+.geofuse .v-table-row-odd {
+	background: #dde1e6;
+}
+
+.geofuse .v-table-row {
+	background: #eef0f2;
+}
+
+.geofuse .v-table-generated-row {
+	color: #336699;
+	font-weight: normal;
+	font-size: 12px;
+	padding-left: 0px;
+	padding-top: 6px;
+	background: #c0c2c5;
+}
+
+.geofuse .v-table .v-selected {
+	background-color: #5B677D;
+	color: #FFF;
+	text-shadow: -1px -1px #2C2F34;
+}
+
+.geofuse .v-table-cell-wrapper {
+	padding-top: 3px;
+	padding-bottom: 3px;
+}
+
+.geofuse .v-table-cell-content {
+	border-right: 1px solid #999;
+	padding: 0 6px;
+}
+
+.geofuse .v-table-cell-content:last-child {
+	border-right-color: transparent;
+}
+
+.geofuse .v-off {
+	color: #999;
+}
+
+.geofuse .v-tabsheet-content {
+	border: none;
+}
+
+.geofuse .v-tabsheet-deco {
+	background: transparent;
+}
+
+.geofuse .v-tabsheet-tabitem {
+	border: none;
+}
+
+.geofuse .v-tabsheet-tabitem .v-caption {
+	height: 14px;
+	padding: 3px 10px;
+}
+
+.geofuse .v-tabsheet-tabitem .v-captiontext {
+	color: #336699;
+	font-size: 12px;
+	font-weight: normal;
+	text-decoration: underline;
+}
+
+.geofuse .v-tabsheet-tabitem-selected .v-caption {
+	background: none repeat scroll 0 0 #333;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+}
+
+.geofuse .v-tabsheet-tabitem-selected .v-captiontext {
+	color: #fff;
+	text-decoration: none;
+	text-shadow: -1px -1px #000;
+}
+
+.geofuse .v-tabsheet-tabitem-selected {
+	position: relative;
+}
+
+.geofuse .v-tabsheet-tabitem-selected:after {
+	border: 10px solid;
+	border-bottom-width: 0;
+	border-color: #333 transparent transparent;
+	bottom: -6px;
+	content: "-";
+	display: block;
+	height: 0;
+	left: 50%;
+	margin-left: -10px;
+	position: absolute;
+	text-indent: -9999px;
+	width: 0;
+}
+
+.geofuse .v-tabsheet-tabs {
+	height: 35px;
+}
+
+.geofuse .v-tabsheet-tabcontainer, .geofuse .v-tabsheet-tabs {
+	overflow: visible !important;
+}
+
+.geofuse .v-tabsheet-tabitemcell-first .v-tabsheet-tabitem {
+	border-left: 1px solid #c8c9ca;
+	-webkit-border-radius: 4px 0 0 4px;
+	-moz-border-radius: 4px 0 0 4px;
+	border-radius: 4px 0 0 4px;
+}
+
+.geofuse .v-tabsheet-tabitemcell, .geofuse .v-tabsheet-spacertd {
+	vertical-align: top;
+}
+
+.geofuse .v-tabsheet-spacertd div {
+	height: 28px;
+	border: 1px solid #c8c9ca;
+	border-left: none;
+	-webkit-border-radius: 0 4px 4px 0;
+	-moz-border-radius: 0 4px 4px 0;
+	border-radius: 0 4px 4px 0;
+	padding: 0;
+}
+
+.geofuse .v-tabsheet-tabitem {
+	height: 20px;
+	border-top: 1px solid #c8c9ca;
+	border-bottom: 1px solid #c8c9ca;
+	padding: 4px;
+}
+
+.geofuse .v-tabsheet-scroller {
+	float: right;
+	width: 33px;
+	height: 28px;
+	margin-top: -35px;
+	background-color: #eef0f2;
+	border: 1px solid #c8c9ca;
+	border-left: none;
+	-webkit-border-radius: 0 4px 4px 0;
+	-moz-border-radius: 0 4px 4px 0;
+	border-radius: 0 4px 4px 0;
+	position: relative;
+}
+
+.geofuse .v-tabsheet-scroller button {
+	padding: 0;
+	margin-top: 6px;
+	width: 16px;
+	height: 16px;
+	border: none;
+	background: transparent;
+}
+
+.geofuse .v-tabsheet-scroller .v-tabsheet-scrollerPrev, .geofuse .v-tabsheet-scroller .v-tabsheet-scrollerPrev-disabled {
+	background: transparent url(/html/themes/classic/images/aui/icon_sprite.png) no-repeat -80px -192px;
+}
+
+.geofuse .v-tabsheet-scroller .v-tabsheet-scrollerNext, .geofuse .v-tabsheet-scroller .v-tabsheet-scrollerNext-disabled {
+	background: transparent url(/html/themes/classic/images/aui/icon_sprite.png) no-repeat -48px -192px;
+}
+
+.geofuse .v-tabsheet-scrollerPrev-disabled, .geofuse .v-tabsheet-scrollerNext-disabled {
+	opacity: 0.5;
+	filter: alpha(opacity=50);
+}
+
+.geofuse .v-tabsheet-caption-close {
+	background: transparent url(../liferay/tabsheet/close.png) no-repeat right top;
+	cursor: default;
+	float: right;
+	margin: 3px -1px 0;
+	overflow: hidden;
+	text-indent: -999px;
+	width: 12px;
+	height: 9px;
+}
+
+.v-ff .geofuse .v-tabsheet-caption-close {
+	margin-top: -10px;
+}
+
+.v-ff .geofuse .v-tabsheet-caption-close:only-child {
+	margin-top: -1px;
+}
+
+.geofuse.v-app input[type="text"], .geofuse.v-app input[type="password"], .geofuse.v-app input[type="reset"], .geofuse.v-app textarea, .geofuse .v-window input[type="text"], .geofuse .v-window input[type="password"], .geofuse .v-window input[type="reset"], .geofuse .v-window textarea {
+	padding: 5px 1px;
+}
+
+.geofuse input.v-textfield-prompt, .geofuse textarea.v-textarea-prompt {
+	font-style: normal;
+}
+
+.geofuse .v-tree-node {
+	background: transparent url(../liferay/tree/arrows_sprites.png) no-repeat -42px 1px;
+}
+
+.geofuse .v-tree-node span {
+	color: #336699;
+	padding: 1px 2px;
+	display: inline-block;
+}
+
+.geofuse .v-tree-node:hover {
+	background-position: -14px -30px;
+}
+
+.geofuse .v-tree-node-expanded {
+	background-position: -28px -14px;
+}
+
+.geofuse .v-tree-node-expanded:hover {
+	background-position: 0 -47px;
+}
+
+.geofuse .v-tree .v-tree-node-drag-top {
+	background-position: -42px 0px;
+}
+
+.geofuse .v-tree .v-tree-node-drag-top.v-tree-node-expanded {
+	background-position: -28px -15px;
+}
+
+.geofuse .v-tree-node-selected {
+	background: #333;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+}
+
+.geofuse .v-tree-node-selected span {
+	display: inline-block;
+	background: transparent;
+	color: #fff;
+	text-shadow: -1px -1px #000;
+	padding: 1px 2px;
+}
+
+.geofuse .v-tree-node-caption {
+	margin-left: 14px;
+	padding: 1px;
+}
+
+.geofuse .v-tree-node-focused {
+	border: 1px dotted #555;
+	padding: 0;
+}
+
+.geofuse .v-tree-node-children {
+	padding-left: 14px;
+}
+
+.geofuse .v-window {
+	background: transparent;
+}
+
+.geofuse .v-window-wrap {
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	background: #fff url(../liferay/window/top-left.png) no-repeat;
+}
+
+.geofuse .v-window-outerheader {
+	height: 38px;
+	margin-left: 9px;
+	padding: 10px 40px 12px 2px;
+	background: transparent url(../liferay/window/top-right.png) no-repeat right top;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+}
+
+.geofuse .v-window-header {
+	color: #000;
+	font-size: 12px;
+	text-shadow: 1px 1px #fff;
+}
+
+.geofuse .v-window-contents {
+	padding: 0 5px 0 5px;
+}
+
+.geofuse .v-window-footer {
+	height: 5px;
+	overflow: visible;
+}
+
+.geofuse .v-window div.v-window-footer-noresize {
+	height: 5px;
+}
+
+.geofuse .v-window-restorebox, .geofuse .v-window-maximizebox, .geofuse .v-window-closebox {
+	position: absolute;
+	width: 24px;
+	height: 24px;
+	top: 8px;
+}
+
+.geofuse .v-window-restorebox:hover, .geofuse .v-window-maximizebox:hover, .geofuse .v-window-closebox:hover {
+	background-position: 0 -24px;
+}
+
+.geofuse .v-window-restorebox:active, .geofuse .v-window-maximizebox:active, .geofuse .v-window-closebox:active {
+	background-position: 0 -48px;
+}
+
+.geofuse .v-window-closebox {
+	right: 9px;
+	background: url(../liferay/window/closebutton_sprites.png) no-repeat scroll 0 0 transparent;
+}
+
+.geofuse .v-window-restorebox, .geofuse .v-window-maximizebox {
+	right: 36px;
+}
+
+.geofuse .v-window-restorebox {
+	background: url(../liferay/window/restore_sprites.png) no-repeat scroll 0 0 transparent;
+}
+
+.geofuse .v-window-maximizebox {
+	background: url(../liferay/window/maximize_sprites.png) no-repeat scroll 0 0 transparent;
+}
+
+.geofuse .v-window-resizebox {
+	background: transparent url(/html/themes/classic/images/aui/icon_sprite.png) no-repeat scroll -69px -229px;
+	width: 10px;
+	height: 10px;
+	bottom: 0;
+}
+
+.geofuse .FontAwesome {
+	font-family: FontAwesome;
+	font-style: normal;
+	font-weight: normal;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	display: inline-block;
+}
+
+.geofuse .v-verticallayout-margin {
+	padding-left: 2px;
+	padding-right: 2px;
+	padding-top: 2px;
+	padding-bottom: 2px;
+}
+
+.geofuse .v-verticallayout-margin-left {
+	padding-left: 2px;
+}
+
+.geofuse .v-verticallayout-margin-right {
+	padding-right: 2px;
+}
+
+.geofuse .v-verticallayout-margin-top {
+	padding-top: 2px;
+}
+
+.geofuse .v-verticallayout-margin-bottom {
+	padding-bottom: 2px;
+}
+
+.geofuse .v-panel-caption, .geofuse .v-window-header {
+	white-space: nowrap;
+	overflow: hidden;
+	font-weight: normal;
+	font-size: 12px;
+	color: #222222;
+}
+
+.geofuse .v-table-row, .geofuse .v-table-row-odd {
+	color: #000;
+}
+
+.geofuse .v-panel {
+	border: 1px #000000;
+}
+
+.geofuse .v-panel-content {
+	background: #f6f6f6;
+}
+
+.login .v-panel {
+	background: #f6f6f6;
+}
+
+.login .v-panel-nocaption {
+	margin: 0;
+	border: none;
+	background: none;
+	padding: 0;
+	height: 0;
+}

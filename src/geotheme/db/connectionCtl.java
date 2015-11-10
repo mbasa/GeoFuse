@@ -21,50 +21,44 @@ package geotheme.db;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.util.Properties;
+import java.util.ResourceBundle;
 
 public class connectionCtl {
 
-    private String hostname = null;
-    private String username = null;
-    private String password = null;
-    private String dbname   = null;
-    
-    public void setHostname(String hostname) {
-        this.hostname = hostname;
-    }
+	private static String hostname = null;
+	private static String username = null;
+	private static String password = null;
+	private static String dbname   = null;
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
+	public connectionCtl() {
+	}
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+	public static Connection getConnection() throws Exception{
 
-    public void setDbname(String dbname) {
-        this.dbname = dbname;
-    }
+		if(hostname == null && username == null && 
+				password == null && dbname == null ) {
 
-    public connectionCtl(String host,String user,
-            String pass,String db) {
-        this.hostname = host;
-        this.username = user;
-        this.password = pass;
-        this.dbname   = db;
-    }
-    
-    public Connection getConnection() throws Exception{
-        Class.forName("org.postgresql.Driver");
+			ResourceBundle rdb = 
+					ResourceBundle.getBundle("properties.database");
 
-        String url = "jdbc:postgresql://"+this.hostname+"/"+this.dbname;
+			dbname    = rdb.getString("DB.NAME");
+			hostname  = rdb.getString("DB.HOST");
+			username  = rdb.getString("DB.USER");
+			password  = rdb.getString("DB.PASSWORD");
 
-        Properties prop = new Properties();
-        prop.setProperty("user", this.username);
-        prop.setProperty("password", this.password);
+		}
+		
+		Class.forName("org.postgresql.Driver");
 
-        Connection con = DriverManager.getConnection(url,prop);
-        
-        return con;
+		String url = "jdbc:postgresql://"+hostname+"/"+dbname;
 
-    }
+		Properties prop = new Properties();
+		prop.setProperty("user"    , username);
+		prop.setProperty("password", password);
+
+		Connection con = DriverManager.getConnection(url,prop);
+
+		return con;
+
+	}
 }

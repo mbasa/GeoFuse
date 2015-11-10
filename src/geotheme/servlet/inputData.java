@@ -40,10 +40,6 @@ public class inputData extends HttpServlet {
 	
 	//private Map<String,String[]> dynamicMap = new HashMap<String,String[]>();
 	
-	private String db_name      = new String();
-	private String db_host      = new String();
-	private String db_user      = new String();
-	private String db_password  = new String();
 	private String db_metadata  = new String();
 	private String db_dynlinker = new String();
 	private String db_csvdata_schema = new String();
@@ -52,19 +48,7 @@ public class inputData extends HttpServlet {
      * @see HttpServlet#HttpServlet()
      */
     public inputData() {
-        super();
-        
-        ResourceBundle rdb = ResourceBundle.getBundle(
-        		"properties.database");
-                
-        this.db_name           = rdb.getString("DB.NAME");
-		this.db_host           = rdb.getString("DB.HOST");
-		this.db_user           = rdb.getString("DB.USER");
-		this.db_password       = rdb.getString("DB.PASSWORD");
-		this.db_metadata       = rdb.getString("DB.METADATA.TABLE");
-		this.db_dynlinker      = rdb.getString("DB.DYNAMIC_LINKER.TABLE");
-		this.db_csvdata_schema = rdb.getString("DB.CSVDATA_SCHEMA");
-		
+        super();        
     }
 
 	/**
@@ -90,9 +74,6 @@ public class inputData extends HttpServlet {
 
 		boolean isLatLon = false;
 	      
-		connectionCtl conCtl = new connectionCtl(this.db_host,this.db_user,
-	                this.db_password,this.db_name);
-
 		if( inputString == null || inputString.length() < 10  ) {
 			out.write("Error: not enough input data");
 			out.close();
@@ -109,7 +90,7 @@ public class inputData extends HttpServlet {
 			return;
 		}
 		
-		mapLinkerCtl dlc = new mapLinkerCtl(conCtl,this.db_dynlinker);
+		mapLinkerCtl dlc = new mapLinkerCtl( this.db_dynlinker );
 		Map<String,String[]> dynamicMap = dlc.getMapLinkData();
 		
 		if( !dynamicMap.containsKey(pStr[0][0]) ) {
@@ -134,7 +115,7 @@ public class inputData extends HttpServlet {
 			}
 		}
 				
-		metaDataCtl mdc = new metaDataCtl(conCtl,this.db_metadata);
+		metaDataCtl mdc = new metaDataCtl( this.db_metadata );
 		
 		Random rand = new Random();
 		

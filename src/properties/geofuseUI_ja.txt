@@ -1,0 +1,40 @@
+#:::::::::::::::::::::::
+#: Main Titles
+#:::::::::::::::::::::::
+MAIN.TITLE=GeoFuse
+MAIN.DESC=ロケーションインテリジェンスツール
+MAIN.SUB_DESC=以下のテキストボックスにデータを貼り付けてください。
+MAIN.EXPLAIN1=地図とのデータリンク
+MAIN.EXPLAIN1_DESC=最初の列名は、入力データを地図と関連付けるための事前定義された列(city、provinceなど)を含んでいる必要があります。データ列は最大で10列までとなります。
+MAIN.EXPLAIN2=経度/緯度ポイントの表示
+MAIN.EXPLAIN2_DESC=最初の列は識別子(ユニーク)である必要があり、最後の2列の名前は、WGS84系のポイントを含む\"lon,lat\"である必要があります。データ列は、\"lon,lat\"列を除いて、最大10列までとなります。
+#::::::::::::::::::::::::::::::::::::
+#: Checkbox Password Protect Message
+#::::::::::::::::::::::::::::::::::::
+MSG.PASSWORD_PROTECT=このレイヤはパスワードで保護されています
+#:::::::::::::::::::::::::
+#: Button Captions
+#:::::::::::::::::::::::::
+BTN.DISPLAY_MAP=地図の表示
+BTN.SUBMIT=送信
+BTN.RESET=リセット
+#:::::::::::::::::::::::
+#: Error Message
+#:::::::::::::::::::::::
+ERR.NOT_ENOUGH_DATA=エラー: データが充分でありません
+#::::::::::::::::::::::::
+#: Slider Messages
+#::::::::::::::::::::::::
+SLDR.PREVIOUS_CAPTION=以前に入力された地図
+SLDR.HELP_CAPTION=ヘルプ
+SLDR.HELP_MESSAGE=ここにヘルプの詳細が記載される予定です。
+#:::::::::::::::::::::::::
+#: Grid Messages
+#:::::::::::::::::::::::::
+GRID.BTN_SHOW_MAP=地図の表示
+GRID.MAIN_CAPTION=メタデータ
+GRID.COL_DDATE=データ入力日時
+GRID.COL_COLNAMES=列名
+GRID.COL_LINKCOLUMN=リンク列
+GRID.COL_LAYERTYPE=レイヤ種別
+GRID.COL_PROTECTED=パスワード保護

@@ -20,18 +20,17 @@ package geotheme.db;
 
 import java.sql.*;
 import java.util.*;
+
 import geotheme.bean.*;
 import geotheme.util.*;
 
 public class metaDataCtl {
 
 
-	private String metaTab       = null;
-	private connectionCtl conCtl = null;
+	private String metaTab = null;
 	
-	public metaDataCtl(connectionCtl conCtl,String tab) {
+	public metaDataCtl(String tab) {
 		this.metaTab  = tab;
-		this.conCtl   = conCtl;
 	}
 	
 	public metaDataBean getMetaInfo(String layer)  {
@@ -40,13 +39,17 @@ public class metaDataCtl {
 		
         String sql = "select * from " + this.metaTab + " where tabid = ?";
 
+        Connection conn        = null;
+        PreparedStatement stmt = null;
+        ResultSet rs           = null;
+        
 		try {
-			Connection con         = this.conCtl.getConnection();
-			PreparedStatement stmt = con.prepareStatement( sql );
+			conn = connectionPoolHolder.getConnection();
+			stmt = conn.prepareStatement( sql );
 			
 			stmt.setString(1, layer);
 			
-			ResultSet rs = stmt.executeQuery();
+			rs = stmt.executeQuery();
 
 			if( rs != null ) {
 				while( rs.next() ) {
@@ -60,12 +63,33 @@ public class metaDataCtl {
 				}
 			}
 			
-			rs.close();
-			stmt.close();
-			con.close();
 		}
 		catch(Exception e) {
 			e.printStackTrace();
+		}
+		finally {
+			if( rs != null ) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if( stmt != null ) {
+				try {
+					stmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if( conn != null ) {
+				try {
+					//conn.close();
+					connectionPoolHolder.returnConnection(conn);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
 		}
 		return mdb;
 	}
@@ -111,11 +135,22 @@ public class metaDataCtl {
 		StringBuffer sb = new StringBuffer();
 		
 		sb.append("insert into ").append(metadata);
-        sb.append(" values (?,?,?,?,?,now(),?);");
+		sb.append(" (tabid,linklayer,maptable,linkcolumn,");
+		sb.append("colnames,ddate,layertype) ");
+        sb.append("values (?,?,?,?,?,now(),?);");
 
+        Connection conn        = null;
+		PreparedStatement stmt = null;
+		
         try {
-			Connection con         = this.conCtl.getConnection();
-			PreparedStatement stmt = con.prepareStatement(sb.toString());
+			conn = connectionPoolHolder.getConnection();
+			
+			if( conn.isReadOnly() ) {
+				conn.setReadOnly( false );
+			}
+			conn.setAutoCommit(true);
+
+			stmt = conn.prepareStatement(sb.toString());
 			
 			stmt.setString(1, tabName);
 			stmt.setString(2, linklayer);
@@ -125,13 +160,28 @@ public class metaDataCtl {
 			stmt.setString(6, mapType);
 			
 			stmt.executeUpdate();
-			stmt.close();
-			con.close();
 		}
 		catch( Exception ex ) {
 			ex.printStackTrace();
 			return false;
 		}
+        finally {
+        	if( stmt != null ) {
+        		try {
+        			stmt.close();
+        		} catch (SQLException e) {
+        			e.printStackTrace();
+        		}
+        	}
+        	if( conn != null ) {
+        		try {
+        			//conn.close();
+        			connectionPoolHolder.returnConnection(conn);
+        		} catch (Exception e) {
+        			e.printStackTrace();
+        		}
+        	}
+        }
 		
 		return true;
 	}
@@ -159,16 +209,24 @@ public class metaDataCtl {
         insertSt.append(" values (?,?,?,?,?,?,?,?,?,?,?,?)");
         
         String  retVal = null;
-        Connection con = null;
         
-		try {
-			 con = this.conCtl.getConnection();
+        Connection conn         = null;
+        Statement stmt          = null;
+        PreparedStatement pstmt = null;
+        
+		try {			 
+			conn = connectionPoolHolder.getConnection();
 			
-			Statement stmt = con.createStatement();
+			if( conn.isReadOnly() ) {
+				conn.setReadOnly( false );
+			}
+			
+			conn.setAutoCommit(true);
+			
+			stmt  = conn.createStatement();
 			stmt.executeUpdate(createSt.toString());
 			
-			PreparedStatement pstmt = 
-			        con.prepareStatement(insertSt.toString());
+			pstmt = conn.prepareStatement(insertSt.toString());
 			
 			int clength;
 			
@@ -220,22 +278,34 @@ public class metaDataCtl {
 				    pstmt.executeBatch();
 			}
 			pstmt.executeBatch();
-			
-			stmt.close();
-			pstmt.close();
-			con.close();
 		}
 		catch( Exception exc ) {
 			retVal = exc.getLocalizedMessage();
 		}
 		finally {
-		    try{
-		        if( con != null )
-		            con.close();
-		    }
-		    catch( Exception ee ) {}
+			if( stmt != null ) {
+				try {
+					stmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if( pstmt != null ) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if( conn != null ) {
+				try {
+					//conn.close();
+					connectionPoolHolder.returnConnection(conn);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
 		}
-		
 		return retVal;
 	}
 
@@ -287,12 +357,16 @@ public class metaDataCtl {
 		
 		StringBuffer insertSt;
 		
-		Connection con = null;
+		Connection conn         = null;
+		Statement stmt          = null;
+		PreparedStatement pstmt = null;
+		
 		String retVal  = null;
 		
 		try {
-			con = this.conCtl.getConnection();
-			Statement stmt = con.createStatement();
+			conn = connectionPoolHolder.getConnection();
+			stmt = conn.createStatement();
+								
 			stmt.executeUpdate(createSt.toString());
 			
 			int clength;
@@ -304,8 +378,7 @@ public class metaDataCtl {
             insertSt.append(" values (?,?,?,?,?,?,?,?,?,?,?,?,");
             insertSt.append(" ST_GeomFromText(?,4326))");
             
-			PreparedStatement pstmt = 
-			        con.prepareStatement(insertSt.toString());
+			pstmt = conn.prepareStatement(insertSt.toString());
 			
 			for(int i=1;i<inData.length;i++) {
 				
@@ -378,19 +451,33 @@ public class metaDataCtl {
 			
 			pstmt.executeBatch();
 			
-			stmt.close();
-			pstmt.close();
-			con.close();
 		}
 		catch( Exception exc ) {
 			retVal = exc.getLocalizedMessage();
 		}
 		finally {
-		    try{
-		        if( con != null )
-		            con.close();
-		    }
-		    catch( Exception ee ) {}
+			if( stmt != null ) {
+				try {
+					stmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if( pstmt != null ) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if( conn != null ) {
+				try {
+					//conn.close();
+					connectionPoolHolder.returnConnection(conn);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
 		}
 		
 		return retVal;
@@ -404,13 +491,16 @@ public class metaDataCtl {
 	    sb.append(table);
 	    
 	    retVal[0]      = null;
-	    retVal[1]      = null;        
-	    Connection con = null;
+	    retVal[1]      = null;  
 	    
+	    Connection conn = null;
+	    Statement stmt  = null;
+        ResultSet rs    = null;
+        
 	    try {
-	        con = this.conCtl.getConnection();
-	        Statement stmt = con.createStatement();
-	        ResultSet rs   = stmt.executeQuery(sb.toString());
+	        conn = connectionPoolHolder.getConnection();
+	        stmt = conn.createStatement();
+	        rs   = stmt.executeQuery(sb.toString());
 
 	        if( rs != null ) {
 	            while( rs.next() ) {
@@ -423,11 +513,28 @@ public class metaDataCtl {
 	        e.printStackTrace();
 	    }
 	    finally {
-	        try{
-	            if(con!=null)
-	                con.close();
-	        }
-	        catch(Exception ee) {}
+	    	if( rs != null ) {
+	    		try {
+	    			rs.close();
+	    		} catch (SQLException e) {
+	    			e.printStackTrace();
+	    		}
+	    	}
+	    	if( stmt != null ) {
+	    		try {
+	    			stmt.close();
+	    		} catch (SQLException e) {
+	    			e.printStackTrace();
+	    		}
+	    	}
+	    	if( conn != null ) {
+	    		try {
+	    			//conn.close();
+	    			connectionPoolHolder.returnConnection(conn);
+	    		} catch (Exception e) {
+	    			e.printStackTrace();
+	    		}
+	    	}
 	    }
 	    return retVal;
 	}
@@ -437,11 +544,13 @@ public class metaDataCtl {
 		
 		String[] bnd = {"EPSG:4326","-180","-90","180","90"};
 
-		Connection con = null;
+		Connection conn  = null;
+		Statement stmt   = null;
+		ResultSet rs     = null;
 		
 		try {
-			con = this.conCtl.getConnection();
-			Statement stmt = con.createStatement();
+			conn = connectionPoolHolder.getConnection();
+			stmt = conn.createStatement();
 
 			StringBuffer sql = new StringBuffer();
 			
@@ -458,7 +567,7 @@ public class metaDataCtl {
 				sql.append(linkTab);
 			}
 			
-			ResultSet rs = stmt.executeQuery(sql.toString());
+			rs = stmt.executeQuery(sql.toString());
 
 			if( rs != null ) {
 				while( rs.next() ) {
@@ -483,11 +592,28 @@ public class metaDataCtl {
 			ex.printStackTrace();
 		}
 		finally {
-		    try{
-		        if( con != null )
-		            con.close();
-		    }
-		    catch( Exception ee) {}
+			if( rs != null ) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if( stmt != null ) {
+				try {
+					stmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if( conn != null ) {
+				try {
+					//conn.close();
+					connectionPoolHolder.returnConnection(conn);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
 		}
 		
 		return bnd;
