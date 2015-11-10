@@ -23,10 +23,13 @@ import java.io.ByteArrayOutputStream;
 import java.io.OutputStreamWriter;
 import java.net.URL;
 import java.net.URLConnection;
+import java.text.DecimalFormat;
 import java.util.Date;
 
 import com.pdfjet.*;
+
 import geotheme.bean.*;
+import geotheme.db.projectionSetQuery;
 
 public class generatePDF {
 
@@ -39,9 +42,14 @@ public class generatePDF {
     }
     
     public ByteArrayOutputStream createPDFFromImage( 
-            wmsParamBean wpb, String host ) 
-    throws  Exception
+            wmsParamBean wpb, String host ) throws  Exception
     {
+    	/**
+    	 * re-projecting to epsg:3857
+    	 */
+    	wpb.setBBOX( this.projectTo3857(wpb.getBBOX(), wpb.getSRS()));
+    	wpb.setSRS("EPSG:3857");
+    	
         ByteArrayOutputStream output = new ByteArrayOutputStream();
         
         PDF pdf   = new PDF(output);
@@ -68,6 +76,9 @@ public class generatePDF {
         sb.append("&width=").append(width);
         sb.append("&height=").append(height);
 
+        sb.append("&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetMap&STYLES=&SRS=");
+        sb.append(wpb.getSRS());
+
         try
         {
             wpb.setREQUEST("GetMap");
@@ -76,8 +87,8 @@ public class generatePDF {
             
             URL url  = new URL( host );
             URL urll = new URL( host );
-            URL osm  = new URL( sb.toString() );              
-            
+            URL osm  = new URL( sb.toString() );        
+
             geoConn = url.openConnection();
             geoConn.setDoOutput(true);
            
@@ -206,16 +217,16 @@ public class generatePDF {
         
         String arr[] = bbox.split(",");
         
-        float x1 = Float.parseFloat(arr[0]);
-        float y1 = Float.parseFloat(arr[1]);
-        float x2 = Float.parseFloat(arr[2]);
-        float y2 = Float.parseFloat(arr[3]);
+        double x1 = Double.parseDouble(arr[0]);
+        double y1 = Double.parseDouble(arr[1]);
+        double x2 = Double.parseDouble(arr[2]);
+        double y2 = Double.parseDouble(arr[3]);
         
-        float width  = x2 - x1;
-        float height = y2 - y1;
+        double width  = x2 - x1;
+        double height = y2 - y1;
         
-        float centerx = x1 + (width/2);
-        float centery = y1 + (height/2);
+        double centerx = x1 + (width/2);
+        double centery = y1 + (height/2);
         
         if( width > height ) {
             x1 = centerx - (width/2);
@@ -230,11 +241,13 @@ public class generatePDF {
             y2 = centery + (height/2);
         }
         
+		DecimalFormat df = new DecimalFormat("##########.##########");
+		
         StringBuffer sb = new StringBuffer();
-        sb.append(x1).append(",");
-        sb.append(y1).append(",");
-        sb.append(x2).append(",");
-        sb.append(y2);
+        sb.append(df.format(x1)).append(",");
+        sb.append(df.format(y1)).append(",");
+        sb.append(df.format(x2)).append(",");
+        sb.append(df.format(y2));
 
         return sb.toString();
     }
@@ -260,5 +273,29 @@ public class generatePDF {
             }
         }
         return (new String(ostr));
+    }
+    
+    public String projectTo3857(String bbox,String srs) {
+    	
+    	String coords[] = bbox.split(",");
+    	int epsg        = Integer.parseInt( srs.split(":")[1] );
+    	
+    	double firstPt[] = projectionSetQuery.changeProjection(
+    			Double.parseDouble(coords[0]), Double.parseDouble(coords[1]), 
+    			epsg, 3857);
+    	
+    	double endPt[]  = projectionSetQuery.changeProjection(
+    			Double.parseDouble(coords[2]), Double.parseDouble(coords[3]), 
+    			epsg, 3857);
+    	
+		DecimalFormat df = new DecimalFormat("##########.##########");
+		
+    	StringBuffer sb = new StringBuffer();
+    	sb.append( df.format( firstPt[0] ) ).append(",");
+    	sb.append( df.format( firstPt[1] ) ).append(",");
+    	sb.append( df.format( endPt[0]) ).append(",");
+    	sb.append( df.format( endPt[1]) );
+
+    	return sb.toString();
     }
 }

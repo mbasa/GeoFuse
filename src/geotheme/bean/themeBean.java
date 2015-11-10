@@ -19,6 +19,7 @@
 package geotheme.bean;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 
 public class themeBean {
 
@@ -40,6 +41,15 @@ public class themeBean {
     String mapApiKey = new String();
     String fromDate  = new String();
     String toDate    = new String();
+    
+    String linkTab   = new String();
+    String mapTab    = new String();
+    String mapCol    = new String();
+    
+    String cql = "";
+    LinkedHashMap<String,String> propMap = new LinkedHashMap<String,String>();
+    String[] themeRangesArray;
+    
         
     public String getFromDate() {
         return fromDate;
@@ -81,6 +91,7 @@ public class themeBean {
 
         this.setFirstRange(s[0]);
 		this.themeRanges = sb.toString();
+		this.themeRangesArray = s;
 	}
 	public String getLabelScale() {
 		return labelScale;
@@ -147,6 +158,7 @@ public class themeBean {
     }
     public void setPropList(ArrayList<String> propList) {
         StringBuffer sb = new StringBuffer();
+        LinkedHashMap<String,String> propMap = new LinkedHashMap<String,String>();
         
         if( propList.size() > 0 ) {
            int listSize = propList.size();
@@ -155,14 +167,19 @@ public class themeBean {
            for(int i=0,j=1;i<listSize-1;i++,j++) {
               sb.append("['col").append(j).append("','");
               sb.append(propList.get(i)).append("'],");
+              
+              propMap.put("col"+j, propList.get(i) );
            }
 
            sb.append("['col").append(listSize).append("','");
            sb.append(propList.get(listSize-1)).append("']");
+           
+           propMap.put("col"+listSize, propList.get(listSize-1) );
 
         }
         
         this.propList = sb.toString();
+        this.setPropMap(propMap);
     }
     public String getLayerName() {
         return layerName;
@@ -199,6 +216,78 @@ public class themeBean {
 	}
 	public void setMapApiKey(String mapApiKey) {
 		this.mapApiKey = mapApiKey;
+	}
+	/**
+	 * @return the propMap
+	 */
+	public LinkedHashMap<String,String> getPropMap() {
+		return propMap;
+	}
+	/**
+	 * @param propMap the propMap to set
+	 */
+	public void setPropMap(LinkedHashMap<String,String> propMap) {
+		this.propMap = propMap;
+	}
+	/**
+	 * @return the themeRangesArray
+	 */
+	public String[] getThemeRangesArray() {
+		return themeRangesArray;
+	}
+	/**
+	 * @param themeRangesArray the themeRangesArray to set
+	 */
+	public void setThemeRangesArray(String[] themeRangesArray) {
+		this.themeRangesArray = themeRangesArray;
+	}
+	/**
+	 * @return the cql
+	 */
+	public String getCql() {
+		return cql;
+	}
+	/**
+	 * @param cql the cql to set
+	 */
+	public void setCql(String cql) {
+		this.cql = cql;
+	}
+	/**
+	 * @return the linkTab
+	 */
+	public String getLinkTab() {
+		return linkTab;
+	}
+	/**
+	 * @param linkTab the linkTab to set
+	 */
+	public void setLinkTab(String linkTab) {
+		this.linkTab = linkTab;
+	}
+	/**
+	 * @return the mapTab
+	 */
+	public String getMapTab() {
+		return mapTab;
+	}
+	/**
+	 * @param mapTab the mapTab to set
+	 */
+	public void setMapTab(String mapTab) {
+		this.mapTab = mapTab;
+	}
+	/**
+	 * @return the mapCol
+	 */
+	public String getMapCol() {
+		return mapCol;
+	}
+	/**
+	 * @param mapCol the mapCol to set
+	 */
+	public void setMapCol(String mapCol) {
+		this.mapCol = mapCol;
 	}
     
     

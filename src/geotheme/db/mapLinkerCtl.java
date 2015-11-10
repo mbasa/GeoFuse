@@ -23,18 +23,12 @@ import java.util.*;
 
 public class mapLinkerCtl {
     
-    private connectionCtl conCtl = null;
     private String dynTable      = null;
     
-    public mapLinkerCtl( connectionCtl conCtl, String dTable ) {
-        this.conCtl   = conCtl;
+    public mapLinkerCtl( String dTable ) {
         this.dynTable = dTable;
     }
     
-    public void setConCtl(connectionCtl conCtl) {
-        this.conCtl = conCtl;
-    }
-
     public void setDynTable(String dynTable) {
         this.dynTable = dynTable;
     }
@@ -47,13 +41,14 @@ public class mapLinkerCtl {
         StringBuffer sql = new StringBuffer();
         sql.append("select * from ").append( this.dynTable );
         
+        Connection conn        = null;
+        PreparedStatement stmt = null;
+        ResultSet rs           = null;
+        		
         try {
-            Connection conn = this.conCtl.getConnection();
-            
-            PreparedStatement stmt  = 
-                    conn.prepareStatement( sql.toString() );
-            
-            ResultSet rs = stmt.executeQuery();
+            conn = connectionPoolHolder.getConnection();            
+            stmt = conn.prepareStatement( sql.toString() );            
+            rs   = stmt.executeQuery();
             
             if( rs != null ) {
                 while( rs.next() ) {
@@ -64,15 +59,35 @@ public class mapLinkerCtl {
                     
                     dynamicMap.put(rs.getString(1), arr);
                 }
-            }
-            
-            rs.close();
-            stmt.close();
-            conn.close();
+            }            
         }
         catch(Exception ex) {
             ex.printStackTrace();
-        }    
+        }  
+        finally {
+        	if( rs != null ) {
+        		try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+        	}
+        	if( stmt != null ) {
+        		try {
+					stmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+        	}
+        	if( conn != null ) {
+        		try {
+					//conn.close();
+        			connectionPoolHolder.returnConnection(conn);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+        	}
+        }
         return dynamicMap;
     }
 

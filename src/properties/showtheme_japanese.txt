@@ -1,0 +1,62 @@
+#:::::::::::::::::::::::::::::::::::::::::::::::::: 
+#: NOTE: Cut and paste this file into Eclipse
+#: where it will be converted automatically to
+#: the correct ISO format
+#::::::::::::::::::::::::::::::::::::::::::::::::::
+
+#:::::::::::::::::
+#: Main Window 
+#:::::::::::::::::
+MW.MAP_TITLE=地図
+MW.DATA_TITLE=作図対象データ
+MW.PARAMETERS=パラメータ
+MW.LEGEND=凡例
+MW.LEGEND_BUTTON=編集
+#:::::::::::::::::::::::::
+#: Parameters Sub-Window 
+#:::::::::::::::::::::::::
+PW.CRITERIA=主題
+PW.RANGES=分類数
+PW.TYPE=分類方法
+PW.COLOR=色
+PW.FROMDATE=開始日
+PW.TODATE=終了日
+#:::::::::::::::::::::::::
+#: Parameters Buttons 
+#:::::::::::::::::::::::::
+PB.SUBMIT=作図
+PB.RESET=リセット
+PB.PDF=ＰＤＦ
+PB.SHARE=シェア
+#:::::::::::::::::::::::::
+#: PDF DIALOG 
+#:::::::::::::::::::::::::
+PDF.WIN_TITLE=PDFレポート
+PDF.TITLE=タイトル
+PDF.DESC=説明
+PDF.CREATE_BTN=PDF 出力
+PDF.CANCEL_BTN=キャンセル
+PDF.ALERT_TITLE=ステータス
+PDF.ALERT_MSSG=PDF作成はネットワーク環境によって時間がかかる場合があります。
+#:::::::::::::::::::::::::
+#: Share DIALOG 
+#:::::::::::::::::::::::::
+SHR.WIN_TITLE=シェア
+SHR.SEL_BTN=URLを選択
+SHR.CLOSE_BTN=閉じる
+#:::::::::::::::::::::::::
+#: Distribution Types 
+#:::::::::::::::::::::::::
+TY.EQ_RANGE=等間隔
+TY.EQ_COUNT=等量
+TY.NATURAL=自然分類
+TY.STANDARD=標準偏差
+TY.HEATMAP=Heat Map
+#:::::::::::::::::::::::::
+#: Legend Values Edit Window 
+#:::::::::::::::::::::::::
+LEGEND_WIN.TITLE=凡例編集
+LEGEND_WIN.COLOR_COLUMN=色
+LEGEND_WIN.RANGE_COLUMN=範囲
+LEGEND_WIN.SAVE_BTN=保存
+LEGEND_WIN.CANCEL_BTN=キャンセル
