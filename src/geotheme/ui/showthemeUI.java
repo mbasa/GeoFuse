@@ -7,7 +7,6 @@ import geotheme.bean.baseLayerBean;
 import geotheme.bean.metaDataBean;
 import geotheme.bean.themeBean;
 import geotheme.db.baseLayerQuery;
-import geotheme.db.connectionCtl;
 import geotheme.db.featureQuery;
 import geotheme.db.metaDataCtl;
 import geotheme.sld.generateSLD;
@@ -31,7 +30,6 @@ import org.vaadin.addon.leaflet.LWmsLayer;
 import org.vaadin.addon.leaflet.LeafletClickEvent;
 import org.vaadin.addon.leaflet.LeafletClickListener;
 import org.vaadin.addon.leaflet.control.LScale;
-import org.vaadin.addon.leaflet.easyprint.LEasyPrint;
 import org.vaadin.addon.leaflet.shared.Bounds;
 import org.vaadin.addon.leaflet.shared.ControlPosition;
 import org.vaadin.addon.leaflet.shared.Point;
@@ -510,7 +508,7 @@ public class showthemeUI extends UI {
 				}
 
 				double tolerance = 10.0;
-				int zoomLevel    = lmap.getZoomLevel();
+				double zoomLevel = lmap.getZoomLevel();
 				
 				if( zoomLevel <= 3 ) {
 					tolerance = 100000.0;
