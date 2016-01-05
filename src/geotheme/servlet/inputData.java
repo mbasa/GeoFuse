@@ -124,7 +124,7 @@ public class inputData extends HttpServlet {
 		        ".mb_"+sessionID+"_"+rand.nextInt(10000);
 		
 		if( !mdc.setMetaInfo(pStr[0], dynamicMap, this.db_metadata, 
-		        tableName,isLatLon) ) {
+		        tableName,isLatLon,"") ) {
 			out.write("Error: Catalog entry");
 			out.close();
 			return;

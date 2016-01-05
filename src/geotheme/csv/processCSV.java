@@ -43,7 +43,7 @@ public class processCSV {
 		
     }
 
-    public String process(String inputString ) {
+    public String process(String inputString, String layerName ) {
 		boolean isLatLon = false;
 	      
 		//inputString = (URLDecoder.decode(inputString,"UTF-8"));
@@ -86,7 +86,7 @@ public class processCSV {
 				rand.nextInt(10000);
 		
 		if( !mdc.setMetaInfo(pStr[0], dynamicMap, this.db_metadata, 
-		        tableName,isLatLon) ) {
+		        tableName,isLatLon,layerName) ) {
 			return("Error: Catalog entry");
 		}
 		

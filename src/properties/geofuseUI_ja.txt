@@ -9,6 +9,11 @@ MAIN.EXPLAIN1_DESC=最初の列名は、入力データを地図と関連付け�
 MAIN.EXPLAIN2=経度/緯度ポイントの表示
 MAIN.EXPLAIN2_DESC=最初の列は識別子(ユニーク)である必要があり、最後の2列の名前は、WGS84系のポイントを含む\"lon,lat\"である必要があります。データ列は、\"lon,lat\"列を除いて、最大10列までとなります。
 #::::::::::::::::::::::::::::::::::::
+#: TextArea Titles
+#::::::::::::::::::::::::::::::::::::
+MSG.CSVBOX_TITLE=CSV/TSVデータ
+MSG.LAYERNAME_TITLE=レイヤ名
+#::::::::::::::::::::::::::::::::::::
 #: Checkbox Password Protect Message
 #::::::::::::::::::::::::::::::::::::
 MSG.PASSWORD_PROTECT=このレイヤはパスワードで保護されています
@@ -37,4 +42,4 @@ GRID.COL_DDATE=データ入力日時
 GRID.COL_COLNAMES=列名
 GRID.COL_LINKCOLUMN=リンク列
 GRID.COL_LAYERTYPE=レイヤ種別
-GRID.COL_PROTECTED=パスワード保護
+GRID.COL_LAYERNAME=レイヤ名

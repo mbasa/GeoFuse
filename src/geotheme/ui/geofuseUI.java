@@ -140,8 +140,17 @@ public class geofuseUI extends UI {
 				+resourceBundle.getString("MAIN.EXPLAIN2_DESC")
 				+ "</p>"
 				);
-		final TextArea csvBox = new TextArea();
-		csvBox.setWidth("700px");
+
+		final TextArea csvBox = new TextArea(
+                resourceBundle.getString("MSG.CSVBOX_TITLE") );
+        csvBox.setWidth("700px");
+        csvBox.setRequired(true);
+
+        final TextArea layerNameBox = new TextArea(
+                resourceBundle.getString("MSG.LAYERNAME_TITLE") );
+        layerNameBox.setWidth("350px");
+        layerNameBox.setHeight("25px");
+        layerNameBox.setRequired(true);
 
 		final TextArea urlBox = new TextArea();
 		urlBox.setWidth("700px");
@@ -169,7 +178,8 @@ public class geofuseUI extends UI {
 				}
 
 				processCSV pcsv = new processCSV();
-				String result   = pcsv.process( csvBox.getValue() );
+				String result   = pcsv.process( 
+				        csvBox.getValue(),layerNameBox.getValue() );
 
 				if( result.startsWith("Error") ) {
 					Notification.show( result );
@@ -201,6 +211,8 @@ public class geofuseUI extends UI {
 			public void buttonClick(ClickEvent event) {
 				csvBox.clear();
 				csvBox.setValue("");
+				layerNameBox.clear();
+				layerNameBox.setValue("");
 				urlBox.clear();
 				urlBox.setValue("");
 				bOpener.setUrl("");
@@ -215,7 +227,7 @@ public class geofuseUI extends UI {
 		csvLayout.addComponents(csvSubmitButton,csvResetButton);
 
 		layout.addComponents(geofuseLab,imgLayout,descLab,
-				csvBox,csvLayout,urlBox,urlDispButton);		
+				csvBox,layerNameBox,csvLayout,urlBox,urlDispButton);		
 		
 		/**
 		 * SliderPanel Portion
@@ -314,22 +326,24 @@ public class geofuseUI extends UI {
 	 *
 	 */
 	private void setDbTable() {
-		table.setContainerDataSource( setContainer() );
-		table.setCaption(resourceBundle.getString("GRID.MAIN_CAPTION"));
-		
-		table.setColumnHeader("ddate", 
-				resourceBundle.getString("GRID.COL_DDATE") );
-		table.setColumnHeader("colnames",
-				resourceBundle.getString("GRID.COL_COLNAMES") );
-		table.setColumnHeader("linkcolumn",
-				resourceBundle.getString("GRID.COL_LINKCOLUMN") );
-		table.setColumnHeader("layertype",
-				resourceBundle.getString("GRID.COL_LAYERTYPE") );
+	    table.setContainerDataSource( setContainer() );
+	    table.setCaption(resourceBundle.getString("GRID.MAIN_CAPTION"));
 
-		table.setSelectable(true);
-		table.setNullSelectionAllowed(false);
-		table.setVisibleColumns("ddate","layertype",
-				"linkcolumn","colnames");		
+	    table.setColumnHeader("layername", 
+	            resourceBundle.getString("GRID.COL_LAYERNAME") );
+	    table.setColumnHeader("ddate", 
+	            resourceBundle.getString("GRID.COL_DDATE") );
+	    table.setColumnHeader("colnames",
+	            resourceBundle.getString("GRID.COL_COLNAMES") );
+	    table.setColumnHeader("linkcolumn",
+	            resourceBundle.getString("GRID.COL_LINKCOLUMN") );
+	    table.setColumnHeader("layertype",
+	            resourceBundle.getString("GRID.COL_LAYERTYPE") );
+
+	    table.setSelectable(true);
+	    table.setNullSelectionAllowed(false);
+	    table.setVisibleColumns("layername","ddate","layertype",
+	            "linkcolumn","colnames");		
 	}
 	/**
 	 * 
