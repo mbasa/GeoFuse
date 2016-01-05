@@ -95,7 +95,8 @@ public class metaDataCtl {
 	}
 	
 	public boolean setMetaInfo(String colNames[],Map<String,String[]> dMap,
-			String metadata,String tabName,boolean isLatLon ) {
+			String metadata,String tabName,boolean isLatLon,
+			String layerName ) {
 		
 		String linkcolumn = colNames[0];
 		String arr[]      = null;
@@ -136,8 +137,8 @@ public class metaDataCtl {
 		
 		sb.append("insert into ").append(metadata);
 		sb.append(" (tabid,linklayer,maptable,linkcolumn,");
-		sb.append("colnames,ddate,layertype) ");
-        sb.append("values (?,?,?,?,?,now(),?);");
+		sb.append("colnames,ddate,layertype,layername) ");
+        sb.append("values (?,?,?,?,?,now(),?,?);");
 
         Connection conn        = null;
 		PreparedStatement stmt = null;
@@ -158,6 +159,7 @@ public class metaDataCtl {
 			stmt.setString(4, linkcolumn);
 			stmt.setString(5, colns.toString());
 			stmt.setString(6, mapType);
+			stmt.setString(7, layerName);
 			
 			stmt.executeUpdate();
 		}

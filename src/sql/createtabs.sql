@@ -87,6 +87,7 @@ CREATE TABLE geofuse.metadata
   colnames   TEXT,
   ddate      timestamp without time zone,
   layertype  TEXT,
+  layername  TEXT,
   CONSTRAINT metadata_pkey PRIMARY KEY (tabid)
 );
 

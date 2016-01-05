@@ -25,6 +25,7 @@ public class metaDataBean {
 	private String linkColumn = null;
 	private String colNames[] = null;
 	private String layerType  = null;
+	private String layerName  = null;
 	
 	public String getTabid() {
 		return tabid;
@@ -62,5 +63,11 @@ public class metaDataBean {
 	public void setLayerType(String layerType) {
 		this.layerType = layerType;
 	}
+    public String getLayerName() {
+        return layerName;
+    }
+    public void setLayerName(String layerName) {
+        this.layerName = layerName;
+    }
 	
 }
