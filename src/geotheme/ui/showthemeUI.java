@@ -537,8 +537,14 @@ public class showthemeUI extends UI {
 
 				ArrayList<Double> rangeList = gsld.getRangeValuesList();
 				
-				double minVal   = rangeList.get(0);
-				double maxVal   = rangeList.get( rangeList.size() - 1 );
+				double minVal = 0.0;
+				double maxVal = 0.0;
+				
+				if( rangeList != null && rangeList.size() > 0 ) {
+				    minVal   = rangeList.get(0);
+				    maxVal   = rangeList.get( rangeList.size() - 1 );
+				}
+				
 				String propName = gsld.getPropName();
 				
 				featureQuery fq = new featureQuery( tb,tolerance,
