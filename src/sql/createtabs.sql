@@ -1,13 +1,15 @@
 --
 -- Creating the Schemas 
 --
-DROP SCHEMA geofuse cascade;
-DROP SCHEMA geodata cascade;
-DROP SCHEMA csvdata cascade;
+DROP SCHEMA geofuse      cascade;
+DROP SCHEMA geodata      cascade;
+DROP SCHEMA csvdata      cascade;
+DROP SCHEMA markerlayers cascade;
 
 CREATE SCHEMA geofuse ;
 CREATE SCHEMA geodata ;
 CREATE SCHEMA csvdata ;
+CREATE SCHEMA markerlayers;
 
 --
 -- Table: dummy
@@ -127,6 +129,14 @@ CREATE TABLE geofuse.baselayer
 	display     BOOLEAN  -- Display Flag
 );
 
+DROP TABLE geofuse.markerlayer;
+
+CREATE TABLE geofuse.markerlayer
+(
+    id serial primary key,
+    layername text,
+    tablename text
+);
 --
 -- Table: overlaylayer
 -- this table will hold the additional WMS overlay layers 
