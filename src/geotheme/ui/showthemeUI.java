@@ -8,6 +8,7 @@ import geotheme.bean.metaDataBean;
 import geotheme.bean.themeBean;
 import geotheme.db.baseLayerQuery;
 import geotheme.db.featureQuery;
+import geotheme.db.markerLayerQuery;
 import geotheme.db.metaDataCtl;
 import geotheme.sld.generateSLD;
 import geotheme.util.UrlUtil;
@@ -18,17 +19,13 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpSession;
 
-import org.vaadin.addon.leaflet.LMap;
-import org.vaadin.addon.leaflet.LMarker;
-import org.vaadin.addon.leaflet.LTileLayer;
-import org.vaadin.addon.leaflet.LWmsLayer;
-import org.vaadin.addon.leaflet.LeafletClickEvent;
-import org.vaadin.addon.leaflet.LeafletClickListener;
+import org.vaadin.addon.leaflet.*;
 import org.vaadin.addon.leaflet.control.LScale;
 import org.vaadin.addon.leaflet.shared.Bounds;
 import org.vaadin.addon.leaflet.shared.ControlPosition;
@@ -38,6 +35,7 @@ import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.VaadinServletConfiguration;
 import com.vaadin.data.Item;
 import com.vaadin.server.ExternalResource;
+import com.vaadin.server.ThemeResource;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinService;
 import com.vaadin.server.VaadinServlet;
@@ -477,6 +475,8 @@ public class showthemeUI extends UI {
 		 */
 		this.setGeofuseLayer(lmap, tb);
 		
+		this.setMarkerOverlay(lmap);
+		
 		/**
 		 * adding Scale Control
 		 */
@@ -648,6 +648,64 @@ public class showthemeUI extends UI {
 		geofuseWMS.setActive(true);
 
 		lmap.addOverlay(geofuseWMS, "GeoFuse");				
+	}
+	
+	/**
+	 * Adding Marker Overlay Layers
+	 * 
+	 * 
+	 * @param map
+	 */
+	private void setMarkerOverlay( LMap map ) {
+	    
+	    ArrayList<Map<String,String>> markerLayers = 
+	            markerLayerQuery.getMarkerLayers();
+
+	    for( Map<String,String> markerLayer : markerLayers ) {
+	        
+	        ArrayList<Map<String,String>> markers = 
+	                markerLayerQuery.getMarkers(markerLayer.get("tablename"));
+	        
+	        if( markers.size() > 0 ) {
+	            
+	            LLayerGroup markerGroup = new LLayerGroup();
+	            markerGroup.setActive(false);
+	            
+	            for( Map<String,String> marker : markers ) {
+	                if( marker.containsKey("lon") && 
+	                        marker.containsKey("lat") ) {
+	                    
+	                    LMarker m  = new LMarker();	
+	                    double lon = Double.parseDouble(marker.get("lon"));
+	                    double lat = Double.parseDouble(marker.get("lat"));
+	                    
+	                    m.setPoint(new Point(lat,lon));       
+	                    m.setIcon( new ThemeResource("graphics/PURPLE.png") );
+	                    m.setIconAnchor(new Point(10,40));
+	                    
+	                    StringBuffer sb = new StringBuffer();
+	                    sb.append("<table class='popups'>");
+	                    
+	                    for( String s : marker.keySet() ) {
+	                        if( (s.equalsIgnoreCase("lon") || 
+	                                s.equalsIgnoreCase("lat")) ) { 
+	                            continue;
+	                        }
+	                        sb.append("<tr><td><b>").append(s);
+	                        sb.append("</b></td>");
+	                        sb.append("<td>").append(marker.get(s));
+	                        sb.append("</td></tr>");
+	                    }
+	                    
+	                    sb.append("</table>");
+                        m.setPopup(sb.toString());
+	                    
+	                    markerGroup.addComponent(m);
+	                }
+	            }
+	            map.addOverlay(markerGroup, markerLayer.get("layername"));
+	        }	        
+	    }
 	}
 	
 	/**
