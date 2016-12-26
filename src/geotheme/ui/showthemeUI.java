@@ -5,11 +5,13 @@ package geotheme.ui;
 
 import geotheme.bean.baseLayerBean;
 import geotheme.bean.metaDataBean;
+import geotheme.bean.overlayLayerBean;
 import geotheme.bean.themeBean;
 import geotheme.db.baseLayerQuery;
 import geotheme.db.featureQuery;
 import geotheme.db.markerLayerQuery;
 import geotheme.db.metaDataCtl;
+import geotheme.db.overlayLayerQuery;
 import geotheme.sld.generateSLD;
 import geotheme.util.UrlUtil;
 
@@ -472,12 +474,20 @@ public class showthemeUI extends UI {
 		this.setBaseMapLayers(lmap);
 		
 		/**
+		 * setting the WMS Overlay Layers
+		 */
+		this.setOverLayLayers(lmap);
+
+        /**
+         * setting the Marker Overlay Layers
+         */
+        this.setMarkerOverlay(lmap);
+        
+		/**
 		 * setting the GeoFuse Layer
 		 */
 		this.setGeofuseLayer(lmap, tb);
-		
-		this.setMarkerOverlay(lmap);
-		
+				
 		/**
 		 * adding Scale Control
 		 */
@@ -592,6 +602,28 @@ public class showthemeUI extends UI {
 		return lmap;
 	}
 	
+	private void setOverLayLayers( LMap lmap ) {
+
+	    overlayLayerQuery olq = new overlayLayerQuery();
+
+	    ArrayList<overlayLayerBean> overlayLayers = olq.getOverlayLayers();
+
+	    if( overlayLayers.size() > 0 ) {
+	        for(int i=0;i<overlayLayers.size();i++) {
+	            LWmsLayer wms = new LWmsLayer();
+	            overlayLayerBean olbean = overlayLayers.get(i);
+
+	            wms.setUrl( olbean.getUrl() );
+	            wms.setLayers( olbean.getLayers() );
+	            wms.setFormat("image/png");
+	            wms.setTransparent(true);
+	            wms.setActive( olbean.isActive() );
+	            wms.setMinZoom( olbean.getMinZoom() );
+	            lmap.addOverlay(wms, olbean.getName() );
+	        }
+	    }   
+	}
+
 	/**
 	 * Sets the BaseMap Layers of Leaflet
 	 * @param lmap
