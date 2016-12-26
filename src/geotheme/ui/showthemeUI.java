@@ -30,6 +30,7 @@ import org.vaadin.addon.leaflet.control.LScale;
 import org.vaadin.addon.leaflet.shared.Bounds;
 import org.vaadin.addon.leaflet.shared.ControlPosition;
 import org.vaadin.addon.leaflet.shared.Point;
+import org.vaadin.addon.leaflet.shared.PopupState;
 
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.VaadinServletConfiguration;
@@ -681,7 +682,14 @@ public class showthemeUI extends UI {
 	                    
 	                    m.setPoint(new Point(lat,lon));       
 	                    m.setIcon( new ThemeResource("graphics/PURPLE.png") );
-	                    m.setIconAnchor(new Point(10,40));
+	                    m.setIconSize(new Point(20,34));
+	                    m.setIconAnchor(new Point(20,34));
+	                    
+	                    PopupState pstate = new PopupState();
+	                    pstate.offset    = new Point(-10,-32);
+	                    pstate.autoClose = true;
+	                    
+	                    m.setPopupState(pstate);
 	                    
 	                    StringBuffer sb = new StringBuffer();
 	                    sb.append("<table class='popups'>");
