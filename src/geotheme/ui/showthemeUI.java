@@ -552,7 +552,8 @@ public class showthemeUI extends UI {
 						propName,minVal,maxVal );
 				
 				LinkedHashMap<String,String> retVal  = 
-						fq.getFeature(event.getPoint().getLon(), event.getPoint().getLat());
+						fq.getFeature(event.getPoint().getLon(), 
+						        event.getPoint().getLat());
 				
 				if( retVal == null || retVal.isEmpty() ) {
 					return;
@@ -681,7 +682,8 @@ public class showthemeUI extends UI {
 	                    double lat = Double.parseDouble(marker.get("lat"));
 	                    
 	                    m.setPoint(new Point(lat,lon));       
-	                    m.setIcon( new ThemeResource("graphics/PURPLE.png") );
+	                    m.setIcon( new ThemeResource(
+	                            showthemeProps.getString("MARKER_ICON") ) );
 	                    m.setIconSize(new Point(20,34));
 	                    m.setIconAnchor(new Point(20,34));
 	                    
