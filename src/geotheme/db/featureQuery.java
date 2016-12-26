@@ -129,7 +129,8 @@ public class featureQuery {
 	            		retVal.put(this.tb.getMapCol(), rs.getString("col0"));
 	            		
 	            		for(String s : this.tb.getPropMap().keySet() ) {
-	            			retVal.put(this.tb.getPropMap().get(s), rs.getString(s));
+	            		    double d = rs.getDouble(s);
+                            retVal.put(this.tb.getPropMap().get(s), Double.toString(d));
 	            		}
 	            		
 	            		if( colList.contains("intime") && 
@@ -137,10 +138,12 @@ public class featureQuery {
 	            			retVal.put("timestamp", rs.getString("intime"));
 	            		}
 	            		if( colList.contains("lon") ) { 
-	            			retVal.put("lon", rs.getString("lon"));
+	            		    double d = rs.getDouble("lon");
+	            		    retVal.put("lon", Double.toString(d));
 	            		}
 	            		if( colList.contains("lat") ) { 
-	            			retVal.put("lat", rs.getString("lat"));
+	            		    double d = rs.getDouble("lat");
+	            		    retVal.put("lat", Double.toString(d));
 	            		}
 	            		break;
 	            	}
