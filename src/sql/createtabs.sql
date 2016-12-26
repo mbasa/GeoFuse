@@ -129,14 +129,21 @@ CREATE TABLE geofuse.baselayer
 	display     BOOLEAN  -- Display Flag
 );
 
+--
+-- Table: markerlayer
+-- this table will hold the marker overlay layers 
+-- that will be displayed in GeoFuse
+--
+
 DROP TABLE geofuse.markerlayer;
 
 CREATE TABLE geofuse.markerlayer
 (
     id serial primary key,
-    layername text,
-    tablename text
+    layername text,   -- Display name in Layer Control
+    tablename text    -- Table of the marker layer which has lon/lat info
 );
+
 --
 -- Table: overlaylayer
 -- this table will hold the additional WMS overlay layers 
