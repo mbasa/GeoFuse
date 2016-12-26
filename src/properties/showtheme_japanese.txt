@@ -3,7 +3,10 @@
 #: where it will be converted automatically to
 #: the correct ISO format
 #::::::::::::::::::::::::::::::::::::::::::::::::::
-
+#:::::::::::::::::
+#: Marker Icon 
+#:::::::::::::::::
+MARKER_ICON=graphics/PURPLE.png
 #:::::::::::::::::
 #: Main Window 
 #:::::::::::::::::
