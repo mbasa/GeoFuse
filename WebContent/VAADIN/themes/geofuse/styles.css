@@ -61,6 +61,18 @@
 	display: inline-block;
 }
 
+.login .v-panel {
+	background: #f6f6f6;
+}
+
+.login .v-panel-nocaption {
+	margin: 0;
+	border: none;
+	background: none;
+	padding: 0;
+	height: 0;
+}
+
 .popups table, .popups th, .popups td {
 	border: 1px solid #aaa;
 	border-collapse: collapse;
@@ -68,21 +80,6 @@
 
 .popups th, .popups td {
 	padding: 2px;
-}
-
-.geofuse {
-	/* font-family: 'ヒラギノ角ゴ Pro W3','Hiragino Kaku Gothic Pro','メイリオ',Meiryo,'ＭＳ Ｐゴシック','lucida grande',tahoma,arial,sans-serif; */
-	font-family: sans-serif;
-}
-
-.geofuse {
-	@font-face {
-	font-family: FontAwesome;
-	src: url(../base/fonts/fontawesome-webfont.eot);
-	src: url(../base/fonts/fontawesome-webfont.eot?#iefix) format("embedded-opentype"), url(../base/fonts/fontawesome-webfont.woff) format("woff"), url(../base/fonts/fontawesome-webfont.ttf) format("truetype"), url(../base/fonts/fontawesome-webfont.svg) format("svg");
-	font-weight: normal;
-	font-style: normal;
-}
 }
 
 .geofuse .v-widget {
@@ -93,7 +90,7 @@
 	display: inline-block;
 	white-space: normal;
 	vertical-align: bottom;
-	font-size: 12px;
+	font-size: 11px;
 	line-height: normal;
 }
 
@@ -139,7 +136,7 @@
 
 .geofuse .v-accordion-item-caption .v-caption {
 	cursor: pointer;
-	font-size: 12px;
+	font-size: 11px;
 }
 
 .geofuse .v-accordion-item-open .v-accordion-item-caption .v-caption {
@@ -161,7 +158,7 @@
 }
 
 .geofuse .v-browserframe > span {
-	font-size: 12px;
+	font-size: 11px;
 }
 
 .geofuse .v-button {
@@ -177,7 +174,7 @@
 	padding: 0.2em 1em;
 	color: inherit;
 	font: inherit;
-	font-size: 12px;
+	font-size: 11px;
 	line-height: normal;
 	-webkit-touch-callout: none;
 	-webkit-user-select: none;
@@ -197,7 +194,7 @@
 .geofuse .v-button-wrap, .geofuse .v-button-caption {
 	vertical-align: baseline;
 	white-space: nowrap;
-	font: arial;
+	font: inherit;
 	color: inherit;
 	line-height: normal;
 }
@@ -333,7 +330,7 @@
 .geofuse .v-caption {
 	overflow: hidden;
 	white-space: nowrap;
-	font-size: 12px;
+	font-size: 11px;
 }
 
 .geofuse .v-errorindicator {
@@ -504,7 +501,7 @@
 
 .geofuse .v-colorpicker-popup .v-colorpicker-preview {
 	margin-top: 5px;
-	padding-left: 12px;
+	padding-left: 11px;
 	padding-right: 10px;
 	margin-bottom: 0px;
 }
@@ -576,7 +573,7 @@
 }
 
 .geofuse .v-calendar-header-day-today {
-	font-weight: normal;
+	font-weight: bold;
 	color: #444;
 }
 
@@ -675,7 +672,7 @@
 
 .geofuse .v-calendar-month .v-calendar-spacer, .geofuse .v-calendar-month .v-calendar-bottom-spacer, .geofuse .v-calendar-month .v-calendar-bottom-spacer-empty {
 	height: 15px;
-	font-size: 12px;
+	font-size: 11px;
 }
 
 .geofuse .v-calendar-month .v-calendar-bottom-spacer:hover {
@@ -686,7 +683,7 @@
 
 .geofuse .v-calendar-event {
 	line-height: 14px;
-	font-size: 12px;
+	font-size: 11px;
 	padding: 0 0 0 4px;
 	cursor: pointer;
 	overflow: hidden;
@@ -749,7 +746,7 @@
 	padding: 0 8px 7px 0;
 	margin-top: -7px;
 	text-align: right;
-	font-size: 12px;
+	font-size: 11px;
 	color: #666;
 	border-right: 1px solid #ccc;
 }
@@ -1104,7 +1101,7 @@ body .geofuse.v-app .v-app-loading {
 }
 
 .v-ff .geofuse .v-scrollable {
-	font-size: 12px;
+	font-size: 11px;
 }
 
 .v-ios.v-webkit .geofuse .v-scrollable {
@@ -1375,7 +1372,7 @@ body .geofuse.v-app .v-app-loading {
 
 .geofuse .v-datefield-prompt .v-datefield-textfield {
 	color: #999;
-	font-style: normal;
+	font-style: italic;
 }
 
 .geofuse .v-datefield .v-datefield-button-readonly {
@@ -1407,7 +1404,7 @@ body .geofuse.v-app .v-app-loading {
 .geofuse .v-datefield-calendarpanel-weeknumber {
 	color: #999;
 	border-right: 1px solid #ddd;
-	font-size: 12px;
+	font-size: 11.7px;
 }
 
 .geofuse .v-datefield-calendarpanel-day, .geofuse .v-datefield-calendarpanel-day-today {
@@ -1491,7 +1488,7 @@ body .geofuse.v-app .v-app-loading {
 
 .geofuse .v-inline-datefield-prompt .v-inline-datefield-textfield {
 	color: #999;
-	font-style: normal;
+	font-style: italic;
 }
 
 .geofuse .v-inline-datefield .v-inline-datefield-button-readonly {
@@ -1523,7 +1520,7 @@ body .geofuse.v-app .v-app-loading {
 .geofuse .v-inline-datefield-calendarpanel-weeknumber {
 	color: #999;
 	border-right: 1px solid #ddd;
-	font-size: 12px;
+	font-size: 11.7px;
 }
 
 .geofuse .v-inline-datefield-calendarpanel-day, .geofuse .v-inline-datefield-calendarpanel-day-today {
@@ -2444,7 +2441,7 @@ body .geofuse.v-app .v-app-loading {
 	right: 0;
 	width: 1em;
 	height: 1em;
-	font-size: 12px;
+	font-size: 11.7px;
 }
 
 .geofuse .v-menubar-menuitem-disabled, .geofuse .v-menubar span.v-menubar-menuitem-disabled:hover, .geofuse .v-menubar span.v-menubar-menuitem-disabled:focus, .geofuse .v-menubar span.v-menubar-menuitem-disabled:active {
@@ -2613,7 +2610,7 @@ body .geofuse.v-app .v-app-loading {
 .geofuse .v-panel-caption {
 	white-space: nowrap;
 	overflow: hidden;
-	font-weight: normal;
+	font-weight: bold;
 }
 
 .geofuse .v-panel-nocaption {
@@ -2754,7 +2751,7 @@ body .geofuse.v-app .v-app-loading {
 }
 
 .geofuse .v-select-twincol-selections {
-	font-weight: normal;
+	font-weight: bold;
 }
 
 .geofuse .v-select-twincol-caption-right {
@@ -2808,7 +2805,7 @@ body .geofuse.v-app .v-app-loading {
 
 .geofuse .v-filterselect-prompt .v-filterselect-input {
 	color: #999;
-	font-style: normal;
+	font-style: italic;
 }
 
 .geofuse .v-filterselect-button {
@@ -3033,9 +3030,9 @@ body .geofuse.v-app .v-app-loading {
 	padding: 2px 5px;
 	background: #444;
 	color: #fff;
-	font-size: 12px;
-	line-height: 12px;
-	font-weight: normal;
+	font-size: 11px;
+	line-height: 13px;
+	font-weight: bold;
 	font-family: Arial, Helvetica, sans-serif;
 	border-radius: 4px;
 	-webkit-border-radius: 4px;
@@ -3106,7 +3103,7 @@ body .geofuse.v-app .v-app-loading {
 }
 
 .geofuse .v-table-table {
-	font-size: 12px;
+	font-size: 11px;
 }
 
 .geofuse .v-table-header td {
@@ -3450,7 +3447,7 @@ body .geofuse.v-app .v-app-loading {
 	width: 16px;
 	height: 16px;
 	text-align: center;
-	font-weight: normal;
+	font-weight: bold;
 	cursor: pointer;
 	vertical-align: middle;
 	user-select: none;
@@ -3533,7 +3530,7 @@ body .geofuse.v-app .v-app-loading {
 
 .geofuse input.v-textfield-prompt, .geofuse textarea.v-textarea-prompt {
 	color: #999;
-	font-style: normal;
+	font-style: italic;
 }
 
 .geofuse input.v-textfield-readonly, .geofuse textarea.v-textarea-readonly {
@@ -3566,7 +3563,7 @@ body .geofuse.v-app .v-app-loading {
 
 .geofuse .v-richtextarea .gwt-HTML {
 	height: 100%;
-	font-size: 12px;
+	font-size: 11px;
 }
 
 .geofuse .v-richtextarea .gwt-RichTextToolbar {
@@ -3700,7 +3697,7 @@ body .geofuse.v-app .v-app-loading {
 }
 
 .geofuse .v-tree .v-tree-node-drag-top.v-tree-node-expanded {
-	background-position: -5px -12px;
+	background-position: -5px -11px;
 }
 
 .geofuse .v-tree .v-tree-node-caption-drag-center div {
@@ -3893,7 +3890,7 @@ body .geofuse.v-app .v-app-loading {
 }
 
 .geofuse .v-window-header {
-	font-weight: normal;
+	font-weight: bold;
 	-khtml-user-select: none;
 	-moz-user-select: none;
 	-ie-user-select: none;
@@ -4007,9 +4004,9 @@ body .geofuse.v-app .v-app-loading {
 	position: absolute;
 	overflow: hidden;
 	top: -10px;
-	left: 12px;
+	left: 13px;
 	height: 28px;
-	right: 12px;
+	right: 13px;
 	background: transparent url(../base/window/img/shadow/top.png);
 }
 
@@ -4037,9 +4034,9 @@ body .geofuse.v-app .v-app-loading {
 	position: absolute;
 	overflow: hidden;
 	top: 18px;
-	left: 12px;
+	left: 13px;
 	bottom: 10px;
-	right: 12px;
+	right: 13px;
 	background: transparent url(../base/window/img/shadow/center.png);
 }
 
@@ -4067,8 +4064,8 @@ body .geofuse.v-app .v-app-loading {
 	position: absolute;
 	overflow: hidden;
 	bottom: -18px;
-	left: 12px;
-	right: 12px;
+	left: 13px;
+	right: 13px;
 	height: 28px;
 	background: transparent url(../base/window/img/shadow/bottom.png);
 }
@@ -4093,7 +4090,7 @@ body .geofuse.v-app .v-app-loading {
 .geofuse .v-accordion-item-caption {
 	color: #222;
 	text-shadow: 1px 1px #FFFFFF;
-	font-weight: normal;
+	font-weight: bold;
 	background: #c0c2c5 url(/html/themes/classic/images/application/panel_header_bg.png) repeat-x scroll 0 0;
 	border-top: 1px solid #999;
 	border-bottom: none;
@@ -4138,13 +4135,13 @@ body .geofuse.v-app .v-app-loading {
 }
 
 .geofuse .v-nativebutton {
-	font-size: 12px;
+	font-size: 11px;
 }
 
 .geofuse .v-button .v-button-wrap, .geofuse .v-disabled.v-button .v-button-wrap {
 	display: block;
-	font-size: 12px;
-	font-weight: normal;
+	font-size: 11px;
+	font-weight: bold;
 	border: 1px solid #c8c9ca;
 	border-right-color: #9e9e9e;
 	border-bottom-color: #9e9e9e;
@@ -4174,7 +4171,7 @@ body .geofuse.v-app .v-app-loading {
 	border-style: none;
 	background: transparent;
 	padding: 0;
-	font-size: 12px;
+	font-size: 11px;
 	-webkit-box-shadow: none;
 	-mox-box-shadow: none;
 	-webkit-border-radius: 0;
@@ -4223,13 +4220,13 @@ body .geofuse.v-app {
 }
 
 .geofuse .v-caption {
-	font-weight: normal;
+	font-weight: bold;
 }
 
 .geofuse .v-tooltip {
 	background-color: #fffcdd;
 	border: 1px solid #b8b295;
-	font-size: 12px;
+	font-size: 11px;
 	color: #222;
 }
 
@@ -4253,8 +4250,8 @@ body .geofuse.v-app {
 }
 
 .geofuse .v-tooltip .v-errormessage h3 {
-	font-size: 12px;
-	font-weight: normal;
+	font-size: 13px;
+	font-weight: bold;
 	margin: 1px 0 4px 0;
 }
 
@@ -4276,7 +4273,7 @@ body .geofuse.v-app {
 	height: 16px;
 	color: #2c2f34;
 	text-shadow: -1px -1px #fff;
-	font-weight: normal;
+	font-weight: bold;
 	border-bottom: 1px solid #bcbbbb;
 	border-top: 1px solid #eee;
 }
@@ -4344,7 +4341,7 @@ body .geofuse.v-app {
 
 .geofuse .v-datefield-calendarpanel-month {
 	background: transparent url(../liferay/datefield/datefield_sprites.png) repeat-x 0 -112px;
-	font-weight: normal;
+	font-weight: bold;
 }
 
 .geofuse span.v-datefield-calendarpanel-month {
@@ -4423,7 +4420,7 @@ body .geofuse.v-app {
 }
 
 .geofuse .v-datefield-calendarpanel-day-today {
-	font-weight: normal;
+	font-weight: bold;
 }
 
 .geofuse .v-datefield-calendarpanel-day-selected {
@@ -4502,7 +4499,7 @@ body .geofuse.v-app {
 
 .geofuse .v-inline-datefield-calendarpanel-month {
 	background: transparent url(../liferay/datefield/datefield_sprites.png) repeat-x 0 -112px;
-	font-weight: normal;
+	font-weight: bold;
 }
 
 .geofuse span.v-inline-datefield-calendarpanel-month {
@@ -4581,7 +4578,7 @@ body .geofuse.v-app {
 }
 
 .geofuse .v-inline-datefield-calendarpanel-day-today {
-	font-weight: normal;
+	font-weight: bold;
 }
 
 .geofuse .v-inline-datefield-calendarpanel-day-selected {
@@ -4635,7 +4632,7 @@ body .geofuse.v-app {
 .geofuse .v-menubar-menuitem {
 	padding: 3px 8px;
 	line-height: 16px;
-	font-weight: normal;
+	font-weight: bold;
 	color: #2c2f34;
 	text-shadow: -1px -1px #FFF;
 }
@@ -4661,7 +4658,7 @@ body .geofuse.v-app {
 
 .geofuse .v-menubar-submenu .v-menubar-menuitem {
 	color: #2c2f34;
-	font-weight: normal;
+	font-weight: bold;
 	text-shadow: 1px 1px #fff;
 	padding: 1px 26px 1px 10px;
 	line-height: 16px;
@@ -4694,7 +4691,7 @@ body .geofuse.v-app {
 .geofuse .v-Notification {
 	background: #dff4ff;
 	color: #34404F;
-	font-weight: normal;
+	font-weight: bold;
 	cursor: pointer;
 	overflow: hidden;
 	padding: 1em;
@@ -4927,8 +4924,8 @@ body .geofuse.v-app {
 }
 
 .geofuse .v-select-twincol-buttons .v-button-wrap {
-	padding-left: 12px;
-	padding-right: 12px;
+	padding-left: 11px;
+	padding-right: 11px;
 }
 
 .geofuse .v-slider {
@@ -5055,8 +5052,8 @@ body .geofuse.v-app {
 
 .geofuse .v-table-caption-container {
 	color: #336699;
-	font-weight: normal;
-	font-size: 12px;
+	font-weight: bold;
+	font-size: 11px;
 	padding-left: 0px;
 	padding-top: 6px;
 }
@@ -5113,8 +5110,8 @@ body .geofuse.v-app {
 
 .geofuse .v-table-generated-row {
 	color: #336699;
-	font-weight: normal;
-	font-size: 12px;
+	font-weight: bold;
+	font-size: 11px;
 	padding-left: 0px;
 	padding-top: 6px;
 	background: #c0c2c5;
@@ -5163,8 +5160,8 @@ body .geofuse.v-app {
 
 .geofuse .v-tabsheet-tabitem .v-captiontext {
 	color: #336699;
-	font-size: 12px;
-	font-weight: normal;
+	font-size: 11px;
+	font-weight: bold;
 	text-decoration: underline;
 }
 
@@ -5279,7 +5276,7 @@ body .geofuse.v-app {
 	margin: 3px -1px 0;
 	overflow: hidden;
 	text-indent: -999px;
-	width: 12px;
+	width: 13px;
 	height: 9px;
 }
 
@@ -5437,15 +5434,6 @@ body .geofuse.v-app {
 	bottom: 0;
 }
 
-.geofuse .FontAwesome {
-	font-family: FontAwesome;
-	font-style: normal;
-	font-weight: normal;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-	display: inline-block;
-}
-
 .geofuse .v-verticallayout-margin {
 	padding-left: 2px;
 	padding-right: 2px;
@@ -5486,17 +5474,5 @@ body .geofuse.v-app {
 }
 
 .geofuse .v-panel-content {
-	background: #f6f6f6;
-}
-
-.login .v-panel {
-	background: #f6f6f6;
-}
-
-.login .v-panel-nocaption {
-	margin: 0;
-	border: none;
-	background: none;
-	padding: 0;
-	height: 0;
+	background: #F6F6F6;
 }
