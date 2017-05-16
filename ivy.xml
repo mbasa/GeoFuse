@@ -47,7 +47,8 @@
 		<dependency 
    			org="org.vaadin.addon" 
    			name="v-leaflet" 
-   			rev="latest.release" />
+   			rev="1.0.3" />
+   		<!--	rev="latest.release" /> -->
 		
 		<!--  Leaflet EasyPrint Add-On -->
 		<dependency 
