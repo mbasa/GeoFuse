@@ -39,7 +39,6 @@ import com.vaadin.ui.TextArea;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.Button.ClickEvent;
-
 import geotheme.csv.*;
 import geotheme.util.UrlUtil;
 
@@ -123,23 +122,10 @@ public class geofuseUI extends UI {
 				"<h3></p>");
 
 		Label descLab = new Label();
+		//descLab.setHeight("250px");
 		descLab.setContentMode(ContentMode.HTML);
 		descLab.setWidth("700px");
-		descLab.setValue("<p>"
-				+resourceBundle.getString("MAIN.SUB_DESC")
-				+"</p>"
-				+ "<p>"
-				+ "■ <u>"
-				+resourceBundle.getString("MAIN.EXPLAIN1")
-				+"</u>:&nbsp;"
-				+resourceBundle.getString("MAIN.EXPLAIN1_DESC")
-				+ "</p><p>"
-				+ "■ <u>"
-				+resourceBundle.getString("MAIN.EXPLAIN2")
-				+"</u>:&nbsp;"
-				+resourceBundle.getString("MAIN.EXPLAIN2_DESC")
-				+ "</p>"
-				);
+		descLab.setValue( resourceBundle.getString("MAIN.EXPLAIN") );
 
 		final TextArea csvBox = new TextArea(
                 resourceBundle.getString("MSG.CSVBOX_TITLE") );

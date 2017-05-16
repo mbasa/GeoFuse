@@ -26,7 +26,7 @@
 
     <inherits name="org.vaadin.addon.leaflet.Widgetset" />
 
-    <inherits name="org.vaadin.addon.leaflet.easyprint.Widgetset" />
+    
 
     <inherits name="org.vaadin.sliderpanel.WidgetSet" />
 </module>
