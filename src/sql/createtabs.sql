@@ -193,7 +193,7 @@ INSERT INTO geofuse.baselayer (rank,url,attribution,subdomain,name,display) VALU
 --
 -- Initial Data for Name: userinf; Type: TABLE DATA; Schema: geofuse;
 --
-INSERT INTO geofuse.userinf (username,password) VALUES ('admin','admin');
+INSERT INTO geofuse.userinf (username,password,role) VALUES ('admin','admin','admin');
 
 --
 -- Initial Data for Name: maplinker; Type: TABLE DATA; Schema: geofuse;
