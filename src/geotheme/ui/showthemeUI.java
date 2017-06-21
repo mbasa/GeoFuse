@@ -13,6 +13,8 @@ import geotheme.db.markerLayerQuery;
 import geotheme.db.metaDataCtl;
 import geotheme.db.overlayLayerQuery;
 import geotheme.sld.generateSLD;
+import geotheme.ui.windows.showthemeLegendWin;
+import geotheme.ui.windows.showthemePdfWin;
 import geotheme.util.UrlUtil;
 
 import java.text.SimpleDateFormat;

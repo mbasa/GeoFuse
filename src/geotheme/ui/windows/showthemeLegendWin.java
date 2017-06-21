@@ -1,7 +1,7 @@
 /**
  * 
  */
-package geotheme.ui;
+package geotheme.ui.windows;
 
 import geotheme.util.ColorUtil;
 

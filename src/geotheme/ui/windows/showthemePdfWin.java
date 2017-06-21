@@ -5,7 +5,7 @@
  * @author mbasa
  * @since Jun 30, 2015
  */
-package geotheme.ui;
+package geotheme.ui.windows;
 
 import geotheme.bean.themeBean;
 
