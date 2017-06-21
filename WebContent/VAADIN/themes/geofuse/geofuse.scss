@@ -1,44 +1,63 @@
+$v-app-loading-text: "GeoFuse";
+
+$v-font-size: 12px;
+$v-font-family: "Roboto", sans-serif;
+$v-font-weight: 400;
+$v-font-weight--header: 400;
+$v-background-color: #fff;
+$v-focus-color: rgb(150,190,90);
+$v-luminance-threshold: 180;
+$v-border: 2px solid v-shade;
+$v-border-radius: 6px;
+$v-bevel: false;
+$v-gradient: false;
+$v-shadow: false;
+$v-textfield-bevel: false;
+$v-textfield-shadow: false;
+$v-link-text-decoration: false;
+$v-selection-overlay-padding-horizontal: 0;
+$v-selection-overlay-padding-vertical: 6px;
+$v-selection-item-height: 30px;
+$v-selection-item-border-radius: 0;
+$valo-menu-background-color: #eee;
+
 /* Import the reindeer theme.*/
 /* This only allows us to use the mixins defined in it and does not add any styles by itself. */
 /*@import "../reindeer/reindeer.scss"; */ 
 /*@import "../runo/runo.scss";*/ 
-@import "../liferay/liferay.scss"; 
-/*@import "../valo/valo.scss"; */
+/*@import "../liferay/liferay.scss"; */
+@import "../valo/valo.scss"; 
 
 /* This contains all of your theme.*/
 /* If somebody wants to extend the theme she will include this mixin. */
 @mixin geofuse {
   /* Include all the styles from the reindeer theme */
+  
   /*@include reindeer;*/
   /*@include runo;*/
-  @include liferay;
-  /*@include valo; */
+  /*@include liferay;*/
+  
+  @include valo; 
 
   /* Insert your theme rules here */
-    
+  
   .v-verticallayout-margin {
-    padding-left:   2px;
-    padding-right:  2px;
-    padding-top:    2px;
-    padding-bottom: 2px;
-
+    padding-left:   7px;
+    padding-right:  7px;
+    padding-top:    7px;
+    padding-bottom: 7px;
   }
+  
+  .v-margin-left   {padding-left:   10px;}
+  .v-margin-right  {padding-right:  10px;}
+  .v-margin-top    {padding-top:    10px;}
+  .v-margin-bottom {padding-bottom: 10px;}
   
   .v-verticallayout-margin-left   {padding-left:   2px;}
   .v-verticallayout-margin-right  {padding-right:  2px;}
   .v-verticallayout-margin-top    {padding-top:    2px;}
   .v-verticallayout-margin-bottom {padding-bottom: 2px;}
-
-  .v-panel-caption, .v-window-header {
-	white-space: nowrap;
-	overflow: hidden;
-	font-weight: normal;
-	font-size: 12px;
-	color: #222222;
-	//background: #cccccc;
-	//height: 18px;
-  }
-  
+/*
   .v-table-row, .v-table-row-odd {
   	color: #000;
   }
@@ -50,9 +69,9 @@
   .v-panel-content {
        background: #F6F6F6;
    }
-
-/*  } */
+*/   
 }
+
 
 .login .v-panel {
 	background: #f6f6f6;
