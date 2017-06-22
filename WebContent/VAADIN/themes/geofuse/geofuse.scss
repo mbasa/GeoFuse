@@ -1,6 +1,6 @@
 $v-app-loading-text: "GeoFuse";
 
-$v-font-size: 12px;
+/*$v-font-size: 12px;*/
 $v-font-family: "Roboto", sans-serif;
 $v-font-weight: 400;
 $v-font-weight--header: 400;
@@ -23,9 +23,11 @@ $valo-menu-background-color: #eee;
 
 /* Import the reindeer theme.*/
 /* This only allows us to use the mixins defined in it and does not add any styles by itself. */
+
 /*@import "../reindeer/reindeer.scss"; */ 
 /*@import "../runo/runo.scss";*/ 
 /*@import "../liferay/liferay.scss"; */
+
 @import "../valo/valo.scss"; 
 
 /* This contains all of your theme.*/
@@ -41,22 +43,11 @@ $valo-menu-background-color: #eee;
 
   /* Insert your theme rules here */
   
-  .v-verticallayout-margin {
-    padding-left:   7px;
-    padding-right:  7px;
-    padding-top:    7px;
-    padding-bottom: 7px;
+  .v-label-h2 {
+    margin-top: 0.8em;
+    margin-bottom: 0em;
   }
   
-  .v-margin-left   {padding-left:   10px;}
-  .v-margin-right  {padding-right:  10px;}
-  .v-margin-top    {padding-top:    10px;}
-  .v-margin-bottom {padding-bottom: 10px;}
-  
-  .v-verticallayout-margin-left   {padding-left:   2px;}
-  .v-verticallayout-margin-right  {padding-right:  2px;}
-  .v-verticallayout-margin-top    {padding-top:    2px;}
-  .v-verticallayout-margin-bottom {padding-bottom: 2px;}
 }
 
 
