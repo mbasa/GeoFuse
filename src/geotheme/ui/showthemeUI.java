@@ -71,7 +71,7 @@ import com.vaadin.ui.Button.ClickEvent;
 
 
 @SuppressWarnings("serial")
-@Theme("geofuse")
+@Theme("showtheme")
 public class showthemeUI extends UI {
 
     private ResourceBundle showthemeProps;
@@ -161,9 +161,8 @@ public class showthemeUI extends UI {
         /**
          * Creating the Page Layout and Content
          */
-        this.setStyleName("showtheme");
 
-        MarginInfo marginInfo = new MarginInfo(1);
+        MarginInfo marginInfo = new MarginInfo(true);
         marginInfo.setMargins(true);
 
         final VerticalLayout mainLayout = new VerticalLayout();
@@ -206,7 +205,7 @@ public class showthemeUI extends UI {
          */
         Panel attPanel = 
                 new Panel(showthemeProps.getString("MW.PARAMETERS"),attArea);
-
+        
         final ComboBox cbCriteria = new ComboBox(showthemeProps.getString("PW.CRITERIA"));
         cbCriteria.setNullSelectionAllowed(false);
         cbCriteria.setTextInputAllowed(false);
@@ -307,7 +306,6 @@ public class showthemeUI extends UI {
                 final showthemeLegendWin legendWin = new showthemeLegendWin(
                         showthemeProps.getString("LEGEND_WIN.TITLE") );
 
-                legendWin.setStyleName("showtheme");
                 legendWin.init( 
                         gsld.getRangeColorsList(),
                         gsld.getRangeValuesList(),
