@@ -7,16 +7,29 @@
  */
 package geotheme.ui.views;
 
+import geotheme.ui.sub_views.geofuseEntryView;
+import geotheme.ui.sub_views.geofuseMapListView;
+
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.ResourceBundle;
+import java.util.Map.Entry;
 
 import com.vaadin.navigator.Navigator;
+import com.vaadin.server.FontAwesome;
 import com.vaadin.server.Responsive;
+import com.vaadin.ui.Alignment;
+import com.vaadin.ui.Button;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.ComponentContainer;
 import com.vaadin.ui.CssLayout;
 import com.vaadin.ui.HorizontalLayout;
+import com.vaadin.ui.Label;
 import com.vaadin.ui.UI;
+import com.vaadin.ui.Button.ClickEvent;
+import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.themes.ValoTheme;
 
 /**
@@ -29,7 +42,7 @@ public class geofuseMainView extends HorizontalLayout {
 
     private Navigator navigator = null;
     private ResourceBundle rb   = ResourceBundle.getBundle( 
-            "properties/lang/MainView",
+            "properties/geofuseUI",
             UI.getCurrent().getSession().getLocale()
           );
 
@@ -69,6 +82,11 @@ public class geofuseMainView extends HorizontalLayout {
         ComponentContainer viewDisplay = contentLayout;
         navigator = new Navigator(UI.getCurrent(),viewDisplay);
 
+        navigator.addView(geofuseEntryView.NAME, geofuseEntryView.class);
+        navigator.addView(geofuseMapListView.NAME, geofuseMapListView.class);
+        
+        navigator.navigateTo(geofuseEntryView.NAME);
+        navigator.setErrorView(geofuseEntryView.class);
     }
 
     private CssLayout buildMenu( final ResourceBundle rb ) {
@@ -79,6 +97,88 @@ public class geofuseMainView extends HorizontalLayout {
         
         final LinkedHashMap<String, String> menuItems = new LinkedHashMap<String, String>();
         
+        Button showMenu = new Button("Menu", new ClickListener() {
+
+            private static final long serialVersionUID = 1L;
+
+            @Override
+            public void buttonClick(ClickEvent event) {
+                if (menu.getStyleName().contains("valo-menu-visible")) {
+                    menu.removeStyleName("valo-menu-visible");
+                } else {
+                    menu.addStyleName("valo-menu-visible");
+                }
+            }
+        });
+        showMenu.addStyleName(ValoTheme.BUTTON_PRIMARY);
+        showMenu.addStyleName(ValoTheme.BUTTON_SMALL);
+        showMenu.addStyleName("valo-menu-toggle");
+        showMenu.setIcon(FontAwesome.LIST);
+        menu.addComponent(showMenu);
+
+        // Add items
+        menuItems.put( geofuseEntryView.NAME  , "GeoFuse Input" );
+        menuItems.put( geofuseMapListView.NAME, "Map View" );
+        menuItems.put( "Three", "Link Data" );
+        menuItems.put( "Four", "Help" );
+
+        final Button buttons[] = new Button[menuItems.size()];
+        
+        final HorizontalLayout top = new HorizontalLayout();
+        top.setWidth("100%");
+        top.setDefaultComponentAlignment(Alignment.MIDDLE_LEFT);
+        top.addStyleName(ValoTheme.MENU_TITLE);
+        menu.addComponent(top);
+        
+        final Label title = new Label("GeoFuse");
+        title.addStyleName(ValoTheme.LABEL_H2);
+        title.addStyleName(ValoTheme.LABEL_BOLD);
+        title.setSizeUndefined();
+        
+        top.addComponent(title);
+        top.setExpandRatio(title, 1);
+
+        menuItemsLayout.setPrimaryStyleName("valo-menuitems");
+        menu.addComponent(menuItemsLayout);
+
+        int count = 0;
+        int icon  = 87;
+
+        List<FontAwesome> ICONS = Collections.unmodifiableList(Arrays
+                .asList(FontAwesome.values()));
+              
+        for (final Entry<String, String> item : menuItems.entrySet()) {
+            
+            buttons[count] = new Button(item.getValue(), new ClickListener() {
+                
+                private static final long serialVersionUID = 1L;
+
+                @Override
+                public void buttonClick(final ClickEvent event) {
+
+                    navigator.navigateTo(item.getKey());
+                    
+                    for(int i=0; i<buttons.length;i++) {
+                        buttons[i].removeStyleName("selected");
+                        event.getButton().addStyleName("selected");
+                    }
+                    menu.removeStyleName("valo-menu-visible");
+                }                
+            });
+            
+            int selected = 0;
+
+            if( count == selected ) {
+                buttons[count].addStyleName("selected");
+            }
+
+            buttons[count].setHtmlContentAllowed(true);
+            buttons[count].setPrimaryStyleName("valo-menu-item");
+            buttons[count].setIcon( ICONS.get(icon++) );
+            menuItemsLayout.addComponent(buttons[count]);
+            count++;
+        }
+
         return menu;
     }
 
