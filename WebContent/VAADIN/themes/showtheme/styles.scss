@@ -1,9 +1,9 @@
 @import "addons.scss";
-@import "geofuse.scss";
+@import "showtheme.scss";
 
 /* This file prefixes all rules with the theme name to avoid causing conflicts with other themes. */
-/* The actual styles should be defined in geofuse.scss */
-.geofuse {
+/* The actual styles should be defined in showtheme.scss */
+.showtheme {
   @include addons;
-  @include geofuse;  
+  @include showtheme;
 }
