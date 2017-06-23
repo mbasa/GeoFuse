@@ -20,6 +20,7 @@ MSG.PASSWORD_PROTECT=このレイヤはパスワードで保護されていま�
 BTN.DISPLAY_MAP=地図の表示
 BTN.SUBMIT=送信
 BTN.RESET=リセット
+BTN.EXPORT=Excelファイル作成
 #:::::::::::::::::::::::
 #: Error Message
 #:::::::::::::::::::::::
@@ -27,6 +28,7 @@ ERR.NOT_ENOUGH_DATA=エラー: データが充分でありません
 #::::::::::::::::::::::::
 #: Slider Messages
 #::::::::::::::::::::::::
+SLDR.LINKER=リンクデータダウンロード
 SLDR.PREVIOUS_CAPTION=以前に入力された地図
 SLDR.HELP_CAPTION=ヘルプ
 SLDR.HELP_MESSAGE=ここにヘルプの詳細が記載される予定です。
@@ -40,3 +42,4 @@ GRID.COL_COLNAMES=列名
 GRID.COL_LINKCOLUMN=リンク列
 GRID.COL_LAYERTYPE=レイヤ種別
 GRID.COL_LAYERNAME=レイヤ名
+GRID.COL_TABLENAME=テーブル名
