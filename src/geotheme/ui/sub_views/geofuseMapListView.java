@@ -9,6 +9,10 @@ package geotheme.ui.sub_views;
 
 import java.util.ResourceBundle;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import com.vaadin.data.Item;
 import com.vaadin.data.util.sqlcontainer.SQLContainer;
 import com.vaadin.data.util.sqlcontainer.query.TableQuery;
 import com.vaadin.data.util.sqlcontainer.query.generator.DefaultSQLGenerator;
@@ -42,6 +46,7 @@ public class geofuseMapListView extends VerticalLayout implements View {
     private static final long serialVersionUID = 1L;
     public static final String NAME = "geofuseMapListView";
     
+    private Logger LOGGER     = LogManager.getLogger();
     private ResourceBundle rb = ResourceBundle.getBundle( 
             "properties/geofuseUI",
             UI.getCurrent().getSession().getLocale()
@@ -104,7 +109,7 @@ public class geofuseMapListView extends VerticalLayout implements View {
             baseTable.setContainerDataSource(sqlContainer);
         }
         catch( Exception e ) {
-            //LOGGER.error( e );
+            LOGGER.error( e );
         }
         final BrowserWindowOpener bOpener = new BrowserWindowOpener("");
         bOpener.setWindowName("_geotab");
@@ -124,20 +129,27 @@ public class geofuseMapListView extends VerticalLayout implements View {
         baseTable.setColumnHeader("linkcolumn", rb.getString("GRID.COL_LINKCOLUMN"));
         baseTable.setColumnHeader("colnames",   rb.getString("GRID.COL_COLNAMES"));
         
+        if( baseTable.getItemIds() != null && !baseTable.getItemIds().isEmpty() ) {
+            baseTable.select( baseTable.getItemIds().iterator().next()  );
+            
+            Item row = baseTable.getItem(baseTable.getValue());
+            
+            bOpener.setUrl( geofuseURL +
+                    row.getItemProperty("tabid").getValue() );
+        }
+        
         baseTable.addItemClickListener( new ItemClickListener() {
             
             private static final long serialVersionUID = 1L;
 
             @Override
-            public void itemClick(ItemClickEvent event) {
-                vueBtn.setEnabled(true);
-                
+            public void itemClick(ItemClickEvent event) {                
                 bOpener.setUrl( geofuseURL + 
                         event.getItem().getItemProperty("tabid").getValue() ); 
             }
         });
         
-        vueBtn.setEnabled(false);
+        vueBtn.setEnabled(true);
 
         HorizontalLayout btnLayout = new HorizontalLayout();
         btnLayout.setSpacing(true);
