@@ -12842,3 +12842,7 @@ div.v-layout.v-horizontal.v-widget {
 	margin-top: 0.8em;
 	margin-bottom: 0em;
 }
+
+.geofuse .v-captiontext {
+	font-size: 12px;
+}
