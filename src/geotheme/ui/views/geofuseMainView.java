@@ -8,6 +8,7 @@
 package geotheme.ui.views;
 
 import geotheme.ui.sub_views.geofuseEntryView;
+import geotheme.ui.sub_views.geofuseHelpView;
 import geotheme.ui.sub_views.geofuseLinkerView;
 import geotheme.ui.sub_views.geofuseMapListView;
 
@@ -86,6 +87,7 @@ public class geofuseMainView extends HorizontalLayout {
         navigator.addView(geofuseEntryView.NAME, geofuseEntryView.class);
         navigator.addView(geofuseMapListView.NAME, geofuseMapListView.class);
         navigator.addView(geofuseLinkerView.NAME, geofuseLinkerView.class);
+        navigator.addView(geofuseHelpView.NAME, geofuseHelpView.class);
         
         navigator.navigateTo(geofuseEntryView.NAME);
         navigator.setErrorView(geofuseEntryView.class);
@@ -119,10 +121,10 @@ public class geofuseMainView extends HorizontalLayout {
         menu.addComponent(showMenu);
 
         // Add items
-        menuItems.put( geofuseEntryView.NAME  , "GeoFuse Input" );
-        menuItems.put( geofuseMapListView.NAME, "Map View" );
-        menuItems.put( geofuseLinkerView.NAME , "Link Data" );
-        menuItems.put( "Four", "Help" );
+        menuItems.put( geofuseEntryView.NAME   , "GeoFuse Input" );
+        menuItems.put( geofuseMapListView.NAME , "Map View" );
+        menuItems.put( geofuseLinkerView.NAME  , "Link Data" );
+        menuItems.put( geofuseHelpView.NAME    , "Help" );
 
         final Button buttons[] = new Button[menuItems.size()];
         
