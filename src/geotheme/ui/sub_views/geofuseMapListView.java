@@ -22,6 +22,8 @@ import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.server.BrowserWindowOpener;
 import com.vaadin.server.ThemeResource;
+import com.vaadin.server.VaadinService;
+import com.vaadin.server.VaadinServletRequest;
 import com.vaadin.shared.ui.MarginInfo;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
@@ -36,6 +38,7 @@ import com.vaadin.ui.Table.RowHeaderMode;
 import com.vaadin.ui.themes.ValoTheme;
 
 import geotheme.db.connectionPoolHolder;
+import geotheme.util.UrlUtil;
 
 /**
  * 説明：
@@ -92,7 +95,10 @@ public class geofuseMapListView extends VerticalLayout implements View {
         this.setupTable();
     }
 
-    private final String geofuseURL = "/geofuse/ui/showtheme?layer=";    
+    private final String geofuseURL = UrlUtil.getUrl(
+            (VaadinServletRequest)VaadinService.getCurrentRequest())  +
+            "/ui/showtheme?layer=";    
+    
     private final Button vueBtn = new Button( rb.getString("BTN.DISPLAY_MAP") );
     
     private void setupTable() {
