@@ -75,9 +75,10 @@ public class geofuseEntryView extends VerticalLayout implements View {
 
         Label descLab = new Label();
         descLab.setContentMode(ContentMode.HTML);
-        descLab.setWidth("700px");
+        descLab.setWidth("90%");
         descLab.setValue( rb.getString("MAIN.EXPLAIN") );
         descLab.addStyleName(ValoTheme.LABEL_TINY);
+        descLab.addStyleName(ValoTheme.LABEL_NO_MARGIN);
         
         Label dataEntry = new Label("Data Entry");
         dataEntry.addStyleName(ValoTheme.LABEL_LARGE);
@@ -90,18 +91,18 @@ public class geofuseEntryView extends VerticalLayout implements View {
         dataView.setSizeUndefined();
         
         final TextArea csvBox = new TextArea( rb.getString("MSG.CSVBOX_TITLE") );
-        csvBox.setWidth("700px");
+        csvBox.setWidth("90%");
         csvBox.setRequired(true);
         csvBox.addStyleName(ValoTheme.TEXTAREA_TINY);
 
         final TextArea layerNameBox = new TextArea( rb.getString("MSG.LAYERNAME_TITLE") );
-        layerNameBox.setWidth("350px");
-        layerNameBox.setHeight("25px");
+        layerNameBox.setWidth("50%");
+        layerNameBox.setHeight("30px");
         layerNameBox.setRequired(true);
         layerNameBox.addStyleName(ValoTheme.TEXTAREA_TINY);
 
         final TextArea urlBox = new TextArea();
-        urlBox.setWidth("700px");
+        urlBox.setWidth("90%");
         urlBox.setHeight("35px");
         urlBox.addStyleName(ValoTheme.TEXTAREA_TINY);
         
