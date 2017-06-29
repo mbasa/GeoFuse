@@ -12838,6 +12838,15 @@ div.v-layout.v-horizontal.v-widget {
 	overflow: hidden;
 }
 
+.geofuse .v-table-header {
+	background-color: #f7f7eb;
+}
+
+.geofuse .v-customlayout h1, .geofuse .v-customlayout h2 {
+	color: #96be5a;
+	margin-top: 0.5em;
+}
+
 .geofuse .v-label-h2 {
 	margin-top: 0.8em;
 	margin-bottom: 0em;
