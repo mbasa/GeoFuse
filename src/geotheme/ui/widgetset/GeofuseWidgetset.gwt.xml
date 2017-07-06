@@ -28,5 +28,5 @@
 
     
 
-    <inherits name="org.vaadin.sliderpanel.WidgetSet" />
+    
 </module>
