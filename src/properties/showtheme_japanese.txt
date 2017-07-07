@@ -53,6 +53,7 @@ SHR.CLOSE_BTN=閉じる
 TY.EQ_RANGE=等間隔
 TY.EQ_COUNT=等量
 TY.NATURAL=自然分類
+TY.GEOMETRIC=等比間隔
 TY.STANDARD=標準偏差
 TY.HEATMAP=Heat Map
 #:::::::::::::::::::::::::

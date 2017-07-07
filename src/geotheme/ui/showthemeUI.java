@@ -29,6 +29,8 @@ import java.util.ResourceBundle;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpSession;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.vaadin.addon.leaflet.*;
 import org.vaadin.addon.leaflet.control.LScale;
 import org.vaadin.addon.leaflet.shared.Bounds;
@@ -74,6 +76,8 @@ import com.vaadin.ui.Button.ClickEvent;
 @Theme("showtheme")
 public class showthemeUI extends UI {
 
+    private final Logger LOGGER = LogManager.getLogger();
+    
     private ResourceBundle showthemeProps;
 
     private String geoserverURL  = new String();
@@ -124,7 +128,9 @@ public class showthemeUI extends UI {
             Notification.show("Layer Parameter Required", Type.ERROR_MESSAGE);
             return;
         }
-
+        
+        LOGGER.debug("processing {}",request.getParameter("layer") );
+        
         final VaadinServletRequest req = 
                 (VaadinServletRequest)VaadinService.getCurrentRequest();
         final HttpSession session = req.getSession(true);
@@ -230,6 +236,8 @@ public class showthemeUI extends UI {
         cbType.setItemCaption("EQCount", showthemeProps.getString("TY.EQ_COUNT"));
         cbType.addItem("Natural");
         cbType.setItemCaption("Natural", showthemeProps.getString("TY.NATURAL"));
+        cbType.addItem("Geometric");
+        cbType.setItemCaption("Geometric", showthemeProps.getString("TY.GEOMETRIC"));
         cbType.addItem("Standard");
         cbType.setItemCaption("Standard", showthemeProps.getString("TY.STANDARD"));
 

@@ -21,13 +21,19 @@ package geotheme.wfsUtil;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 public class wfsRangeList {
     
+        
     public static ArrayList<Double> createRangeList(String wfsHost, 
             String typeName,    String propertyName, 
             String cqlQuery,    String viewParams,
             String typeOfRange, int numRanges) {
 
+        Logger LOGGER = LogManager.getLogger();
+        
         ArrayList<Double> rangeList = new ArrayList<Double>();
 
         try {
@@ -57,6 +63,7 @@ public class wfsRangeList {
                     d += diff;
                 }
                 rangeList.add(max);
+                
             } else if (typeOfRange.compareToIgnoreCase("EQCount") == 0) {
                 int count = (int) Math.ceil((float) arrList.size()
                         / (float) numRanges);
@@ -67,6 +74,31 @@ public class wfsRangeList {
                     rangeList.add(arrList.get(k));
                 }
                 rangeList.add(arrList.get(arrList.size() - 1));
+                
+            } else if(typeOfRange.compareToIgnoreCase("Geometric") == 0) {
+                double min = Math.abs( arrList.get(0).doubleValue() );                
+                double max = Math.abs( arrList.get(arrList.size() - 1).doubleValue() );
+                
+                if( min == 0 ) {
+                    if( arrList.get(arrList.size() - 1).doubleValue() <= 1d )
+                        min = 0.000001d;
+                    else 
+                        min = 1d;
+                }
+                
+                double X = Math.pow( (max/min), (1.0d/(double)numRanges) );
+
+                LOGGER.debug("min = {}, max = {}, X = {}, numRanges = {}",
+                        min,max,X,numRanges);
+                
+                rangeList.add( arrList.get(0).doubleValue() );
+                
+                for(int j=1;j<numRanges;j++) {
+                   rangeList.add( min * Math.pow(X, (double)j)); 
+                }
+                
+                rangeList.add( max );
+                
             } else if (typeOfRange.compareToIgnoreCase("Natural") == 0) {
             	int ii[] = getJenksBreaks(arrList,numRanges);
             	
