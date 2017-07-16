@@ -107,9 +107,10 @@ public class geofuseLinkerView extends VerticalLayout implements View {
         this.setupTable();
     }
 
+    private final Table baseTable = new Table();
+    
     private void setupTable() {
-        
-        final Table baseTable = new Table();
+                
         final TableQuery tq   = new TableQuery(null,"geofuse","maplinker",
                 connectionPoolHolder.getConnectionPool(), 
                 new DefaultSQLGenerator() );
@@ -152,14 +153,14 @@ public class geofuseLinkerView extends VerticalLayout implements View {
         btnLayout.setSizeUndefined();
         
         this.addComponents(baseTable,btnLayout);
-        FileDownloader filed = new FileDownloader( getExcelResource( baseTable ) );
+        FileDownloader filed = new FileDownloader( getExcelResource( ) );
         filed.extend( exportBtn );
         
         this.setExpandRatio(baseTable, 2.0f);
         this.setExpandRatio(btnLayout, 1.0f);
     }
         
-    private StreamResource getExcelResource( final Table baseTable ) {
+    private StreamResource getExcelResource( ) {
         LOGGER.debug("In getExcelResource");
         
         final int limit = 20000;
@@ -183,6 +184,8 @@ public class geofuseLinkerView extends VerticalLayout implements View {
                     String sql = "select "+ colname +" as colname from "+ mapname +
                             " where "+ colname +" is not null group by "+ colname +
                             " order by "+ colname +" limit "+ limit;
+                    
+                    LOGGER.debug("Excel SQL: {}",sql);
                     
                     List<linkColBean> res = DBTools.getRecords(sql, linkColBean.class);
 
