@@ -32,6 +32,8 @@ import com.vaadin.data.util.filter.Not;
 import com.vaadin.data.util.sqlcontainer.SQLContainer;
 import com.vaadin.data.util.sqlcontainer.query.TableQuery;
 import com.vaadin.data.util.sqlcontainer.query.generator.DefaultSQLGenerator;
+import com.vaadin.event.ItemClickEvent;
+import com.vaadin.event.ItemClickEvent.ItemClickListener;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.server.FileDownloader;
@@ -106,11 +108,9 @@ public class geofuseLinkerView extends VerticalLayout implements View {
         
         this.setupTable();
     }
-
-    private final Table baseTable = new Table();
     
     private void setupTable() {
-                
+        final Table baseTable = new Table();        
         final TableQuery tq   = new TableQuery(null,"geofuse","maplinker",
                 connectionPoolHolder.getConnectionPool(), 
                 new DefaultSQLGenerator() );
@@ -153,14 +153,25 @@ public class geofuseLinkerView extends VerticalLayout implements View {
         btnLayout.setSizeUndefined();
         
         this.addComponents(baseTable,btnLayout);
-        FileDownloader filed = new FileDownloader( getExcelResource( ) );
+        final FileDownloader filed = new FileDownloader( getExcelResource(baseTable) );
         filed.extend( exportBtn );
         
+        baseTable.addItemClickListener(new ItemClickListener() {
+
+            private static final long serialVersionUID = 1L;
+
+            @Override
+            public void itemClick(ItemClickEvent event) {
+                LOGGER.debug( event.getItemId() );
+                filed.setFileDownloadResource( getExcelResource(baseTable) );
+            }
+            
+        });
         this.setExpandRatio(baseTable, 2.0f);
         this.setExpandRatio(btnLayout, 1.0f);
     }
         
-    private StreamResource getExcelResource( ) {
+    private StreamResource getExcelResource( final Table baseTable ) {
         LOGGER.debug("In getExcelResource");
         
         final int limit = 20000;
