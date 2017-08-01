@@ -1,4 +1,9 @@
 #:::::::::::::::::::::::
+#: Max Excel Records for Download
+#:::::::::::::::::::::::
+MAX_EXCEL_RECORDS=250000
+MAX_EXCEL_RECORDS_MSG=*** Record Limit has been reached. Some data may not be included ***
+#:::::::::::::::::::::::
 #: Main Titles
 #:::::::::::::::::::::::
 MAIN.TITLE=GeoFuse

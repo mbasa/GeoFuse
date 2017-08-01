@@ -224,13 +224,14 @@ public class geofuseLinkerView extends VerticalLayout implements View {
                         row  = sheet.createRow(rowNum++);
                         cell = row.createCell(0);
                         cell.setCellValue( datatype.getColname() );
-                    }
-
-                    if( rowNum > limit ) {
-                        row  = sheet.createRow(rowNum++);
-                        cell = row.createCell(0);
-                        cell.setCellValue( "*** Record Limit has been reached."
-                                + "Some data may not be included ***" );                    
+                        
+                        if( rowNum > limit ) {
+                            row  = sheet.createRow(rowNum++);
+                            cell = row.createCell(0);
+                            cell.setCellValue( 
+                                    rb.getString( "MAX_EXCEL_RECORDS_MSG" ) );
+                            break;
+                        }
                     }
                     
                     ByteArrayOutputStream arrayOutputStream = 
