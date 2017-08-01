@@ -13,6 +13,7 @@ import geotheme.db.connectionPoolHolder;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -23,8 +24,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.apache.poi.xssf.streaming.SXSSFSheet;
+import org.apache.poi.xssf.streaming.SXSSFWorkbook;
 
 import com.vaadin.data.Item;
 import com.vaadin.data.util.filter.Compare;
@@ -174,7 +175,7 @@ public class geofuseLinkerView extends VerticalLayout implements View {
     private StreamResource getExcelResource( final Table baseTable ) {
         LOGGER.debug("In getExcelResource");
         
-        final int limit = 20000;
+        final int limit = Integer.parseInt( rb.getString("MAX_EXCEL_RECORDS") );
         
         if( baseTable.getValue() == null ) {
             return null;
@@ -187,6 +188,9 @@ public class geofuseLinkerView extends VerticalLayout implements View {
             @Override
             public InputStream getStream() {
                 LOGGER.debug("Creating excel file");
+                
+                SXSSFWorkbook workbook = null;
+                
                 try {
                     Item item = baseTable.getItem( baseTable.getValue() );
                     
@@ -205,8 +209,11 @@ public class geofuseLinkerView extends VerticalLayout implements View {
                         return null;
                     }
 
-                    XSSFWorkbook workbook = new XSSFWorkbook();
-                    XSSFSheet sheet = workbook.createSheet("MapLink");
+                    //XSSFWorkbook workbook = new XSSFWorkbook();
+                    //XSSFSheet sheet = workbook.createSheet("MapLink");
+                    
+                    workbook = new SXSSFWorkbook();
+                    SXSSFSheet sheet = workbook.createSheet("MapLink");
                     
                     int rowNum = 0;
                     Row row = sheet.createRow(rowNum++);
@@ -231,12 +238,23 @@ public class geofuseLinkerView extends VerticalLayout implements View {
 
                     workbook.write( arrayOutputStream );
                     workbook.close();
+                    workbook.dispose();
 
                     return new ByteArrayInputStream(
                             arrayOutputStream.toByteArray());
                 }
                 catch(Exception e) {
                     LOGGER.error( e,e );
+                }
+                finally {
+                    if( workbook != null ) {
+                        try {
+                            workbook.close();
+                            workbook.dispose();
+                        } catch (IOException e) {
+                            LOGGER.error( e );
+                        }                        
+                    }
                 }
                 return null;
             }
