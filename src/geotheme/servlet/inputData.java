@@ -19,8 +19,6 @@
 package geotheme.servlet;
 
 import java.io.*;
-import java.net.*;
-import java.util.*;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -28,21 +26,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import geotheme.util.UrlUtil;
-import geotheme.csv.parseCSV;
-import geotheme.db.*;
+import geotheme.csv.processCSV;
 
 /**
  * Servlet implementation class inputData
  */
 public class inputData extends HttpServlet {
-	private static final long serialVersionUID = 1L;
 	
-	//private Map<String,String[]> dynamicMap = new HashMap<String,String[]>();
+    private static final long serialVersionUID = 1L;
 	
-	private String db_metadata  = new String();
-	private String db_dynlinker = new String();
-	private String db_csvdata_schema = new String();
 	
     /**
      * @see HttpServlet#HttpServlet()
@@ -55,7 +51,6 @@ public class inputData extends HttpServlet {
 	 * @see Servlet#init(ServletConfig)
 	 */
 	public void init(ServletConfig config) throws ServletException {
-		// TODO Auto-generated method stub
 	}
 
 	/**
@@ -66,98 +61,41 @@ public class inputData extends HttpServlet {
 			HttpServletResponse response) 
 	throws ServletException, IOException {
 		
+	    //request.setCharacterEncoding("UTF-8")
+	    
+	    Logger LOGGER      = LogManager.getLogger();	    
 		String inputString = request.getParameter("data");
-		String mapType     = request.getParameter("type");
+		String layerName   = request.getParameter("layername");
+		
+		LOGGER.debug( "Input LayerName = {}",layerName );
+		
+		if( inputString != null ) {
+		    byte[] bytes = inputString.getBytes("ISO-8859-1");
+		    inputString  = new String(bytes, "UTF-8");
+		}
+		
+		processCSV pcsv = new processCSV();
+		String result   = pcsv.process(inputString, layerName);
 		
 		response.setContentType("text/text");
-		PrintWriter out  = response.getWriter();
+		PrintWriter out = response.getWriter();
 
-		boolean isLatLon = false;
-	      
-		if( inputString == null || inputString.length() < 10  ) {
-			out.write("Error: not enough input data");
-			out.close();
-			return;
-		}
-		
-		inputString = (URLDecoder.decode(inputString,"UTF-8"));
-
-		String pStr[][] = parseCSV.parse(inputString);
-		
-		if(pStr == null ) {
-			out.write("Error: problem with input data");
-			out.close();
-			return;
-		}
-		
-		mapLinkerCtl dlc = new mapLinkerCtl( this.db_dynlinker );
-		Map<String,String[]> dynamicMap = dlc.getMapLinkData();
-		
-		if( !dynamicMap.containsKey(pStr[0][0]) ) {
-			int pStrLen = pStr[0].length;
-			
-			if( pStr[0][pStrLen-1].isEmpty() )
-				pStrLen--;
-			
-			String cLon = pStr[0][pStrLen-2];
-			String cLat = pStr[0][pStrLen-1];
-			
-			if(cLon.equalsIgnoreCase("lon") && 
-               cLat.equalsIgnoreCase("lat") ) {
-				
-				isLatLon = true;
-				
-			}
-			else {
-				out.write("Error: 1st column does not match any Mapped column");
-				out.close();
-				return;			
-			}
-		}
-				
-		metaDataCtl mdc = new metaDataCtl( this.db_metadata );
-		
-		Random rand = new Random();
-		
-		String sessionID = request.getSession(true).getId();
-		String tableName = this.db_csvdata_schema + 
-		        ".mb_"+sessionID+"_"+rand.nextInt(10000);
-		
-		if( !mdc.setMetaInfo(pStr[0], dynamicMap, this.db_metadata, 
-		        tableName,isLatLon,"") ) {
-			out.write("Error: Catalog entry");
-			out.close();
-			return;
-		}
-		
-		if( isLatLon ) {
-		    String rs = mdc.processDataLatLon(pStr, tableName); 
-			if( rs != null ) {
-				out.write("Error Data entry: "+rs);
-				out.close();
-				return;
-			}
+		if( result.startsWith("Error") ) {
+		    out.write( result );
+		    out.close();
 		}
 		else {
-		    String rs = mdc.processData(pStr, tableName);
-			if( rs != null ) {
-				out.write("Error Data entry: "+rs);
-				out.close();
-				return;
-			}
+		    StringBuffer sb = new StringBuffer();
+
+            sb.append( UrlUtil.getUrl( request ) );
+            sb.append("/ui/showtheme?layer=");
+            sb.append(result);
+            
+            out.write( sb.toString() );
+            out.close();
 		}
 		
-		StringBuffer sb = new StringBuffer();
-		sb.append(UrlUtil.getUrl(request));
-		
-		if( mapType != null && mapType.compareToIgnoreCase("zd")==0 )
-			sb.append("/zshowtheme?layer=");
-		else
-			sb.append("/showtheme?layer=");
-		sb.append(tableName);
-		
-		out.write(sb.toString());
-		out.close();
+		return;
 	}
 
 }
