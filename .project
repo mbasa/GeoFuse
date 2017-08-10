@@ -31,8 +31,13 @@
 			</arguments>
 		</buildCommand>
 		<buildCommand>
-			<name>com.vaadin.integration.eclipse.addonStylesBuilder</name>
+			<name>org.eclipse.ui.externaltools.ExternalToolBuilder</name>
+			<triggers>full,incremental,</triggers>
 			<arguments>
+				<dictionary>
+					<key>LaunchConfigHandle</key>
+					<value>&lt;project&gt;/.externalToolBuilders/com.vaadin.integration.eclipse.addonStylesBuilder.launch</value>
+				</dictionary>
 			</arguments>
 		</buildCommand>
 	</buildSpec>
