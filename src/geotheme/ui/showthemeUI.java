@@ -6,6 +6,7 @@ package geotheme.ui;
 import geotheme.bean.baseLayerBean;
 import geotheme.bean.metaDataBean;
 import geotheme.bean.overlayLayerBean;
+import geotheme.bean.showthemeReqBean;
 import geotheme.bean.themeBean;
 import geotheme.db.baseLayerQuery;
 import geotheme.db.featureQuery;
@@ -15,8 +16,10 @@ import geotheme.db.overlayLayerQuery;
 import geotheme.sld.generateSLD;
 import geotheme.ui.windows.showthemeLegendWin;
 import geotheme.ui.windows.showthemePdfWin;
+import geotheme.ui.windows.showthemeShareWin;
 import geotheme.util.UrlUtil;
 
+import java.lang.reflect.InvocationTargetException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -29,6 +32,7 @@ import java.util.ResourceBundle;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.beanutils.BeanUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.vaadin.addon.leaflet.*;
@@ -58,6 +62,7 @@ import com.vaadin.ui.DateField;
 import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Image;
+import com.vaadin.ui.Label;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.Notification.Type;
 import com.vaadin.ui.Panel;
@@ -65,6 +70,7 @@ import com.vaadin.ui.Table;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.Button.ClickEvent;
+import com.vaadin.ui.themes.ValoTheme;
 
 /**
  * @author mbasa
@@ -86,14 +92,11 @@ public class showthemeUI extends UI {
     private String colorVals     = new String(); 
     private String labelScale    = new String();
     private String themeRanges   = new String();
-
     private String db_metadata   = new String();
-
+    private String selBaseLayer  = new String();
+    
     private LMarker   lmarker    = null;
     private LWmsLayer geofuseWMS = null;
-    private themeBean tb         = null; 
-
-    private generateSLD gsld;
 
     @WebServlet(value = "/ui/showtheme/*", asyncSupported = true)
     @VaadinServletConfiguration(productionMode = false, ui = showthemeUI.class, 
@@ -106,7 +109,6 @@ public class showthemeUI extends UI {
      * 
      */
     public showthemeUI() {
-        // TODO Auto-generated constructor stub
     }
 
     /**
@@ -114,7 +116,6 @@ public class showthemeUI extends UI {
      */
     public showthemeUI(Component content) {
         super(content);
-        // TODO Auto-generated constructor stub
     }
 
     /* (non-Javadoc)
@@ -122,14 +123,23 @@ public class showthemeUI extends UI {
      */
     @Override
     protected void init(VaadinRequest request) {
-
-        if( request.getParameter("layer") == null || 
-                request.getParameter("layer").length() < 2 ) {
+        
+        final showthemeReqBean strb = new showthemeReqBean();
+        
+        try {
+            BeanUtils.populate( strb, request.getParameterMap() );
+        } catch (IllegalAccessException e) {
+            LOGGER.error( e );
+        } catch (InvocationTargetException e) {
+            LOGGER.error( e.getCause() );
+        }
+        
+        if( strb.getLayer() == null ) {
             Notification.show("Layer Parameter Required", Type.ERROR_MESSAGE);
             return;
         }
         
-        LOGGER.debug("processing {}",request.getParameter("layer") );
+        LOGGER.debug( "processing {}",strb.getLayer() );
         
         final VaadinServletRequest req = 
                 (VaadinServletRequest)VaadinService.getCurrentRequest();
@@ -138,8 +148,11 @@ public class showthemeUI extends UI {
         this.showthemeProps = ResourceBundle.getBundle("properties.showtheme",
                 req.getLocale());
 
-        tb = this.getThemeBean(req.getParameter("layer"), UrlUtil.getUrl(req));
-
+        final String fullUrl = UrlUtil.getFullUrl(req);
+        final themeBean tb = 
+                this.getThemeBean(req.getParameter("layer"), 
+                        UrlUtil.getUrl(req));
+        
         if( tb == null ) {
             Notification.show("Layer is not found in catalog",Type.ERROR_MESSAGE);
             return;
@@ -148,19 +161,51 @@ public class showthemeUI extends UI {
         /**
          * Creating an initial SLD and saving to Session
          */
-        this.gsld = new generateSLD(this.geoserverURL,
-                this.colorNames,this.colorVals);
+        final generateSLD gsld = new generateSLD(
+                this.geoserverURL,
+                this.colorNames,
+                this.colorVals);
 
         gsld.setTypeName  (tb.getLayerName());
         gsld.setGeoType   (tb.getLayerType());
         gsld.setLabScale  (tb.getLabelScale());
         gsld.setViewParams(tb.getViewParams());
-        gsld.setPropName  ("col1");
-        gsld.setCqlString ("");
-        gsld.setTypeRange ("EQRange");
-        //gsld.setColor("#fdffe1","#dd0000");
-        gsld.setColor     (this.colorNames.split(",")[0]);
-        gsld.setNumRange  (Integer.parseInt(tb.getThemeRangesArray()[0]) );
+        if( strb.getPropName() != null ) {
+            gsld.setPropName( strb.getPropName() );
+        }
+        else {
+            gsld.setPropName  ("col1");
+        }
+        
+        if( strb.getCqlString() != null ) {
+            tb.setCql( strb.getCqlString() );
+            gsld.setCqlString( strb.getCqlString() );
+        }
+        else {
+            gsld.setCqlString ("");
+        }
+        
+        if( strb.getTypeRange() != null ) {
+            gsld.setTypeRange( strb.getTypeRange() );
+        }
+        else {
+            gsld.setTypeRange ("EQRange");
+        }
+        
+        if( strb.getColor() != null ) {
+            gsld.setColor( strb.getColor() );
+        }
+        else {
+            //gsld.setColor("#fdffe1","#dd0000");
+            gsld.setColor     (this.colorNames.split(",")[0]);
+        }
+        
+        if( strb.getNumRange() != null ) {
+            gsld.setNumRange( Integer.parseInt(strb.getNumRange()) );
+        }
+        else {
+            gsld.setNumRange  (Integer.parseInt(tb.getThemeRangesArray()[0]) );
+        }
 
         session.setAttribute( tb.getLayerName(), gsld.getSLD() );
 
@@ -194,7 +239,8 @@ public class showthemeUI extends UI {
         /**
          * Setting the Map Portion
          */
-        final LMap lmap = this.setLeaflet( );
+        final LMap lmap = this.setLeaflet( tb,gsld,
+                strb.getBaselayer(), strb.getBnd() );
 
         mapArea.addComponent(lmap);
         mapArea.setComponentAlignment(lmap, Alignment.MIDDLE_CENTER);
@@ -223,7 +269,7 @@ public class showthemeUI extends UI {
             cbCriteria.addItem(s);
             cbCriteria.setItemCaption(s, pm.get(s));
         }
-        cbCriteria.setValue(pm.keySet().toArray()[0]);
+        cbCriteria.setValue( gsld.getPropName() );
 
         final ComboBox cbType = new ComboBox(showthemeProps.getString("PW.TYPE"));
         cbType.setNullSelectionAllowed(false);
@@ -241,7 +287,7 @@ public class showthemeUI extends UI {
         cbType.addItem("Standard");
         cbType.setItemCaption("Standard", showthemeProps.getString("TY.STANDARD"));
 
-        cbType.setValue("EQRange");
+        cbType.setValue( gsld.getTypeRange() );
 
         final ComboBox cbRanges = new ComboBox(showthemeProps.getString("PW.RANGES"));
         cbRanges.setNullSelectionAllowed(false);
@@ -251,7 +297,7 @@ public class showthemeUI extends UI {
         for(String s : tb.getThemeRangesArray() ) {
             cbRanges.addItem(s);
         }
-        cbRanges.setValue(tb.getThemeRangesArray()[0]);
+        cbRanges.setValue( Integer.toString( gsld.getNumRange() ) );
 
         final ComboBox cbColors = new ComboBox(showthemeProps.getString("PW.COLOR"));
         cbColors.setNullSelectionAllowed(false);
@@ -261,7 +307,7 @@ public class showthemeUI extends UI {
         for( String s : this.colorNames.split(",")){
             cbColors.addItem(s);
         }
-        cbColors.setValue(this.colorNames.split(",")[0]);
+        cbColors.setValue( gsld.getColor() );
 
         final SimpleDateFormat dateFormat = 
                 new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -293,6 +339,17 @@ public class showthemeUI extends UI {
         endDate.setRangeStart(fromDate);
         endDate.setRangeEnd(toDate);
         endDate.setWidth("80%");
+
+        if( strb.getFromdate() != null && strb.getTodate() != null ) {
+            try {
+                startDate.setValue(dateFormat.parse(strb.getFromdate()) );
+                endDate.setValue(dateFormat.parse(strb.getTodate()) );
+            } catch (Exception e) {
+                LOGGER.error( e );
+                startDate.setValue( fromDate );
+                endDate.setValue( toDate );
+            }
+        }
 
         attPanel.setHeight("100%");
 
@@ -367,8 +424,15 @@ public class showthemeUI extends UI {
             }
         });
 
+        final Label legLabel = new Label( (String) cbCriteria.getItemCaption(
+                cbCriteria.getValue() ) );
+        legLabel.addStyleName(ValoTheme.LABEL_H4);
+        legLabel.setSizeUndefined();
+        
+        legArea.addComponent(legLabel);
         legArea.addComponent(legendImg);
         legArea.addComponent(legButton);
+        legArea.setComponentAlignment(legLabel , Alignment.MIDDLE_CENTER);
         legArea.setComponentAlignment(legendImg, Alignment.MIDDLE_CENTER);
         legArea.setComponentAlignment(legButton, Alignment.MIDDLE_CENTER);
 
@@ -409,12 +473,16 @@ public class showthemeUI extends UI {
                 setGeofuseLayer(lmap, tb);
 
                 legendImg.setVisible(false);
-
+                legLabel.setVisible(false);
+                
                 ExternalResource legendRes = 
                         new ExternalResource( setLegendURL(tb) );
 
+                legLabel.setValue( (String) cbCriteria.getItemCaption(
+                        cbCriteria.getValue() ) );                
                 legendImg.setSource(legendRes);
                 legendImg.setVisible(true);
+                legLabel.setVisible(true);
             }
         });
 
@@ -432,9 +500,55 @@ public class showthemeUI extends UI {
                 getUI().addWindow( pdfWin );
             }
         });
+        
+        Button shareButton = new Button( showthemeProps.getString("PB.SHARE") );
+        shareButton.addClickListener(new Button.ClickListener() {
+            
+            @Override
+            public void buttonClick(ClickEvent event) {               
+                
+                Bounds bounds = lmap.getBounds();
+                
+                StringBuffer sb = new StringBuffer();
+                sb.append(fullUrl);
+                sb.append("?layer=").append(strb.getLayer());
+                sb.append("&baselayer=").append(selBaseLayer);
+                sb.append("&color=").append(cbColors.getValue());
+                sb.append("&propName=").append(cbCriteria.getValue());
+                sb.append("&numRange=").append(cbRanges.getValue());
+                sb.append("&typeRange=").append(cbType.getValue());
+                sb.append("&bnd=");
+                sb.append(bounds.getSouthWestLon()).append(",");
+                sb.append(bounds.getSouthWestLat()).append(",");
+                sb.append(bounds.getNorthEastLon()).append(",");
+                sb.append(bounds.getNorthEastLat());
+                
+                if( gsld.getCqlString() != null && !gsld.getCqlString().isEmpty() ) {
+                    sb.append("&cqlString=").append( gsld.getCqlString() );
+                }
+                                
+                if( tb.getFromDate() != "" && tb.getToDate() != "" ) {
+                    sb.append("&fromdate=");
+                    sb.append( dateFormat.format(startDate.getValue()) );
+                    sb.append("&todate=");
+                    sb.append( dateFormat.format(endDate.getValue()) );
+                }
+
+                showthemeShareWin shareWin = new showthemeShareWin(
+                        showthemeProps.getString("SHR.WIN_TITLE") );
+                shareWin.init( sb.toString(), showthemeProps );
+
+                getUI().addWindow( shareWin );
+                
+            }
+        });
+        button.addStyleName(ValoTheme.BUTTON_TINY);
+        printButton.addStyleName(ValoTheme.BUTTON_TINY);
+        shareButton.addStyleName(ValoTheme.BUTTON_TINY);
+        
         HorizontalLayout buttonHolder = new HorizontalLayout();
         buttonHolder.setSpacing(true);
-        buttonHolder.addComponents(button,printButton);
+        buttonHolder.addComponents(button,printButton,shareButton);
 
         FormLayout formLayout = new FormLayout();
 
@@ -459,7 +573,7 @@ public class showthemeUI extends UI {
         lowerLayout.setExpandRatio(vAttLayout, 1.0f);
         lowerLayout.setExpandRatio(mapArea   , 3.5f);
 
-        mainLayout.addComponents(lowerLayout);		
+        mainLayout.addComponents(lowerLayout);	
     }
 
     private String setLegendURL( themeBean tb ) {
@@ -475,14 +589,24 @@ public class showthemeUI extends UI {
         return isb.toString();
     }
 
-    private LMap setLeaflet() {
+    private LMap setLeaflet( final themeBean tb, 
+            final generateSLD gsld, String baseLayerName,
+            String bndParam ) {
 
         final LMap lmap = new LMap();
 
+        lmap.addBaseLayerChangeListener(new LeafletBaseLayerChangeListener() {
+            
+            @Override
+            public void onBaseLayerChange(LeafletBaseLayerChangeEvent event) {
+                selBaseLayer = event.getName();
+            }
+        });
+        
         /**
          * setting the Base Layers
          */
-        this.setBaseMapLayers(lmap);
+        this.setBaseMapLayers( lmap, baseLayerName );
 
         /**
          * setting the WMS Overlay Layers
@@ -515,8 +639,13 @@ public class showthemeUI extends UI {
 		lmap.addControl(easyPrint);
          */
 
-        lmap.zoomToExtent( new Bounds(tb.getBounds()) );
-
+        if( bndParam != null ) {
+            lmap.zoomToExtent( new Bounds( bndParam ) );
+        }
+        else {
+            lmap.zoomToExtent( new Bounds(tb.getBounds()) );
+        }
+        
         /**
          * adding a click event
          */
@@ -639,7 +768,7 @@ public class showthemeUI extends UI {
      * Sets the BaseMap Layers of Leaflet
      * @param lmap
      */
-    private void setBaseMapLayers( LMap lmap ) {
+    private void setBaseMapLayers( LMap lmap, String baseName ) {
 
         baseLayerQuery blq = new baseLayerQuery();		
 
@@ -657,8 +786,14 @@ public class showthemeUI extends UI {
                 if(blb.getSubDomain() != null && blb.getSubDomain().length() >= 3 ) {
                     tiles[i].setSubDomains(blb.getSubDomain().split(","));
                 }
-                if( i == 0 ) {
+                if( i == 0 && baseName == null) {
                     tiles[i].setActive(true);
+                    selBaseLayer = blb.getName();
+                }
+                else if ( baseName != null && 
+                        baseName.equalsIgnoreCase(blb.getName()) ) {
+                    tiles[i].setActive(true);
+                    selBaseLayer = blb.getName();                    
                 }
                 else {
                     tiles[i].setActive(false);

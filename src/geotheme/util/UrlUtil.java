@@ -37,4 +37,20 @@ public class UrlUtil {
 	    
 	    return sb.toString();
 	}
+	
+	public static String getFullUrl(HttpServletRequest req) { 
+        String scheme = req.getScheme();           // http 
+        String serverName = req.getServerName();   // hostname.com 
+        int serverPort = req.getServerPort();      // 8080 
+        String contextPath = req.getRequestURI();  // /mywebapp/servlet 
+         
+        StringBuffer sb = new StringBuffer();
+        
+        sb.append(scheme);
+        sb.append("://").append(serverName);
+        sb.append(":").append(serverPort);
+        sb.append(contextPath);
+        
+        return sb.toString();
+    }
 }
