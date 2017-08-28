@@ -19,27 +19,28 @@ package geotheme.bean;
 
 public class wmsParamBean {
     
-    String BBOX        = "";   
-    String CQL_FILTER  = "";
-    String EXCEPTIONS  = "";
-    String FORMAT      = "";
-    String HEIGHT      = "";
-    String LAYERS      = "";
-    String LAYER       = "";
-    String REQUEST     = "";
-    String SERVICE     = "";
-    String SLD         = "";
-    String SLD_BODY    = "";
-    String SRS         = "";
-    String STYLES      = "";
-    String TILED       = "";
-    String TILESORIGIN = "";
-    String TRANSPARENT = "";
-    String VERSION     = "1.0.0";
-    String VIEWPARAMS  = "";
-    String WIDTH       = "";
-    String PDF_TITLE   = "";
-    String PDF_NOTE    = "";
+    String BBOX           = "";   
+    String CQL_FILTER     = "";
+    String EXCEPTIONS     = "";
+    String FORMAT         = "";
+    String HEIGHT         = "";
+    String LAYERS         = "";
+    String LAYER          = "";
+    String REQUEST        = "";
+    String SERVICE        = "";
+    String SLD            = "";
+    String SLD_BODY       = "";
+    String SRS            = "";
+    String STYLES         = "";
+    String TILED          = "";
+    String TILESORIGIN    = "";
+    String TRANSPARENT    = "";
+    String VERSION        = "1.0.0";
+    String VIEWPARAMS     = "";
+    String WIDTH          = "";
+    String PDF_TITLE      = "";
+    String PDF_NOTE       = "";
+    String LEGEND_OPTIONS = "";
     
     public String getBBOX() {
         return BBOX;
@@ -234,8 +235,22 @@ public class wmsParamBean {
         if( this.getVIEWPARAMS() != "" ) {
         	sb.append("&VIEWPARAMS=").append(this.getVIEWPARAMS());
         }
-
+        if( this.getLEGEND_OPTIONS() != "" ) {
+            sb.append("&LEGEND_OPTIONS=").append(this.getLEGEND_OPTIONS());
+        }
         return sb.toString();
+    }
+    /**
+     * @return lEGEND_OPTIONS を取得する
+     */
+    public String getLEGEND_OPTIONS() {
+        return LEGEND_OPTIONS;
+    }
+    /**
+     * @param lEGEND_OPTIONS lEGEND_OPTIONS を設定する
+     */
+    public void setLEGEND_OPTIONS(String lEGEND_OPTIONS) {
+        LEGEND_OPTIONS = lEGEND_OPTIONS;
     }
     
 }
