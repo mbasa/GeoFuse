@@ -14,6 +14,7 @@ import geotheme.db.markerLayerQuery;
 import geotheme.db.metaDataCtl;
 import geotheme.db.overlayLayerQuery;
 import geotheme.sld.generateSLD;
+import geotheme.ui.windows.showthemeGraphWin;
 import geotheme.ui.windows.showthemeLegendWin;
 import geotheme.ui.windows.showthemePdfWin;
 import geotheme.ui.windows.showthemeShareWin;
@@ -362,7 +363,12 @@ public class showthemeUI extends UI {
         final Image legendImg = new Image( null,legendRes);
         final Button legButton = new Button(
                 showthemeProps.getString("MW.LEGEND_BUTTON"));
+        final Button legGraphButton = new Button(
+                showthemeProps.getString("MW.LEGEND_GRAPH_BUTTON"));
 
+        legButton.addStyleName(ValoTheme.BUTTON_TINY);
+        legGraphButton.addStyleName(ValoTheme.BUTTON_TINY);
+        
         legButton.addClickListener(new Button.ClickListener() {
 
             @Override
@@ -424,17 +430,41 @@ public class showthemeUI extends UI {
             }
         });
 
+        legGraphButton.addClickListener(new Button.ClickListener() {
+            
+            @Override
+            public void buttonClick(ClickEvent event) {
+                LOGGER.debug("{}: {} '{}'",strb.getLayer(),gsld.getPropName(),
+                        gsld.getCqlString());
+                
+                String title = (String) cbCriteria.getItemCaption(
+                        cbCriteria.getValue() );
+                        
+                showthemeGraphWin sgw = new showthemeGraphWin();
+                
+                sgw.init(title, strb.getLayer(), gsld.getPropName(), 
+                        gsld.getRangeValuesList(), gsld.getRangeColorsList(),
+                        gsld.getCqlString(), showthemeProps);
+                
+                getUI().addWindow(sgw);
+            }
+        });
+        
         final Label legLabel = new Label( (String) cbCriteria.getItemCaption(
                 cbCriteria.getValue() ) );
         legLabel.addStyleName(ValoTheme.LABEL_H4);
         legLabel.setSizeUndefined();
         
+        HorizontalLayout legBtnHolder = new HorizontalLayout();
+        legBtnHolder.setSpacing(true);
+        legBtnHolder.addComponents(legButton,legGraphButton);
+        
         legArea.addComponent(legLabel);
         legArea.addComponent(legendImg);
-        legArea.addComponent(legButton);
-        legArea.setComponentAlignment(legLabel , Alignment.MIDDLE_CENTER);
-        legArea.setComponentAlignment(legendImg, Alignment.MIDDLE_CENTER);
-        legArea.setComponentAlignment(legButton, Alignment.MIDDLE_CENTER);
+        legArea.addComponent(legBtnHolder);
+        legArea.setComponentAlignment(legLabel    ,Alignment.MIDDLE_CENTER);
+        legArea.setComponentAlignment(legendImg   ,Alignment.MIDDLE_CENTER);
+        legArea.setComponentAlignment(legBtnHolder,Alignment.MIDDLE_CENTER);
 
         Panel legPanel = 
                 new Panel(showthemeProps.getString("MW.LEGEND"),legArea);	
