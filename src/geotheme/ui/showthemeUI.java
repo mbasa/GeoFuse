@@ -150,9 +150,11 @@ public class showthemeUI extends UI {
                 req.getLocale());
 
         final String fullUrl = UrlUtil.getFullUrl(req);
+        final String thisUrl = UrlUtil.getUrl(req);
+        
         final themeBean tb = 
                 this.getThemeBean(req.getParameter("layer"), 
-                        UrlUtil.getUrl(req));
+                        thisUrl );
         
         if( tb == null ) {
             Notification.show("Layer is not found in catalog",Type.ERROR_MESSAGE);
@@ -525,7 +527,8 @@ public class showthemeUI extends UI {
                 showthemePdfWin pdfWin = new showthemePdfWin(
                         showthemeProps.getString("PDF.WIN_TITLE"));
 
-                pdfWin.init( tb, lmap.getBounds(), showthemeProps );
+                pdfWin.init( tb, lmap.getBounds(), showthemeProps, 
+                        thisUrl );
 
                 getUI().addWindow( pdfWin );
             }
