@@ -65,7 +65,9 @@ public class showthemePdfWin extends Window {
 	private String titleVal = new String();
 	private String descVal  = new String();
 	
-	public void init( themeBean tb, Bounds bounds, ResourceBundle props) {
+	public void init( themeBean tb, Bounds bounds, ResourceBundle props,
+	        String url ) {
+	    
 		this.setModal(true);
 		this.setResizable(false);
 		this.setClosable(false);
@@ -98,7 +100,8 @@ public class showthemePdfWin extends Window {
 		bwo.extend(printButton);
 		
 		final StringBuffer sb = new StringBuffer();
-		sb.append("/geofuse/wms?REQUEST=GetPDFGraphic&FORMAT=image/png");
+		sb.append( url );
+		sb.append("/wms?REQUEST=GetPDFGraphic&FORMAT=image/png");
 		sb.append("&TRANSPARENT=TRUE&SRS=EPSG:4326&SERVICE=wms");
 		sb.append("&LAYERS=").append(tb.getLayerName());
 		

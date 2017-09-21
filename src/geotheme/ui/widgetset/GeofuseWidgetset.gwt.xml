@@ -29,4 +29,6 @@
     
 
     
+
+    <inherits name="org.dussan.vaadin.dcharts.DchartsWidgetset" />
 </module>

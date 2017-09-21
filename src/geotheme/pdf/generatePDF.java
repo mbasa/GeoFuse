@@ -26,6 +26,9 @@ import java.net.URLConnection;
 import java.text.DecimalFormat;
 import java.util.Date;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.pdfjet.*;
 
 import geotheme.bean.*;
@@ -44,6 +47,8 @@ public class generatePDF {
     public ByteArrayOutputStream createPDFFromImage( 
             wmsParamBean wpb, String host ) throws  Exception
     {
+        Logger LOGGER = LogManager.getLogger();
+        
     	/**
     	 * re-projecting to epsg:3857
     	 */
@@ -70,15 +75,17 @@ public class generatePDF {
         
         StringBuffer sb = new StringBuffer();
         sb.append(this.pdfURL);
-        sb.append("&layers=").append(this.pdfLayers);
-        sb.append("&bbox=").append(wpb.getBBOX());
-        sb.append("&Format=image/jpeg");
-        sb.append("&width=").append(width);
-        sb.append("&height=").append(height);
+        sb.append("&LAYERS=").append(this.pdfLayers);
+        sb.append("&BBOX=").append(wpb.getBBOX());
+        sb.append("&FORMAT=image/jpeg");
+        sb.append("&WIDTH=").append(width);
+        sb.append("&HEIGHT=").append(height);
 
         sb.append("&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetMap&STYLES=&SRS=");
         sb.append(wpb.getSRS());
 
+        LOGGER.debug("PDF Request URL: {}", sb.toString() );
+        
         try
         {
             wpb.setREQUEST("GetMap");

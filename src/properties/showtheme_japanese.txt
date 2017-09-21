@@ -15,6 +15,7 @@ MW.DATA_TITLE=作図対象データ
 MW.PARAMETERS=パラメータ
 MW.LEGEND=凡例
 MW.LEGEND_BUTTON=編集
+MW.LEGEND_GRAPH_BUTTON=グラフ
 #:::::::::::::::::::::::::
 #: Parameters Sub-Window 
 #:::::::::::::::::::::::::
