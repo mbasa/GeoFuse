@@ -1,5 +1,5 @@
 com.vaadin.integration.eclipse.addonThemesSuspended=true
-com.vaadin.integration.eclipse.mavenLatestVersionsUpgrade=["7.7.10"]
+com.vaadin.integration.eclipse.mavenLatestVersionsUpgrade=["7.7.11"]
 com.vaadin.integration.eclipse.previousCompileAction=theme
 com.vaadin.integration.eclipse.useLatestNightly=false
 com.vaadin.integration.eclipse.widgetsetBuildsSuspended=true

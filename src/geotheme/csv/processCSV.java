@@ -88,18 +88,21 @@ public class processCSV {
         if( isLatLon ) {
             String rs = mdc.processDataLatLon(pStr, tableName); 
             if( rs != null ) {
+                DBTools.update( "drop table "+tableName );
                 return("Error: Data entry "+rs);
             }
         }
         else {
             String rs = mdc.processData(pStr, tableName);
             if( rs != null ) {
+                DBTools.update( "drop table "+tableName );
                 return("Error: Data entry "+rs);
             }
         }
 
         if( !mdc.setMetaInfo(pStr[0], dynamicMap, this.db_metadata, 
                 tableName,isLatLon,layerName) ) {
+            DBTools.update( "drop table "+tableName );
             return("Error: Catalog entry");
         }
 

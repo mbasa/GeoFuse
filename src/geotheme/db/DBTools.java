@@ -150,9 +150,10 @@ public class DBTools {
         
         try {
             con = connectionPoolHolder.getConnection();
+            con.setAutoCommit(true);
+            
             QueryRunner runner = new QueryRunner();
             retval = runner.update(con,sql,params);
-            con.commit();
         }
         catch( Exception e ) {
             LOGGER.error( e );
