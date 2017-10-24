@@ -84,6 +84,12 @@ $valo-menu-background-color: #eee;
   
 }
 
+.popups td {
+    max-width: 150px;
+    overflow: auto;
+    word-wrap: break-word;
+}
+
 .popups table, .popups th, .popups td {
     border: 1px solid #aaa;
     border-collapse: collapse;
