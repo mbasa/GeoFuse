@@ -1,0 +1,87 @@
+$v-app-loading-text: "GeoFuse";
+
+/*$v-font-size: 12px;*/
+$v-font-family: "Roboto", sans-serif;
+$v-font-weight: 400;
+$v-font-weight--header: 400;
+$v-background-color: #fff;
+$v-focus-color: rgb(150,190,90);
+$v-luminance-threshold: 180;
+$v-border: 1px solid v-shade;
+$v-border-radius: 6px;
+$v-bevel: false;
+$v-gradient: false;
+$v-shadow: false;
+$v-textfield-bevel: false;
+$v-textfield-shadow: false;
+$v-link-text-decoration: false;
+$v-selection-overlay-padding-horizontal: 0;
+$v-selection-overlay-padding-vertical: 6px;
+$v-selection-item-height: 30px;
+$v-selection-item-border-radius: 0;
+$valo-menu-background-color: #eee;
+
+/* Import the reindeer theme.*/
+/* This only allows us to use the mixins defined in it and does not add any styles by itself. */
+
+/*@import "../reindeer/reindeer.scss"; */ 
+/*@import "../runo/runo.scss";*/ 
+/*@import "../liferay/liferay.scss"; */
+
+@import "../valo/valo.scss"; 
+
+/* This contains all of your theme.*/
+/* If somebody wants to extend the theme she will include this mixin. */
+@mixin geofuse {
+  /* Include all the styles from the reindeer theme */
+  
+  /*@include reindeer;*/
+  /*@include runo;*/
+  /*@include liferay;*/
+  
+  @include valo; 
+
+  /* Insert your theme rules here */
+  
+  .v-table-header {
+    background-color: #f7f7eb;
+  }
+  
+  .v-customlayout h1, .v-customlayout h2 {
+    color: $v-focus-color;
+    margin-top: 0.5em;
+  }
+  
+  .v-label-h2 {
+    margin-top: 0.8em;
+    margin-bottom: 0em;
+  }
+ 
+  .v-captiontext {
+    font-size: 12px;
+  } 
+}
+
+
+.login .v-panel {
+	background: #f6f6f6;
+}
+
+.login .v-panel-nocaption {
+	margin: 0;
+	border: none;
+	background: none;
+	padding: 0;
+	height: 0;
+}
+
+.popups table, .popups th, .popups td {
+	border: 1px solid #aaa;
+	border-collapse: collapse;
+}   
+
+.popups th, .popups td {
+	padding: 2px;
+}
+
+/*} */
