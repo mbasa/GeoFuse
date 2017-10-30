@@ -47,19 +47,19 @@ Configure GeoServer
 * Create a new postgis DataStore
 ![alt text](https://raw.githubusercontent.com/mbasa/GeoFuse-Admin/master/WebContent/VAADIN/themes/geofuse_admin/layouts/postgis_store.png "" )
 
-* Name the new Store as `` geofuse `` and set the database parameter to the `` geofuse `` database created. Set the schema parameter to `` geodata ``
+* Name the new Store as <strong>geofuse</strong> and set the database parameter to the <strong>geofuse</strong> database created. Set the schema parameter to <strong>geodata</strong>
 ![alt text](https://raw.githubusercontent.com/mbasa/GeoFuse-Admin/master/WebContent/VAADIN/themes/geofuse_admin/layouts/store.png "" )
 
-* Create a new `` SQL View Layer ``
+* Create a new <strong>SQL View Layer</strong>
 ![alt text](https://raw.githubusercontent.com/mbasa/GeoFuse-Admin/master/WebContent/VAADIN/themes/geofuse_admin/layouts/sql_view.png "" )
 
-* Set the layer name as `` geolink `` and the SQL Statement as
+* Set the layer name as <strong>geolink</strong> and the SQL Statement as
 
 ```sql
   select a.*,the_geom from %linktab% a,%maptab% b where a.col0 = b.%mapcol%
 ```
 
-* Set the View Parameters to the values below and erase the values of the `` Validation regular expression (正規表現を検証) ``
+* Set the View Parameters to the values below and erase the values of the <strong>Validation regular expression (正規表現を検証)</strong>
 
 ```
   linktab = geodata.dummy
@@ -69,31 +69,48 @@ Configure GeoServer
 
 ![alt text](https://raw.githubusercontent.com/mbasa/GeoFuse-Admin/master/WebContent/VAADIN/themes/geofuse_admin/layouts/sql_input1.png "" )
 
-* Press the <strong>Refresh</strong> button to update the Columns list. Change the SRID of the `` the_geom `` column to 4326 and press the Save Button.
+* Press the <strong>Refresh</strong> button to update the Columns list. Change the SRID of the <strong>the_geom</strong> column to 4326 and press the Save Button.
 ![alt text](https://raw.githubusercontent.com/mbasa/GeoFuse-Admin/master/WebContent/VAADIN/themes/geofuse_admin/layouts/sql_input2.png "" )
 
-* See *``geoserver_sql_view.sql``* for reference
-* SQL statement ``select a.*,the_geom from %linktab% a,%maptab% b where a.col0 = b.%mapcol%``
-* Click the ``Guess parameters from SQL``.  In the name {explain more the Deafult value parameters).
-* Create another layer for ``linker2``.
+* After Pressing the Save button, set the Bounding Box Parameters to -180 -90 180 90 in the main layer creation page and then Save.
+![alt text](https://raw.githubusercontent.com/mbasa/GeoFuse-Admin/master/WebContent/VAADIN/themes/geofuse_admin/layouts/sql_input3.png "" )
+
+* Create another SQL View Layer using the procedure set above. Set the layer name as <strong>geolink_pt</strong> and the SQL Statement as below
+
+```sql
+  select * from %linktab%
+```
+
+* Set the View Parameters to the values below and erase the values of the <strong>Validation regular expression (正規表現を検証)</strong>
+
+```
+  linktab = geodata.dummy_pt
+```
+
+* Press the <strong>Refresh</strong> button to update the Columns list. Change the Geometry Type to <strong>Point</strong> and the SRID of the <strong>the_geom</strong> column to 4326 and press the Save Button.
+![alt text](https://raw.githubusercontent.com/mbasa/GeoFuse-Admin/master/WebContent/VAADIN/themes/geofuse_admin/layouts/sql_input4.png "" )
+
+* After Pressing the Save button, set the Bounding Box Parameters to -180 -90 180 90 in the main layer creation page and then Save.
+
 
 Populate the MapLinker table in PostgreSQL
 ----------------------------------------
-* insert the following for each map layer that will be used to create thematic
-  1. link colunm (i.e. 'prefocode)
-  2. table name with schema (i.e. 'geodata.prefectures')
-  3. created geoserver view name (i.e. 'topp:linker1')
-  4. type of layer (i.e. 'polygon')
-  
-  ``insert into geofuse.maplinker values ('prefcode','geodata.prefecture','topp.linker1','polygon');``
 
-* insert the following for the layer that will contain lat,lon uploaded data
+Insert the following for each map layer that will be used to create thematic
 
-  ``insert into geofuse.maplinker values ('latlon','latlon','topp.linker2','point');``
+* link colunm (i.e. 'prefocode)
+* Map table name with schema (i.e. 'geodata.prefectures')
+* created geoserver view name (i.e. 'geouse:geolink')
+* type of layer (i.e. 'polygon'))  
+
+```sql
+    insert into geofuse.maplinker values ('prefcode', 'geodata.prefecture', 'geofuse:geolink', 'polygon');
+```
 
 To View Geofuse
 ----------------------
-* In your browser, go to ``http://localhost:8080/geofuse/``
+
+In your browser, go to ``http://localhost:8080/geofuse/``
 
    NOTE: This application will try to get only metric (numeric) fields to
       display in the Thematic attribute list. For numeric ID fileds 
@@ -103,9 +120,11 @@ To View Geofuse
 To Customize:
 -------------
 
-``tomcat_dir/webapps/GeoFuse/classes/properties/
-database.properties
-thematic.properties``
+```
+  tomcat_dir/webapps/GeoFuse/classes/properties/
+      database.propertiess
+      thematic.properties
+```
 
 
 Adding new postgis table
