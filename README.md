@@ -6,33 +6,50 @@ Prerequisites
 
 To Install
 ----------
-* download the war file found here
-* copy the war file to tomcat_dir/webapps
+* download the source code and build a WAR file using Maven
+
+```
+  mvn clean install
+```
+
+* copy the created WAR file into tomcat_dir/webapps directory
 * start tomcat
 
 Configure PostgreSQL
 --------------------
 * create a database and install PostGIS
 
-``createdb geofuse``
-
-``psql -f /usr/share/postgresql/8.4/contrib/postgis-1.5/postgis.sql geofuse``
-
-``psql -f /usr/share/postgresql/8.4/contrib/postgis-1.5/spatial_ref_sys.sql geofuse``
-
+```  
+  createdb geofuse
+  psql -c "CREATE EXTENSION postgis" geofuse
+  psql -c "CREATE EXTENSION postgis_topology" geofuse
+```
 
 * create the schemas that will contain the dummy and metadata tables found in createtabs.sql
-``psql -f createtabs.sql geofuse``
+
+```
+  psql -f createtabs.sql geofuse
+```
 
 * create the deltemp function that will delete the temporary files
-``psql -f deltemp.sql geofuse``
+
+```
+  psql -f deltemp.sql geofuse
+```
 
 * add map layers (polygons/lines/points) which will later be used for thematics. it will be best to place the table into the created "geodata" schema. 
 
 Configure GeoServer
 -------------------
-* Create a new postgis datastore
-* Create a new layer.  
+* Create a Workspace named `` geofuse ``
+![alt text](https://raw.githubusercontent.com/mbasa/GeoFuse-Admin/master/WebContent/VAADIN/themes/geofuse_admin/layouts/workspace.png "" )
+
+* Create a new postgis DataStore
+![alt text](https://raw.githubusercontent.com/mbasa/GeoFuse-Admin/master/WebContent/VAADIN/themes/geofuse_admin/layouts/postgis_store.png "" )
+
+* Name the new Store as `` geofuse `` and set the database parameter to the `` geofuse `` database created. Set the schema parameter to `` geodata ``
+![alt text](https://raw.githubusercontent.com/mbasa/GeoFuse-Admin/master/WebContent/VAADIN/themes/geofuse_admin/layouts/store.png "" )
+
 * Click the Configure new SQL view...
 * View name ``linker1``
 * See *``geoserver_sql_view.sql``* for reference
