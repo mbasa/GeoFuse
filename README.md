@@ -50,8 +50,28 @@ Configure GeoServer
 * Name the new Store as `` geofuse `` and set the database parameter to the `` geofuse `` database created. Set the schema parameter to `` geodata ``
 ![alt text](https://raw.githubusercontent.com/mbasa/GeoFuse-Admin/master/WebContent/VAADIN/themes/geofuse_admin/layouts/store.png "" )
 
-* Click the Configure new SQL view...
-* View name ``linker1``
+* Create a new `` SQL View Layer ``
+![alt text](https://raw.githubusercontent.com/mbasa/GeoFuse-Admin/master/WebContent/VAADIN/themes/geofuse_admin/layouts/sql_view.png "" )
+
+* Set the layer name as `` geolink `` and the SQL Statement as
+
+```sql
+  select a.*,the_geom from %linktab% a,%maptab% b where a.col0 = b.%mapcol%
+```
+
+* Set the View Parameters to the values below and erase the values of the `` Validation regular expression (正規表現を検証) ``
+
+```
+  linktab = geodata.dummy
+  maptab  = geodata.mapdummy
+  mapcol  = mapcol
+```
+
+![alt text](https://raw.githubusercontent.com/mbasa/GeoFuse-Admin/master/WebContent/VAADIN/themes/geofuse_admin/layouts/sql_input1.png "" )
+
+* Press the <strong>Refresh</strong> button to update the Columns list. Change the SRID of the `` the_geom `` column to 4326 and press the Save Button.
+![alt text](https://raw.githubusercontent.com/mbasa/GeoFuse-Admin/master/WebContent/VAADIN/themes/geofuse_admin/layouts/sql_input2.png "" )
+
 * See *``geoserver_sql_view.sql``* for reference
 * SQL statement ``select a.*,the_geom from %linktab% a,%maptab% b where a.col0 = b.%mapcol%``
 * Click the ``Guess parameters from SQL``.  In the name {explain more the Deafult value parameters).
