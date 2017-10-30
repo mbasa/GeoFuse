@@ -44,7 +44,7 @@ Configure GeoServer
 * Create a Workspace named `` geofuse ``
 ![alt text](https://raw.githubusercontent.com/mbasa/GeoFuse-Admin/master/WebContent/VAADIN/themes/geofuse_admin/layouts/workspace.png "" )
 
-* Create a new postgis DataStore
+* Create a new PostGIS DataStore
 ![alt text](https://raw.githubusercontent.com/mbasa/GeoFuse-Admin/master/WebContent/VAADIN/themes/geofuse_admin/layouts/postgis_store.png "" )
 
 * Name the new Store as <strong>geofuse</strong> and set the database parameter to the <strong>geofuse</strong> database created. Set the schema parameter to <strong>geodata</strong>
@@ -100,7 +100,7 @@ Insert the following for each map layer that will be used to create thematic
 
 * link colunm (i.e. 'prefocode)
 * Map table name with schema (i.e. 'geodata.prefectures')
-* created geoserver view name (i.e. 'geouse:geolink')
+* created geoserver view name (i.e. 'geofuse:geolink')
 * type of layer (i.e. 'polygon'))  
 
 ```sql
