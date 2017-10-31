@@ -1,5 +1,6 @@
 Prerequisites
 -------------
+
 * [Tomcat](http://tomcat.apache.org)
 * [GeoServer](http://www.geoserver.org)
 * [PostGIS](http://www.postgis.org)

@@ -999,7 +999,7 @@
  */
 
 .v-vaadin-version:after {
-	content: "7.7.11";
+	content: "7.6.8";
 }
 
 .v-widget {
@@ -1729,61 +1729,6 @@ div.v-layout.v-horizontal.v-widget {
 	content: "!";
 }
 
-.geofuse .v-errorindicator-info {
-	color: #00a7f5;
-	font-weight: 600;
-	width: 19px;
-	text-align: center;
-}
-
-.geofuse .v-errorindicator-info:before {
-	content: "!";
-}
-
-.geofuse .v-errorindicator-warning {
-	color: #fc9c00;
-	font-weight: 600;
-	width: 19px;
-	text-align: center;
-}
-
-.geofuse .v-errorindicator-warning:before {
-	content: "!";
-}
-
-.geofuse .v-errorindicator-error {
-	color: #ed473b;
-	font-weight: 600;
-	width: 19px;
-	text-align: center;
-}
-
-.geofuse .v-errorindicator-error:before {
-	content: "!";
-}
-
-.geofuse .v-errorindicator-critical {
-	color: #fa007d;
-	font-weight: 600;
-	width: 19px;
-	text-align: center;
-}
-
-.geofuse .v-errorindicator-critical:before {
-	content: "!";
-}
-
-.geofuse .v-errorindicator-system {
-	color: #bb00ff;
-	font-weight: 600;
-	width: 19px;
-	text-align: center;
-}
-
-.geofuse .v-errorindicator-system:before {
-	content: "!";
-}
-
 .geofuse .v-required-field-indicator {
 	color: #ed473b;
 	padding: 0 0.2em;
@@ -1878,26 +1823,6 @@ div.v-layout.v-horizontal.v-widget {
 .geofuse .v-tooltip .v-errormessage h2:only-child {
 	font: inherit;
 	line-height: inherit;
-}
-
-.geofuse .v-tooltip .v-errormessage-info {
-	color: #00a7f5;
-}
-
-.geofuse .v-tooltip .v-errormessage-warning {
-	color: #fc9c00;
-}
-
-.geofuse .v-tooltip .v-errormessage-error {
-	color: #ed473b;
-}
-
-.geofuse .v-tooltip .v-errormessage-critical {
-	color: #fa007d;
-}
-
-.geofuse .v-tooltip .v-errormessage-system {
-	color: #bb00ff;
 }
 
 .geofuse .v-tooltip .v-tooltip-text {
@@ -3143,61 +3068,6 @@ div.v-layout.v-horizontal.v-widget {
 	border-color: #ed473b;
 }
 
-.geofuse .v-filterselect-error-info .v-filterselect-input {
-	border-color: #00a7f5 !important;
-	background: #fafdff;
-	color: #195774;
-}
-
-.geofuse .v-filterselect-error-info .v-filterselect-button {
-	color: #00a7f5;
-	border-color: #00a7f5;
-}
-
-.geofuse .v-filterselect-error-warning .v-filterselect-input {
-	border-color: #fc9c00 !important;
-	background: #fffdfa;
-	color: #745119;
-}
-
-.geofuse .v-filterselect-error-warning .v-filterselect-button {
-	color: #fc9c00;
-	border-color: #fc9c00;
-}
-
-.geofuse .v-filterselect-error-error .v-filterselect-input {
-	border-color: #ed473b !important;
-	background: #fffbfb;
-	color: #6c2621;
-}
-
-.geofuse .v-filterselect-error-error .v-filterselect-button {
-	color: #ed473b;
-	border-color: #ed473b;
-}
-
-.geofuse .v-filterselect-error-critical .v-filterselect-input {
-	border-color: #fa007d !important;
-	background: #fffafc;
-	color: #741947;
-}
-
-.geofuse .v-filterselect-error-critical .v-filterselect-button {
-	color: #fa007d;
-	border-color: #fa007d;
-}
-
-.geofuse .v-filterselect-error-system .v-filterselect-input {
-	border-color: #bb00ff !important;
-	background: #fefaff;
-	color: #5c1974;
-}
-
-.geofuse .v-filterselect-error-system .v-filterselect-button {
-	color: #bb00ff;
-	border-color: #bb00ff;
-}
-
 .geofuse .v-filterselect-suggestpopup {
 	margin-top: 5px !important;
 }
@@ -3220,20 +3090,21 @@ div.v-layout.v-horizontal.v-widget {
 	-ms-backface-visibility: hidden;
 	backface-visibility: hidden;
 	padding: 6px 0;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	position: relative;
+	z-index: 1;
+}
+
+.geofuse .v-filterselect-suggestpopup [class$="suggestmenu"][style*="height"] {
 	-webkit-box-sizing: content-box;
 	-moz-box-sizing: content-box;
 	box-sizing: content-box;
-	position: relative;
-	z-index: 1;
-	display: block;
 }
 
 .geofuse .v-filterselect-suggestpopup table, .geofuse .v-filterselect-suggestpopup tbody, .geofuse .v-filterselect-suggestpopup tr, .geofuse .v-filterselect-suggestpopup td {
 	display: block;
-	width: 100%;
-	overflow-y: hidden;
-	float: left;
-	clear: both;
 }
 
 .geofuse .v-filterselect-suggestpopup .gwt-MenuItem {
@@ -3243,10 +3114,6 @@ div.v-layout.v-horizontal.v-widget {
 	font-weight: 400;
 	white-space: nowrap;
 	position: relative;
-	height: 30px;
-	box-sizing: border-box;
-	text-overflow: ellipsis;
-	overflow-x: hidden;
 }
 
 .geofuse .v-filterselect-suggestpopup .gwt-MenuItem:active:before {
@@ -4366,8 +4233,6 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .geofuse .v-grid-body {
-	-ms-touch-action: none;
-	touch-action: none;
 	z-index: 0;
 	top: 0;
 }
@@ -4646,21 +4511,6 @@ div.v-layout.v-horizontal.v-widget {
 	bottom: 0px;
 	cursor: col-resize;
 	z-index: 10;
-	-webkit-user-select: none;
-	-khtml-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
-}
-
-.geofuse .v-grid-column-resize-simple-indicator {
-	position: absolute;
-	width: 3px;
-	top: 0px;
-	left: 18px;
-	z-index: 9001;
-	background: #fff;
-	box-shadow: 0px 0px 5px #000;
 	-webkit-user-select: none;
 	-khtml-user-select: none;
 	-moz-user-select: none;
@@ -5209,36 +5059,6 @@ div.v-layout.v-horizontal.v-widget {
 	border-color: #ed473b !important;
 	background: #fffbfb;
 	color: #6c2621;
-}
-
-.geofuse .v-textfield-error-info {
-	border-color: #00a7f5 !important;
-	background: #fafdff;
-	color: #195774;
-}
-
-.geofuse .v-textfield-error-warning {
-	border-color: #fc9c00 !important;
-	background: #fffdfa;
-	color: #745119;
-}
-
-.geofuse .v-textfield-error-error {
-	border-color: #ed473b !important;
-	background: #fffbfb;
-	color: #6c2621;
-}
-
-.geofuse .v-textfield-error-critical {
-	border-color: #fa007d !important;
-	background: #fffafc;
-	color: #741947;
-}
-
-.geofuse .v-textfield-error-system {
-	border-color: #bb00ff !important;
-	background: #fefaff;
-	color: #5c1974;
 }
 
 .geofuse .v-textfield-borderless {
@@ -6077,61 +5897,6 @@ div.v-layout.v-horizontal.v-widget {
 .geofuse .v-datefield-error .v-datefield-button {
 	color: #ed473b;
 	border-color: #ed473b;
-}
-
-.geofuse .v-datefield-error-info .v-datefield-textfield {
-	border-color: #00a7f5 !important;
-	background: #fafdff;
-	color: #195774;
-}
-
-.geofuse .v-datefield-error-info .v-datefield-button {
-	color: #00a7f5;
-	border-color: #00a7f5;
-}
-
-.geofuse .v-datefield-error-warning .v-datefield-textfield {
-	border-color: #fc9c00 !important;
-	background: #fffdfa;
-	color: #745119;
-}
-
-.geofuse .v-datefield-error-warning .v-datefield-button {
-	color: #fc9c00;
-	border-color: #fc9c00;
-}
-
-.geofuse .v-datefield-error-error .v-datefield-textfield {
-	border-color: #ed473b !important;
-	background: #fffbfb;
-	color: #6c2621;
-}
-
-.geofuse .v-datefield-error-error .v-datefield-button {
-	color: #ed473b;
-	border-color: #ed473b;
-}
-
-.geofuse .v-datefield-error-critical .v-datefield-textfield {
-	border-color: #fa007d !important;
-	background: #fffafc;
-	color: #741947;
-}
-
-.geofuse .v-datefield-error-critical .v-datefield-button {
-	color: #fa007d;
-	border-color: #fa007d;
-}
-
-.geofuse .v-datefield-error-system .v-datefield-textfield {
-	border-color: #bb00ff !important;
-	background: #fefaff;
-	color: #5c1974;
-}
-
-.geofuse .v-datefield-error-system .v-datefield-button {
-	color: #bb00ff;
-	border-color: #bb00ff;
 }
 
 .geofuse .v-datefield-full {
@@ -9371,11 +9136,6 @@ div.v-layout.v-horizontal.v-widget {
 	display: inline;
 }
 
-.geofuse .v-on.v-disabled, .geofuse .v-off.v-disabled {
-	opacity: 0.5;
-	filter: alpha(opacity=50) ;
-}
-
 .geofuse .v-off:before {
 	visibility: hidden;
 }
@@ -11048,42 +10808,6 @@ div.v-layout.v-horizontal.v-widget {
 	content: "\f054";
 }
 
-.geofuse .v-select-twincol-error .v-select-twincol-options, .geofuse .v-select-twincol-error .v-select-twincol-selections {
-	border-color: #ed473b !important;
-	background: #fffbfb;
-	color: #6c2621;
-}
-
-.geofuse .v-select-twincol-error-info .v-select-twincol-options, .geofuse .v-select-twincol-error-info .v-select-twincol-selections {
-	border-color: #00a7f5 !important;
-	background: #fafdff;
-	color: #195774;
-}
-
-.geofuse .v-select-twincol-error-warning .v-select-twincol-options, .geofuse .v-select-twincol-error-warning .v-select-twincol-selections {
-	border-color: #fc9c00 !important;
-	background: #fffdfa;
-	color: #745119;
-}
-
-.geofuse .v-select-twincol-error-error .v-select-twincol-options, .geofuse .v-select-twincol-error-error .v-select-twincol-selections {
-	border-color: #ed473b !important;
-	background: #fffbfb;
-	color: #6c2621;
-}
-
-.geofuse .v-select-twincol-error-critical .v-select-twincol-options, .geofuse .v-select-twincol-error-critical .v-select-twincol-selections {
-	border-color: #fa007d !important;
-	background: #fffafc;
-	color: #741947;
-}
-
-.geofuse .v-select-twincol-error-system .v-select-twincol-options, .geofuse .v-select-twincol-error-system .v-select-twincol-selections {
-	border-color: #bb00ff !important;
-	background: #fefaff;
-	color: #5c1974;
-}
-
 .geofuse .v-select select {
 	border: 1px solid #b2b2b2;
 	background: #fff;
@@ -11108,12 +10832,6 @@ div.v-layout.v-horizontal.v-widget {
 .geofuse .v-select-select  + .v-textfield  + .v-nativebutton {
 	margin-top: 9px;
 	margin-left: 9px;
-}
-
-.geofuse .v-select-error .v-select-select {
-	border-color: #ed473b !important;
-	background: #fffbfb;
-	color: #6c2621;
 }
 
 .geofuse .v-calendar-header-day {
@@ -11556,11 +11274,6 @@ div.v-layout.v-horizontal.v-widget {
 	user-select: text;
 }
 
-.geofuse .v-label.v-disabled {
-	opacity: 0.5;
-	filter: alpha(opacity=50) ;
-}
-
 .geofuse .v-label-undef-w {
 	white-space: nowrap;
 }
@@ -11838,12 +11551,6 @@ div.v-layout.v-horizontal.v-widget {
 .geofuse .v-select-select  + .v-textfield  + .v-nativebutton {
 	margin-top: 9px;
 	margin-left: 9px;
-}
-
-.geofuse .v-select-error .v-select-select {
-	border-color: #ed473b !important;
-	background: #fffbfb;
-	color: #6c2621;
 }
 
 .geofuse .v-popupview {
@@ -13065,7 +12772,7 @@ div.v-layout.v-horizontal.v-widget {
 	transition: all 300ms;
 }
 
-.geofuse .valo-menu-responsive[width-range~="0-800px"] .valo-menu-visible .valo-menuitems, .geofuse .valo-menu-responsive[width-range~="0-800px"] .valo-menu-hover:hover .valo-menuitems {
+.geofuse .valo-menu-responsive[width-range~="0-800px"] .valo-menu-visible .valo-menuitems {
 	-webkit-transform: translatex(0%);
 	-moz-transform: translatex(0%);
 	-ms-transform: translatex(0%);
