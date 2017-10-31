@@ -43,16 +43,16 @@ Configure PostgreSQL
 Configure GeoServer
 -------------------
 * Create a Workspace named `` geofuse ``
-![alt text](https://raw.githubusercontent.com/mbasa/GeoFuse-Admin/master/WebContent/VAADIN/themes/geofuse_admin/layouts/workspace.png "" )
+![alt text](https://raw.githubusercontent.com/mbasa/GeoFuse-Admin/master/src/main/webapp/VAADIN/themes/geofuse_admin/layouts/workspace.png "" )
 
 * Create a new PostGIS DataStore
-![alt text](https://raw.githubusercontent.com/mbasa/GeoFuse-Admin/master/WebContent/VAADIN/themes/geofuse_admin/layouts/postgis_store.png "" )
+![alt text](https://raw.githubusercontent.com/mbasa/GeoFuse-Admin/master/src/main/webapp/VAADIN/themes/geofuse_admin/layouts/postgis_store.png "" )
 
 * Name the new Store as <strong>geofuse</strong> and set the database parameter to the <strong>geofuse</strong> database created. Set the schema parameter to <strong>geodata</strong>
-![alt text](https://raw.githubusercontent.com/mbasa/GeoFuse-Admin/master/WebContent/VAADIN/themes/geofuse_admin/layouts/store.png "" )
+![alt text](https://raw.githubusercontent.com/mbasa/GeoFuse-Admin/master/src/main/webapp/VAADIN/themes/geofuse_admin/layouts/store.png "" )
 
 * Create a new <strong>SQL View Layer</strong>
-![alt text](https://raw.githubusercontent.com/mbasa/GeoFuse-Admin/master/WebContent/VAADIN/themes/geofuse_admin/layouts/sql_view.png "" )
+![alt text](https://raw.githubusercontent.com/mbasa/GeoFuse-Admin/master/src/main/webapp/VAADIN/themes/geofuse_admin/layouts/sql_view.png "" )
 
 * Set the layer name as <strong>geolink</strong> and the SQL Statement as
 
@@ -68,13 +68,13 @@ Configure GeoServer
   mapcol  = mapcol
 ```
 
-![alt text](https://raw.githubusercontent.com/mbasa/GeoFuse-Admin/master/WebContent/VAADIN/themes/geofuse_admin/layouts/sql_input1.png "" )
+![alt text](https://raw.githubusercontent.com/mbasa/GeoFuse-Admin/master/src/main/webapp/VAADIN/themes/geofuse_admin/layouts/sql_input1.png "" )
 
 * Press the <strong>Refresh</strong> button to update the Columns list. Change the SRID of the <strong>the_geom</strong> column to 4326 and press the Save Button.
-![alt text](https://raw.githubusercontent.com/mbasa/GeoFuse-Admin/master/WebContent/VAADIN/themes/geofuse_admin/layouts/sql_input2.png "" )
+![alt text](https://raw.githubusercontent.com/mbasa/GeoFuse-Admin/master/src/main/webapp/VAADIN/themes/geofuse_admin/layouts/sql_input2.png "" )
 
 * After Pressing the Save button, set the Bounding Box Parameters to -180 -90 180 90 in the main layer creation page and then Save.
-![alt text](https://raw.githubusercontent.com/mbasa/GeoFuse-Admin/master/WebContent/VAADIN/themes/geofuse_admin/layouts/sql_input3.png "" )
+![alt text](https://raw.githubusercontent.com/mbasa/GeoFuse-Admin/master/src/main/webapp/VAADIN/themes/geofuse_admin/layouts/sql_input3.png "" )
 
 * Create another SQL View Layer using the procedure set above. Set the layer name as <strong>geolink_pt</strong> and the SQL Statement as below
 
@@ -89,7 +89,7 @@ Configure GeoServer
 ```
 
 * Press the <strong>Refresh</strong> button to update the Columns list. Change the Geometry Type to <strong>Point</strong> and the SRID of the <strong>the_geom</strong> column to 4326 and press the Save Button.
-![alt text](https://raw.githubusercontent.com/mbasa/GeoFuse-Admin/master/WebContent/VAADIN/themes/geofuse_admin/layouts/sql_input4.png "" )
+![alt text](https://raw.githubusercontent.com/mbasa/GeoFuse-Admin/master/src/main/webapp/VAADIN/themes/geofuse_admin/layouts/sql_input4.png "" )
 
 * After Pressing the Save button, set the Bounding Box Parameters to -180 -90 180 90 in the main layer creation page and then Save.
 
