@@ -160,7 +160,8 @@ CREATE TABLE geofuse.overlaylayer
 	layers      TEXT,    -- layers. Should be in CSV format 
 	name        TEXT,    -- Display Name in the Layer Control
 	active      BOOLEAN, -- Display Flag in the Layer Control
-	display     BOOLEAN  -- Display Flag
+	display     BOOLEAN, -- Display Flag
+	minzoom     integer  -- Minimum Zoom
 );
 
 --
