@@ -154,20 +154,24 @@ public class geofuseLinkerView extends VerticalLayout implements View {
         btnLayout.setSizeUndefined();
         
         this.addComponents(baseTable,btnLayout);
-        final FileDownloader filed = new FileDownloader( getExcelResource(baseTable) );
-        filed.extend( exportBtn );
+        StreamResource streamRes = getExcelResource( baseTable );
         
-        baseTable.addItemClickListener(new ItemClickListener() {
+        if( streamRes != null ) {
+            final FileDownloader filed = new FileDownloader( streamRes );
+            filed.extend( exportBtn );
 
-            private static final long serialVersionUID = 1L;
+            baseTable.addItemClickListener(new ItemClickListener() {
 
-            @Override
-            public void itemClick(ItemClickEvent event) {
-                LOGGER.debug( event.getItemId() );
-                filed.setFileDownloadResource( getExcelResource(baseTable) );
-            }
-            
-        });
+                private static final long serialVersionUID = 1L;
+
+                @Override
+                public void itemClick(ItemClickEvent event) {
+                    LOGGER.debug( event.getItemId() );
+                    filed.setFileDownloadResource( getExcelResource(baseTable) );
+                }            
+            });
+        }
+        
         this.setExpandRatio(baseTable, 2.0f);
         this.setExpandRatio(btnLayout, 1.0f);
     }
