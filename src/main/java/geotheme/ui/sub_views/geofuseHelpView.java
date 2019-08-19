@@ -63,7 +63,7 @@ public class geofuseHelpView extends VerticalLayout implements View {
         tlayout.setComponentAlignment(vlayout, Alignment.MIDDLE_CENTER);
         tlayout.setSpacing(true);
 
-        CustomLayout html = new CustomLayout( "Geofuse_Tutorial" );
+        CustomLayout html = new CustomLayout( rb.getString("TUTORIAL.HTML") );
         html.setWidth("100%");
         
         this.setSpacing(true);

@@ -1,0 +1,138 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<title>Geofuse Tutorial</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<style>
+body { font:80% Verdana,Tahoma,Arial,sans-serif; }
+h1, h2, h3, h4 {  font-family: "Trebuchet MS",Georgia,"Times New Roman",serif; color: green;}
+ul.toc { padding: 4px; margin-left: 0; }
+ul.toc li { list-style-type:none; }
+ul.toc li.heading2 { margin-left: 1em; }
+ul.toc li.heading3 { margin-left: 2em; }
+a.wiki-anchor { display: none; margin-left: 6px; text-decoration: none; }
+a.wiki-anchor:hover { color: #aaa !important; text-decoration: none; }
+h1:hover a.wiki-anchor, h2:hover a.wiki-anchor, h3:hover a.wiki-anchor { display: inline; color: #ddd; }
+</style>
+</head>
+<body>
+<h1 >クイックチュートリアル</h1>
+
+<h2 >データを入力する</h2>
+
+    <p><strong>以下はGeofuseにデータを入れて視覚化するまでの手順です。</strong></p>
+
+	<ul>
+	<li>GeoFuseの「リンク用データ」メニューから地図用のリンクデータをダウンドードしてExcelやOpenOfficeで開きます。<br /> 
+	<img src="help/gf1.png" alt="" width="100%" height="auto"  /></li>
+	</ul>
+
+
+	<ul>
+	<li>列名を追加して、サンプルデータを配置します。この例では「学校数」が使用され、Excel関数を使ったランダムなデータが配置されています。<br />
+	<pre style="display: inline-block; border:1px solid Gray; color: #6666ff; background-color:#eeeeee;">
+  =RAND() * 1000  </pre>
+
+    <br />コピーして列全体に貼り付けます。</li>
+	</ul>
+
+
+	<p><img src="help/gf2.png" alt=""  width="100%" height="auto"  /></p>
+
+
+	<ul>
+	<li>次に、すべてのデータを選択してコピーします。</li>
+	</ul>
+
+
+	<p><img src="help/gf3.png" alt=""  width="100%" height="auto"  /></p>
+
+
+	<ul>
+	<li>選択したデータをGeoFuse入力ページに貼り付け、レイヤー名として「Test Map」を追加します。</li>
+	</ul>
+
+
+	<p><img src="help/gf4.png" alt=""  width="100%" height="auto"  /></p>
+
+
+	<ul>
+	<li>データを送信して、作成したマップを表示します。</li>
+	</ul>
+
+
+	<p><img src="help/gf5.png" alt=""  width="100%" height="auto"  /></p>
+
+
+<h2 >タイムスタンプ（日付・時刻）つきのデータを入力する</h2>
+
+
+	<p><strong>GeoFuseには、タイムスタンプを処理し、指定されたデータ/時間に基づいてマップをフィルタリングする機能があります。ただし、これを行うには、タイムスタンプデータに「timestamp」という名前の列があり、入力データの形式は「YYYY/MM/DD HH:MM:SS」または「YYYY-MM-DD HH:MM:SS」である必要があります。タイムスタンプ付きのデータをGeoFuseに入力する手順は以下の通りです。</strong></p>
+
+
+	<ul>
+	<li>上記のスプレッドシートを使用して、列名として「timestamp」を追加し、行全体を「YYYY/MM/DD HH:MM:SS」形式にします。OpenOfficeでは、列全体を選択し、[書式]-> [セル]メニューオプションに移動してこれを行います。</li>
+	</ul>
+
+
+	<p><img src="help/gf6.png" alt="" width="100%" height="auto"   /></p>
+
+
+	<ul>
+	<li>サンプルのタイムスタンプデータは、Excel関数を使用して作成できます。<br />
+	<pre style="display: inline-block; border:1px solid Gray; color: #6666ff; background-color:#eeeeee;">
+  =NOW() - B2  </pre>
+  
+    <br />次に、列全体をコピーして貼り付けます。</li>
+	</ul>
+
+
+	<p><img src="help/gf7.png" alt="" width="100%" height="auto"   /></p>
+
+
+	<ul>
+	<li>データ全体が再度コピーされ「Test Data with Timestamp」というレイヤー名でGeoFuseの入力ページに貼り付けられます。</li>
+	</ul>
+
+
+	<p><img src="help/gf8.png" alt="" width="100%" height="auto"   /></p>
+
+
+	<ul>
+	<li>作成されたマップを表示するときに、指定された日付内のデータのみを表示できるようにする[開始日]オプションと[終了日]オプションがあります。これらのオプションは、送信されたデータにタイムスタンプが含まれる場合にのみ含まれます。</li>
+	</ul>
+
+
+	<p><img src="help/gf9.png" alt="" width="100%" height="auto"   /></p>
+
+
+<h2 >X、Y（経度/緯度）データの入力</h2>
+
+
+	<p><strong>GeoFuseには、すでにX、Y（経度、緯度）ポイントがあるデータを処理する機能もあります。ただし、GeoFuseがX、Yポイントデータを受け入れるためには、いくつかのルールに従う必要があります。最初に、列名はXポイントでは「lon」、Yポイントでは「lat」にする必要があります。次に、「lon」列と「lat」列はデータの最後の列でなければなりません。そして最後に、X、Yポイントは、GPSシステムで一般的に使用される投影法であるWGS84投影法である必要があります。以下は、X、Yポイントでデータを入力するための手順です。</strong></p>
+
+
+	<ul>
+	<li>「lon」列と「lat」列を持つワークシートを作成します。これらの列には、それぞれXとYポイントが含まれ、最後の列として</li>
+	</ul>
+
+
+	<p><img src="help/gf10.png" alt="" width="100%" height="auto"   /></p>
+
+
+	<ul>
+	<li>データをコピーしてGeoFuse入力ページに貼り付けます。</li>
+	</ul>
+
+
+	<p><img src="help/gf11.png" alt=""  width="100%" height="auto"  /></p>
+
+
+	<ul>
+	<li>データを閲覧します。</li>
+	</ul>
+
+
+	<p><img src="help/gf12.png" alt="" width="100%" height="auto"   /></p>
+</body>
+</html>

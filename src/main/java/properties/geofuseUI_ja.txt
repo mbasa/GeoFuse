@@ -48,3 +48,8 @@ GRID.COL_LINKCOLUMN=リンク列
 GRID.COL_LAYERTYPE=レイヤ種別
 GRID.COL_LAYERNAME=レイヤ名
 GRID.COL_TABLENAME=テーブル名
+
+#:::::::::::::::::::::::::
+#: Tutorial HTML
+#:::::::::::::::::::::::::
+TUTORIAL.HTML=Geofuse_Tutorial_jp
