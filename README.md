@@ -99,7 +99,7 @@ Populate the MapLinker table in PostgreSQL
 
 Insert the following for each map layer that will be used to create thematic
 
-* link colunm (i.e. 'prefocode)
+* link column (i.e. 'prefocode)
 * Map table name with schema (i.e. 'geodata.prefectures')
 * created geoserver view name (i.e. 'geofuse:geolink')
 * type of layer (i.e. 'polygon'))  
