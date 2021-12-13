@@ -3,9 +3,9 @@
           xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.2.0 http://maven.apache.org/xsd/settings-1.2.0.xsd">
     <mirrors>
         <mirror>
-            <id>releases-java-net-http-unblocker</id>
-            <mirrorOf>releases.java.net</mirrorOf>
-            <name>releases.java.net</name>
+            <id>maven-vaadin-comhttp-unblocker</id>
+            <mirrorOf>maven.vaadin.com</mirrorOf>
+            <name>maven.vaadin.com</name>
             <url>http://maven.vaadin.com/vaadin-addons/releases/</url>
             <blocked>false</blocked>
         </mirror>
