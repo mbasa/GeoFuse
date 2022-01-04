@@ -74,7 +74,7 @@
 		<dependency>
 			<groupId>commons-beanutils</groupId>
 			<artifactId>commons-beanutils</artifactId>
-			<version>1.8.3</version>
+			<version>1.9.4</version>
 		</dependency>
 		<dependency>
 			<groupId>commons-dbutils</groupId>
@@ -165,7 +165,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-war-plugin</artifactId>
-				<version>2.6</version>
+				<version>3.3.1</version>
 				<configuration>
 				    <warName>${project.artifactId}</warName>
 					<failOnMissingWebXml>false</failOnMissingWebXml>
