@@ -1,3 +1,31 @@
+### GeoFuse 
+
+GeoFuse is a Location Intelligence Tool that can easily link any 
+Statistical Data with Geographic Data and display informative Thematic Maps. 
+
+These Thematic Maps are rendered server-side using [GeoServer](https://geoserver.org) mapping server for fast display, even with very dense 
+statistical and geographic data sets. 
+
+The statistical data can be uploaded in CSV format, and a map will be created
+if the first column name of the CSV data matches a specific column name in the
+attribute table of the map data. A point map data will also be created if the 
+last 2 columns of the CSV contain lon(Longitude)/lat(Latitude) information.
+
+### Sample Thematic Maps of GeoFuse
+
+* 2011 Earthquake Data that is filtered by its **Timestamp** data.
+
+![](pics/01.png)
+
+* Traffic Violations Count linked to OSM Road data set
+
+![](pics/02.png)
+
+* Census Data of each defined Election Area Polygon 
+
+![](pics/03.png)
+
+
 Prerequisites
 -------------
 
