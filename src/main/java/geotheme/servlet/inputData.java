@@ -70,7 +70,7 @@ public class inputData extends HttpServlet {
 		
 		LOGGER.debug( "Input LayerName = {}",layerName );
 		
-        if (inputString == null || inputString.isBlank()) {
+        if (inputString == null || inputString == "") {
             response.setContentType("text/text");
             PrintWriter out = response.getWriter();
             out.write("Error: input data is null or blank ");
