@@ -18,7 +18,8 @@
 
 package geotheme.servlet;
 
-import java.io.*;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -29,8 +30,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import geotheme.util.UrlUtil;
 import geotheme.csv.processCSV;
+import geotheme.util.UrlUtil;
 
 /**
  * Servlet implementation class inputData
@@ -69,7 +70,16 @@ public class inputData extends HttpServlet {
 		
 		LOGGER.debug( "Input LayerName = {}",layerName );
 		
-		if( inputString != null ) {
+        if (inputString == null || inputString.isBlank()) {
+            response.setContentType("text/text");
+            PrintWriter out = response.getWriter();
+            out.write("Error: input data is null or blank ");
+            out.close();
+
+            return;
+        }
+
+        if (request.getCharacterEncoding().equalsIgnoreCase("ISO-8859-1")) {
 		    byte[] bytes = inputString.getBytes("ISO-8859-1");
 		    inputString  = new String(bytes, "UTF-8");
 		}
