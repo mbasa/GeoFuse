@@ -18,11 +18,17 @@
 
 package geotheme.db;
 
-import java.sql.*;
-import java.util.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.sql.Timestamp;
+import java.sql.Types;
+import java.util.Map;
 
-import geotheme.bean.*;
-import geotheme.util.*;
+import geotheme.bean.metaDataBean;
+import geotheme.util.StringCheck;
 
 public class metaDataCtl {
 
@@ -460,6 +466,7 @@ public class metaDataCtl {
 		finally {
 			if( stmt != null ) {
 				try {
+                    conn.commit();
 					stmt.close();
 				} catch (SQLException e) {
 					e.printStackTrace();
@@ -467,6 +474,7 @@ public class metaDataCtl {
 			}
 			if( pstmt != null ) {
 				try {
+                    conn.commit();
 					pstmt.close();
 				} catch (SQLException e) {
 					e.printStackTrace();
