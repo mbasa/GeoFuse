@@ -169,6 +169,18 @@ NOTE: the ColorNames and Colors should have equal number of items, otherwise
       no color choices will appear in the Colors list of the web page.
 
 
+Configure Tomcat
+----------------
+
+To be able to upload large CSV Data into GeoFuse through Form POST, the `maxPostSize` Connector parameter has to be added and modified in Tomcat's server.xml Configuration File: 
+
+```
+<Connector connectionTimeout="20000" port="8080" protocol="HTTP/1.1" 
+       redirectPort="8443" maxPostSize="104857600" />
+```
+
+This will also apply if AJP is used.
+
 
 License
 -------
